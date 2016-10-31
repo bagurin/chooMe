@@ -12,10 +12,23 @@
 */
 
 
-
-Route::get('/', function(){
-    return view('auth.login');
+Route::get('/', function () {
+    return view('top');
 });
+
+Route::get('/about/', function () {
+    return view('about');
+});
+
+Route::get('/scene/', function () {
+    return view('scene');
+});
+
+Route::get('/product-register/', function () {
+    return view('product-register');
+});
+
+Route::post('/product-register',array('uses'=>'UploadController@postIndex'));
 
 //試し
 Route::get('ranking','RankController@ranking');
