@@ -26,9 +26,9 @@
                 </div>
 
 
-                <form method="post">
+                <form enctype="multipart/form-data" method="post">
                 <input type="text" id="name" name="name" placeholder="商品名">
-                <input type="file" id="image" name="image">
+                <input type="file" id="image" name="image" accept="image/*">
                 <select id="genres" name="genres" size="5">
                     <option value="1">飲食物</option>
                     <option value="2">腕時計</option>
