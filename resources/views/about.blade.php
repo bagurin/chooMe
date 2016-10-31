@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 
@@ -17,6 +17,7 @@
 	<div class="general_agileits_genres">
 		<h4 class="latest-text w3_latest_text">What's ChooMe?</h4>
 		<div class="container">
+			<div class="well">
 			ChooMe(ChooseMe)は、ユーザーの意見を最大限取り入れたプレゼントお勧めシステムです。<br>
 			シーン別、年代別毎に適したお勧めのプレゼントをランキング形式で表示します。<br>
 			ユーザーがランキングページにアクセスするたびに「欲しいもの」or「もらって嬉しかったもの」を入力していただき、<br>
@@ -25,6 +26,7 @@
 			ランキングページにアクセスするたびに入力する「欲しいもの」or「もらって嬉しかったもの」を毎回入力する必要がなくなり、<br>
 			スムーズにランキングページにアクセスすることが可能になります。※1日1回の入力は必要<br>
 			是非、ユーザー登録してChooMeをご活用下さい。<br>
+			</div>
 			<img src="/images/present2.jpg">
 
 

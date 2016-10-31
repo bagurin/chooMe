@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
 
@@ -23,13 +23,16 @@
             <!--/browse-agile-w3ls -->
             <div class="browse-agile-w3ls general-w3ls">
                 <div class="tittle-head">
-                    <h4 class="latest-text">シーン別ランキング</h4>
+                    <h4 class="latest-text">ランキングTOP20</h4>
 
 
                 </div>
                 <div class="Latest-tv-series">
 
                     <div class="container">
+                        <div class="tittle-head">
+                        <h2 class="latest-text">TOP3</h2>
+                            </div>
                         <ul class="slider">
                             <div class="flexslider">
                                 <ul class="slides">
@@ -137,6 +140,9 @@
                                         </div>
                                     </ul>
                                         <container>
+                                            <div class="tittle-head">
+                                            <h2 class="latest-text">4位〜20位</h2>
+                                            </div>
                                             <div class="agileinfo_flexislider_grids">
                                                 <div class="col-md-4 w3l-movie-gride-agile">
                                                     <a href="single.html" class="hvr-shutter-out-horizontal"><img src="/images/present1.jpg" title="album-name" class="img-responsive" alt=" " />
