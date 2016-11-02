@@ -44,7 +44,7 @@ class UploadController extends Controller
             // 画像保存先pathとファイル名を連結
             $path = public_path() . 'media/' . $name;
             // 配列にまとめてデータベースに追加
-            $getgoods = array('name' => $syohin, 'genresid' => (int)$genres, 'image' => $path);
+            $getgoods = array('name' => $syohin, 'genres_id' => (int)$genres, 'image' => $path);
             Getgoods::create($getgoods);
 
         }
