@@ -74,13 +74,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="w3layouts_logo">
 				<a href="/"><img src="/images/home.png"></a>
 			 </div>
-
+			@if(Auth::check() == false)
 			<div class="w3l_sign_in_register">
 				<ul>
 
 					<li><a href="#" data-toggle="modal" data-target="#myModal">Login</a></li>
 				</ul>
 			</div>
+
+			@else
+
+			<div class="w3l_sign_in_register">
+				<ul>
+
+					<li><a href="/logout">Logout</a></li>
+				</ul>
+			</div>
+			
+		@endif
 			<div class="clearfix"> </div>
 		</div>
 	</div>
