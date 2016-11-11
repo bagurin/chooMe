@@ -285,6 +285,8 @@ class RankController extends Controller
         //商品テーブル全取得
         $getgoods_table = Getgoods::all();
 
+        $ranking = array();
+
         foreach($rank_table as $rank){
             foreach ($getgoods_table as $getgoods) {
                 if($rank['getgoods_id'] == $getgoods['id']){
@@ -297,9 +299,7 @@ class RankController extends Controller
             }
         }
 
-        dd($ranking);
-
-        return view('scene', $ranking);
+        return view('scene', compact('ranking'));
 
     }
 
