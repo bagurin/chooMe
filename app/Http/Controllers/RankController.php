@@ -299,8 +299,6 @@ class RankController extends Controller
             }
         }
 
-        dd($ranking);
-
         return view('scene', compact('ranking'));
 
     }
