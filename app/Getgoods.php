@@ -10,7 +10,7 @@ class Getgoods extends Model
     protected $table = 'getgoods'; //テーブル名指定
 
     protected $fillable = [
-        'name', 'genresid', 'image'
+        'id', 'name', 'genres_id', 'image', 'url'
     ];
 
 }

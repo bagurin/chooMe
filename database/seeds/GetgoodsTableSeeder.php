@@ -17,6 +17,7 @@ class GetgoodsTableSeeder extends Seeder
             'name' => 'm4a1',
             'genres_id' => '1',
             'image' => '/image',
+            'url' => 'i',
             'created_at' => date("Y-m-d H:i:s"),
         ]);
 
@@ -24,6 +25,7 @@ class GetgoodsTableSeeder extends Seeder
             'name' => 'ak47',
             'genres_id' => '1',
             'image' => '/image',
+            'url' => 'a',
             'created_at' => date("Y-m-d H:i:s"),
         ]);
 

@@ -19,7 +19,7 @@ class RanksTableSeeder extends Seeder
 
                 DB::table('ranks')->insert([
                     'ranking_no' => $i,
-                    'getgoods_id' => 0,
+                    'getgoods_id' => 1,
                     'score' => 0.00,
                     'average_rate' => 0,
                     'patterns_id' => $g,
