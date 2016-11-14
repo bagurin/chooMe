@@ -277,7 +277,7 @@ class RankController extends Controller
         }
 
         //ここから↓でusersrank,genresrank,scenesrankを実行する
-        //引数は$allidとpatternsテーブルのidが必須である
+        //引数は$allidとpatternsテーブルのidが必須である。
 
 
 
