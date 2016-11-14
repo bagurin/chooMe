@@ -98,23 +98,128 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="w3_login_module">
 							<div class="module form-module">
 							  <div class="toggle"><i class="fa fa-times fa-pencil"></i>
-								<div class="tooltip">REGISTER</div>
+								<div class="tooltip">Register</div>
 							  </div>
 							  <div class="form">
 								<h3>ログイン</h3>
-								<form action="#" method="post">
-								  <input type="text" name="Username" placeholder="ユーザー名" required="">
-								  <input type="password" name="Password" placeholder="パスワード" required="">
-								  <input type="submit" value="Login">
+								<form action="{{ url('/login') }}" method="post">
+                                    {{ csrf_field() }}
+
+                                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+
+
+                                        <div class="col-md-12">
+                                            <input id="email" type="email" class="form-control" name="email" placeholder="メールアドレス" value="{{ old('email') }}">
+
+                                            @if ($errors->has('email'))
+                                                <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+
+
+                                        <div class="col-md-12">
+                                            <input id="password" type="password" class="form-control" name="password" placeholder="パスワード">
+
+                                            @if ($errors->has('password'))
+                                                <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-8 col-md-offset-2">
+                                            <div class="checkbox">
+
+                                                    <input type="checkbox" name="remember">アカウント情報を保存する
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-btn fa-sign-in"></i> ログイン
+                                            </button>
+										</div>
+										<div class="col-md-6">
+                                            <a class="btn btn-link" href="{{ url('/password/reset') }}">パスワードをお忘れですか?</a>
+                                        </div>
+                                    </div>
 								</form>
 							  </div>
 							  <div class="form">
 								<h3>新規アカウント作成</h3>
-								<form action="#" method="post">
-								  <input type="text" name="Username" placeholder="ユーザー名" required="">
-								  <input type="password" name="password" id="password" placeholder="パスワード" required="">
-									<input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="パスワード（確認)" required="">
-								  <input type="email" name="Email" placeholder="メールアドレス" required="">
+								<form action="{{ url('/register') }}" method="post">
+									{{ csrf_field() }}
+
+									<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+
+
+										<div class="col-md-12">
+											<input id="name" type="text" class="form-control" placeholder="ユーザー名	" name="name" value="{{ old('name') }}">
+
+											@if ($errors->has('name'))
+												<span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+											@endif
+										</div>
+									</div>
+
+									<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+
+
+										<div class="col-md-12">
+											<input id="email" type="email" class="form-control" placeholder="メールアドレス" name="email" value="{{ old('email') }}">
+
+											@if ($errors->has('email'))
+												<span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+											@endif
+										</div>
+									</div>
+
+									<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+
+
+										<div class="col-md-12">
+											<input id="password" type="password" class="form-control" placeholder="パスワード" name="password">
+
+											@if ($errors->has('password'))
+												<span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+											@endif
+										</div>
+									</div>
+
+									<div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+
+
+										<div class="col-md-12">
+											<input id="password-confirm" type="password" class="form-control" placeholder="パスワード(再確認)" name="password_confirmation">
+
+											@if ($errors->has('password_confirmation'))
+												<span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+											@endif
+										</div>
+									</div>
+									<div class="col-md-4">
+									<p>性別</p>
+									<input type="radio" name="sex" value="男" checked>男
+									<input type="radio" name="sex" value="女">女
+									</div>
+									<div class="col-md-8">
 									<p>年齢</p>
 									<select id="age" name="age">
 										<option value="1-10">10歳以下</option>
@@ -133,31 +238,82 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<option value="90-99">90代</option>
 										<option value="100">100以上</option>
 									</select><br>
-									<p>性別</p>
-									<input type="radio" name="sex" value="男" checked>男
-									<input type="radio" name="sex" value="女">女
+									</div>
+									<div class="col-md-12">
 									<p>趣味</p>
-									<select id="hobby" name="hobby">
-										<option value="sport">スポーツ</option>
-										<option value="book">読書</option>
-										<option value="pc">PC</option>
-										<option value="trip">旅行</option>
-										<option value="music">音楽</option>
-										<option value="movie">映画鑑賞</option>
-										<option value="carbike">車＆バイク</option>
-										<option value="game">ゲーム</option>
-										<option value="cook">料理</option>
-										<option value="sake">お酒</option>
-										<option value="shopping">ショッピング</option>
-										<option value="sewing">手芸＆裁縫</option>
-										<option value="gourmet">グルメ</option>
-										<option value="gardening">ガーデニング</option>
-										<option value="idol">アイドル</option>
-										<option value="etc">その他</option>
+									<select id="hobbies_id" name="hobbies_id">
+										<option value="1">スポーツ</option>
+										<option value="2">読書</option>
+										<option value="3">PC</option>
+										<option value="4">旅行</option>
+										<option value="5">音楽</option>
+										<option value="6">映画鑑賞</option>
+										<option value="7">車＆バイク</option>
+										<option value="8">ゲーム</option>
+										<option value="9">料理</option>
+										<option value="10">お酒</option>
+										<option value="11">ショッピング</option>
+										<option value="12">手芸＆裁縫</option>
+										<option value="13">グルメ</option>
+										<option value="14">ガーデニング</option>
+										<option value="15">アイドル</option>
+										<option value="16">その他</option>
 									</select><br>
-									<p>
-								<input type="submit" value="Register">
-							</p>
+									</div>
+									<div class="form-group">
+										<div class="col-md-6 col-md-offset-4">
+											<button type="submit" class="btn btn-primary">
+												<i class="fa fa-btn fa-user"></i> 登録
+											</button>
+										</div>
+									</div>
+								  {{--<input type="text" name="Username" placeholder="ユーザー名" required="">--}}
+								  {{--<input type="password" name="password" id="password" placeholder="パスワード" required="">--}}
+									{{--<input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="パスワード（確認)" required="">--}}
+								  {{--<input type="email" name="Email" placeholder="メールアドレス" required="">--}}
+									{{--<p>年齢</p>--}}
+									{{--<select id="age" name="age">--}}
+										{{--<option value="1-10">10歳以下</option>--}}
+										{{--<option value="11-15">10代前半</option>--}}
+										{{--<option value="15-19">10代後半</option>--}}
+										{{--<option value="20-25">20代前半</option>--}}
+										{{--<option value="25-29">20代後半</option>--}}
+										{{--<option value="30-35">30代前半</option>--}}
+										{{--<option value="35-39">30代後半</option>--}}
+										{{--<option value="40-45">40代前半</option>--}}
+										{{--<option value="45-49">40代後半</option>--}}
+										{{--<option value="50-59">50代</option>--}}
+										{{--<option value="60-69">60代</option>--}}
+										{{--<option value="70-79">70代</option>--}}
+										{{--<option value="80-89">80代</option>--}}
+										{{--<option value="90-99">90代</option>--}}
+										{{--<option value="100">100以上</option>--}}
+									{{--</select><br>--}}
+									{{--<p>性別</p>--}}
+									{{--<input type="radio" name="sex" value="男" checked>男--}}
+									{{--<input type="radio" name="sex" value="女">女--}}
+									{{--<p>趣味</p>--}}
+									{{--<select id="hobby" name="hobby">--}}
+										{{--<option value="sport">スポーツ</option>--}}
+										{{--<option value="book">読書</option>--}}
+										{{--<option value="pc">PC</option>--}}
+										{{--<option value="trip">旅行</option>--}}
+										{{--<option value="music">音楽</option>--}}
+										{{--<option value="movie">映画鑑賞</option>--}}
+										{{--<option value="carbike">車＆バイク</option>--}}
+										{{--<option value="game">ゲーム</option>--}}
+										{{--<option value="cook">料理</option>--}}
+										{{--<option value="sake">お酒</option>--}}
+										{{--<option value="shopping">ショッピング</option>--}}
+										{{--<option value="sewing">手芸＆裁縫</option>--}}
+										{{--<option value="gourmet">グルメ</option>--}}
+										{{--<option value="gardening">ガーデニング</option>--}}
+										{{--<option value="idol">アイドル</option>--}}
+										{{--<option value="etc">その他</option>--}}
+									{{--</select><br>--}}
+									{{--<p>--}}
+								{{--<input type="submit" value="Register">--}}
+							{{--</p>--}}
 								</form>
 								<!-- <script>
   								//var form = document.forms[0];
@@ -176,7 +332,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   							//}, false);
 								</script> -->
 							  </div>
-							  <div class="cta"><a href="#">パスワードをお忘れですか?</a></div>
+
 							</div>
 						</div>
 					</div>
@@ -287,8 +443,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</ul>
 							</li>
 
-							<li><a href="/product-register">商品登録</a></li>
-							<li><a href="/short-codes.html">Short Codes</a></li>
+							<li><a href="/product-register/">商品登録</a></li>
+							<li><a href="/review/">Short Codes</a></li>
 							<li><a href="/list.html">A - z list</a></li>
 						</ul>
 					</nav>

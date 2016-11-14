@@ -26,7 +26,7 @@
                 </div>
 
 
-                <form enctype="multipart/form-data" method="post" action="{{ url('/product-register') }}">
+                <form enctype="multipart/form-data" method="post" action="{{url('/product-register/')}}">
                     {{ csrf_field() }}
                 <input type="text" id="name" name="name" placeholder="商品名">
                 <input type="file" id="image" name="image" accept="image/*">
