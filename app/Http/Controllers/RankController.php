@@ -65,7 +65,7 @@ class RankController extends Controller
             return $info;
         }
 
-        //patternsテーブルからage,hobbyのidを取得する
+        //patternsテーブルからidを引数にt_idを取得する
         function gettid($patternid){
             $tid = DB::table('patterns')
                 ->select(DB::raw('t_id'))
@@ -278,6 +278,30 @@ class RankController extends Controller
 
         //ここから↓でusersrank,genresrank,scenesrankを実行する
         //引数は$allidとpatternsテーブルのidが必須である。
+
+        //性別のみ(全商品id,1は性別,patterns_id)
+//        usersrank($allid,1,1);
+//        usersrank($allid,1,2);
+//
+//        //年代別のみ(2は年代別)
+//        for($i=3;$i <= 14;$i++){
+//            usersrank($allid,2,$i);
+//        }
+//
+//        //趣味別のみ
+//        for($i=15;$i <= 30;$i++){
+//            usersrank($allid,3,$i);
+//        }
+//
+//        //シーンのみ
+//        for($i=31;$i <= 43;$i++){
+//            scenesrank($allid,$i);
+//        }
+//
+//        //ジャンルのみ
+//        for($i=44;$i <= 58;$i++){
+//            genresrank($allid,$i);
+//        }
 
 
 
