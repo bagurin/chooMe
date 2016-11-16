@@ -29,9 +29,25 @@
 
                 <form enctype="multipart/form-data" method="post" action="{{url('/product-register/')}}">
                     {{ csrf_field() }}
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                     <input type="text" id="name" name="name" placeholder="商品名"></div>
                     <div class="col-md-6">
+                        ジャンル:
+                        <select id="genres" name="genres">
+                            <option value="1">本</option>
+                            <option value="2">DVD・音楽・ゲーム</option>
+                            <option value="3">家電・カメラ・AV機器</option>
+                            <option value="4">パソコン・オフィス用品</option>
+                            <option value="5">ホーム&キッチン・DIY</option>
+                            <option value="6">食品・飲料・お酒</option>
+                            <option value="7">ドラッグ・ビューティ</option>
+                            <option value="8">ベビー・おもちゃ</option>
+                            <option value="9">服・シューズ・バッグ・腕時計</option>
+                            <option value="10">スポーツ&アウトドア</option>
+                            <option value="11">車&バイク</option>
+                        </select><br>
+                    </div>
+                    <div class="col-md-12">
                         <style>
                             label {
                                 margin-left: 0em;
@@ -74,36 +90,21 @@
                             });
                         </script>
                     </div>
-                    <div class="col-md-6">
-                    ジャンル:
-                    <select id="genres" name="genres">
-                        <option value="1">本</option>
-                        <option value="2">DVD・音楽・ゲーム</option>
-                        <option value="3">家電・カメラ・AV機器</option>
-                        <option value="4">パソコン・オフィス用品</option>
-                        <option value="5">ホーム&キッチン・DIY</option>
-                        <option value="6">食品・飲料・お酒</option>
-                        <option value="7">ドラッグ・ビューティ</option>
-                        <option value="8">ベビー・おもちゃ</option>
-                        <option value="9">服・シューズ・バッグ・腕時計</option>
-                        <option value="10">スポーツ&アウトドア</option>
-                        <option value="11">車&バイク</option>
-                    </select><br>
-                    </div>
+
                     @if(Auth::check() == false)
 
                         {{--ログインしていない場合（ゲストユーザー）--}}
 
                         <div class="col-md-10 well" >
                             現在ユーザーログインされていません。<br>
-                            商品を登録するにはログインするか、ゲストユーザーとしてユーザー情報を入力してください。<br>
+                            商品を登録するにはログインするか、ゲストユーザーとして以下のユーザー情報を入力してください。<br>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             性別:
                             <input type="radio" name="sex" value="男" checked>男
                             <input type="radio" name="sex" value="女">女
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             年齢:
                             <select id="age" name="age">
                                 <option value="1-10">10歳以下</option>
