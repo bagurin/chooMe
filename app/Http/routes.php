@@ -33,7 +33,7 @@ Route::post('/product-register',array('uses'=>'UploadController@postIndex'));
 //試し
 Route::get('/ranking','RankController@ranking');
 
-
+//管理者以外
 Route::group(['middleware' => 'guest:admin'], function () { //←このグループで括る
     Route::get('/admin/login','AdminAuthController@showLoginForm');
     Route::post('/admin/login','AdminAuthController@login');
