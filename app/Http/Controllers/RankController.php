@@ -18,6 +18,32 @@ class RankController extends Controller
         return view('home');
     }
 
+    //追加メソッド
+    public function rankView(){
+
+        //ランキングテーブル全取得
+        $rank_table = Rank::all();
+        //商品テーブル全取得
+        $getgoods_table = Getgoods::all();
+
+        foreach($rank_table as $rank){
+            foreach ($getgoods_table as $getgoods) {
+                if($rank['getgoods_id'] == $getgoods['id']){
+                    $ranking[] = array('name' => $getgoods['name'], 'image' => $getgoods['image'], 'genres' => $getgoods['genres_id'], 'scenes' => 1, 'rate' => $rank['average_rate'], 'url' => $getgoods['url']);
+                    break;
+                }
+            }
+            if($rank['ranking_no'] == 20){
+                break;
+            }
+        }
+
+        dd($ranking);
+
+        return view('scene', $ranking);
+
+    }
+
     public function ranking()
     {
 
@@ -277,30 +303,5 @@ class RankController extends Controller
 
     }
 
-    //追加メソッド
-    public function rankView(){
-
-        //ランキングテーブル全取得
-        $rank_table = Rank::all();
-        //商品テーブル全取得
-        $getgoods_table = Getgoods::all();
-
-        foreach($rank_table as $rank){
-            foreach ($getgoods_table as $getgoods) {
-                if($rank['getgoods_id'] == $getgoods['id']){
-                    $ranking[] = array('name' => $getgoods['name'], 'image' => $getgoods['image'], 'genres' => $getgoods['genres_id'], 'scenes' => 1, 'rate' => $rank['average_rate'], 'url' => $getgoods['url']);
-                    break;
-                }
-            }
-            if($rank['ranking_no'] == 20){
-                break;
-            }
-        }
-
-        dd($ranking);
-
-        return view('scene', $ranking);
-
-    }
 
 }
