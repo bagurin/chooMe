@@ -24,6 +24,37 @@ ul,label{
 	margin:0;
 	padding:0;
 }
+label {
+    margin-left: 3em;
+}
+.my-file-input {
+    display: inline-block;
+    padding: 5px;
+    width: 200px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    background-color: #55f;
+    color: white;
+    box-shadow: #888 2px 2px 1px;
+    cursor: pointer;
+}
+.my-file-input:hover {
+    background-color: #88f;
+}
+.my-file-input:hover {
+    background-color: #88f;
+}
+.my-file-input:active {
+    box-shadow: #888 1px 1px 1px;
+    position: relative;
+    top: 1px; left: 1px;
+}
+.my-file-input input {
+    display: none;
+}
 body a:hover{
 	text-decoration:none;
 }
@@ -219,6 +250,7 @@ ul.dropdown-menu.multi-column ul li a:hover{
 /*-- Latest-tv-series --*/
 .agile_tv_series_grid_left {
     padding: 0em 0em 7em 0em;
+    min-height: 258px;
 }
 a.w3_play_icon span,a.w3_play_icon1 span,a.w3_play_icon2 span {
     position: absolute;
@@ -229,7 +261,7 @@ a.w3_play_icon span,a.w3_play_icon1 span,a.w3_play_icon2 span {
 }
 .agile_tv_series_grid_right{
 	background:#ff9393;
-	min-height:312px;
+	min-height: 258px;
 	padding:3em 3em 0;
 	width: 48.6%;
 }
@@ -505,6 +537,7 @@ p.fexi_header_para1 a i {
     background: #ffffff;
     max-width: 400px;
     width: 100%;
+    height:450px;
     border-top: 5px solid #ff9393;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
     margin:1em auto;
@@ -1514,4 +1547,5 @@ h3.head {
 		font-size: 1.8em;
 	}
 }
+
 
