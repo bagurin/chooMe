@@ -41,6 +41,7 @@ Route::group(['middleware' => 'guest:admin'], function () { //←このグルー
     Route::post('/admin/password/reset', 'AdminPasswordController@reset');
     Route::get('/admin/password/reset/{token?}', 'AdminPasswordController@showResetForm');
 });
+//管理者グループ
 Route::group(['middleware' => 'auth:admin'], function () { //←このグループで括る
     Route::get('/admin', 'AdminHomeController@index');
     Route::get('/admin/home','AdminHomeController@index');
