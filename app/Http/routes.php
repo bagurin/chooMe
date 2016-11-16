@@ -30,7 +30,7 @@ Route::get('/product-register/', function () {
 
 Route::post('/product-register',array('uses'=>'UploadController@postIndex'));
 
-//試ああ
+//試ああい
 Route::get('/ranking','RankController@ranking');
 
 //管理者以外
