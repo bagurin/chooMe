@@ -30,7 +30,7 @@ Route::get('/product-register/', function () {
 
 Route::post('/product-register',array('uses'=>'UploadController@postIndex'));
 
-//試し
+//試しttt
 Route::get('/ranking','RankController@ranking');
 
 
