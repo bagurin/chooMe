@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('age');
             $table->string('sex');
             $table->integer('hobbies_id');
+            $table->boolean('connect');
 
             $table->rememberToken();
             $table->timestamps();

@@ -15,6 +15,31 @@ class UserTableSeeder extends Seeder
     {
         DB::table('users')->truncate();
 
+        for($i=1;$i<=16;$i++) {
+            for ($j=1;$j<=15;$j++){
+                DB::table('users')->insert([
+                    'name' => 'guest',
+                    'email' => $i.'_'.$j.'woman@ecc.ac.jp',
+                    'password' => bcrypt('guest'),
+                    'age' => $j,
+                    'sex' => '女',
+                    'hobbies_id' => $i,
+                    'connect' => false,
+                    'created_at' => date("Y-m-d H:i:s"),
+                ]);
+                DB::table('users')->insert([
+                    'name' => 'guest',
+                    'email' => $i.'_'.$j.'man@ecc.ac.jp',
+                    'password' => bcrypt('guest'),
+                    'age' => $j,
+                    'sex' => '男',
+                    'hobbies_id' => $i,
+                    'connect' => false,
+                    'created_at' => date("Y-m-d H:i:s"),
+                ]);
+            }
+        }
+
         DB::table('users')->insert([
             'name' => 'chihaya',
             'email' => 'chihaya@namco.com',
@@ -22,6 +47,7 @@ class UserTableSeeder extends Seeder
             'age' => '5',
             'sex' => '女',
             'hobbies_id' => '15',
+            'connect' => false,
             'created_at' => date("Y-m-d H:i:s"),
         ]);
         DB::table('users')->insert([
@@ -31,6 +57,7 @@ class UserTableSeeder extends Seeder
             'age' => '5',
             'sex' => '女',
             'hobbies_id' => '15',
+            'connect' => false,
             'created_at' => date("Y-m-d H:i:s"),
         ]);
         DB::table('users')->insert([
@@ -40,6 +67,7 @@ class UserTableSeeder extends Seeder
             'age' => '5',
             'sex' => '男',
             'hobbies_id' => '15',
+            'connect' => false,
             'created_at' => date("Y-m-d H:i:s"),
         ]);
         DB::table('users')->insert([
@@ -49,6 +77,7 @@ class UserTableSeeder extends Seeder
             'age' => '7',
             'sex' => '男',
             'hobbies_id' => '4',
+            'connect' => false,
             'created_at' => date("Y-m-d H:i:s"),
         ]);
         DB::table('users')->insert([
@@ -58,6 +87,7 @@ class UserTableSeeder extends Seeder
             'age' => '5',
             'sex' => '女',
             'hobbies_id' => '16',
+            'connect' => false,
             'created_at' => date("Y-m-d H:i:s"),
         ]);
         DB::table('users')->insert([
@@ -67,6 +97,7 @@ class UserTableSeeder extends Seeder
             'age' => '7',
             'sex' => '男',
             'hobbies_id' => '4',
+            'connect' => false,
             'created_at' => date("Y-m-d H:i:s"),
         ]);
         DB::table('users')->insert([
@@ -76,6 +107,7 @@ class UserTableSeeder extends Seeder
             'age' => '7',
             'sex' => '男',
             'hobbies_id' => '1',
+            'connect' => false,
             'created_at' => date("Y-m-d H:i:s"),
         ]);
 
