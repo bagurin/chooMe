@@ -35,16 +35,20 @@
                         ジャンル:
                         <select id="genres" name="genres">
                             <option value="1">本</option>
-                            <option value="2">DVD・音楽・ゲーム</option>
-                            <option value="3">家電・カメラ・AV機器</option>
-                            <option value="4">パソコン・オフィス用品</option>
-                            <option value="5">ホーム&キッチン・DIY</option>
-                            <option value="6">食品・飲料・お酒</option>
-                            <option value="7">ドラッグ・ビューティ</option>
-                            <option value="8">ベビー・おもちゃ</option>
-                            <option value="9">服・シューズ・バッグ・腕時計</option>
-                            <option value="10">スポーツ&アウトドア</option>
-                            <option value="11">車&バイク</option>
+                            <option value="2">DVD・音楽</option>
+                            <option value="3">TVゲーム</option>
+                            <option value="4">家電・カメラ・AV機器</option>
+                            <option value="5">パソコン・オフィス用品</option>
+                            <option value="6">ホーム&キッチン・DIY</option>
+                            <option value="7">食品・飲料・お酒</option>
+                            <option value="8">ドラッグ・ビューティ</option>
+                            <option value="9">ベビー・おもちゃ</option>
+                            <option value="10">服</option>
+                            <option value="11">シューズ</option>
+                            <option value="12">バッグ</option>
+                            <option value="13">腕時計</option>
+                            <option value="14">スポーツ&アウトドア</option>
+                            <option value="15">車&バイク</option>
                         </select><br>
                     </div>
                     <div class="col-md-12">
@@ -101,27 +105,25 @@
                         </div>
                         <div class="col-md-3">
                             性別:
-                            <input type="radio" name="sex" value="男" checked>男
-                            <input type="radio" name="sex" value="女">女
+                            <input type="radio" name="sex" value="1" checked>男
+                            <input type="radio" name="sex" value="2">女
                         </div>
                         <div class="col-md-5">
                             年齢:
                             <select id="age" name="age">
-                                <option value="1-10">10歳以下</option>
-                                <option value="11-15">10代前半</option>
-                                <option value="15-19">10代後半</option>
-                                <option value="20-25">20代前半</option>
-                                <option value="25-29">20代後半</option>
-                                <option value="30-35">30代前半</option>
-                                <option value="35-39">30代後半</option>
-                                <option value="40-45">40代前半</option>
-                                <option value="45-49">40代後半</option>
-                                <option value="50-59">50代</option>
-                                <option value="60-69">60代</option>
-                                <option value="70-79">70代</option>
-                                <option value="80-89">80代</option>
-                                <option value="90-99">90代</option>
-                                <option value="100">100以上</option>
+                                <option value="1">10歳未満</option>
+                                <option value="2">10代前半</option>
+                                <option value="3">10代後半</option>
+                                <option value="4">20代前半</option>
+                                <option value="5">20代後半</option>
+                                <option value="6">30代前半</option>
+                                <option value="7">30代後半</option>
+                                <option value="8">40代前半</option>
+                                <option value="9">40代後半</option>
+                                <option value="10">50代</option>
+                                <option value="11">60代</option>
+                                <option value="12">70歳以上</option>
+                                <
                             </select><br>
                         </div>
                         <div class="col-md-4">
