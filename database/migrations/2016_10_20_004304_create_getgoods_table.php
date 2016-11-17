@@ -17,6 +17,7 @@ class CreateGetgoodsTable extends Migration
             $table->string('name');
             $table->integer('genres_id');
             $table->string('image');
+            $table->string('url');
 
             $table->timestamps();
         });

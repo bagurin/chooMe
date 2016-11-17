@@ -39,7 +39,7 @@ class RankController extends Controller
             return $info;
         }
 
-        //patternsテーブルからidを引数にt_idを取得する
+        //patternsテーブルからage,hobbyのidを取得する
         function gettid($patternid){
             $tid = DB::table('patterns')
                 ->select(DB::raw('t_id'))
@@ -70,31 +70,13 @@ class RankController extends Controller
             return round($ans,3);
         }
 
-        //配列→連想配列→値の降順 でソートする
-        function sortArrayByKey( &$array, $sortKey, $sortType = SORT_DESC ) {
-
-            $tmpArray = array();
-            foreach ( $array as $key => $row ) {
-                $tmpArray[$key] = $row[$sortKey];
-            }
-            array_multisort( $tmpArray, $sortType, $array );
-            unset( $tmpArray );
-        }
-
         //ランクテーブルに格納する(降順された２０件の配列,パターンid)
         function sendranks($array,$pattern){
 
             //ランキングNoを1~20まで変化させる変数
             $rank = 1;
-            $sendarray = $array;
 
-            //降順へソート
-            sortArrayByKey($sendarray,'score');
-
-            //20件以上のデータを削除する。(ランキング20以内のみ残す)
-            $sendarray = array_slice($sendarray,0,20,true);
-
-            foreach($sendarray as $value){
+            foreach($array as $value){
 
                 DB::table('ranks')
                     ->where([
@@ -106,6 +88,17 @@ class RankController extends Controller
                 $rank += 1;
             }
 
+        }
+
+        //配列→連想配列→値の降順 でソートする
+        function sortArrayByKey( &$array, $sortKey, $sortType = SORT_DESC ) {
+
+            $tmpArray = array();
+            foreach ( $array as $key => $row ) {
+                $tmpArray[$key] = $row[$sortKey];
+            }
+            array_multisort( $tmpArray, $sortType, $array );
+            unset( $tmpArray );
         }
 
         //ユーザー情報ランキング（change = 性別:1 年代:2 趣味:3）
@@ -142,6 +135,7 @@ class RankController extends Controller
                 $val = gettid($pattern);
             }
 
+
             foreach($allid as $value){
 
                 $ans = DB::table('reviews')
@@ -156,11 +150,16 @@ class RankController extends Controller
                 //取得した情報を分解するgetiacメソッドを実行する
                 $info = getiac($ans);
 
-                if($info['id'] != 0){
-                    //配列へ情報を格納する
-                    $array = array_merge($array,array($info));
-                }
+                //配列へ情報を格納する
+                $array = array_merge($array,array($info));
+
             }
+
+            //降順へソート
+            sortArrayByKey($array,'score');
+
+            //20件以上のデータを削除する。(ランキング20以内のみ残す)
+            $array = array_slice($array,0,20,true);
 
             //ランキングを格納するメソッドを実行する
             sendranks($array,$pattern);
@@ -187,11 +186,13 @@ class RankController extends Controller
 
                 $info = getiac($ans);
 
-                if($info['id'] != 0){
-                    //配列へ情報を格納する
-                    $array = array_merge($array,array($info));
-                }
+                $array = array_merge($array,array($info));
+
             }
+
+            sortArrayByKey($array,'score');
+
+            $array = array_slice($array,0,20,true);
 
             sendranks($array,$pattern);
         }
@@ -217,77 +218,13 @@ class RankController extends Controller
 
                 $info = getiac($ans);
 
-                if($info['id'] != 0){
-                    //配列へ情報を格納する
-                    $array = array_merge($array,array($info));
-                }
+                $array = array_merge($array,array($info));
+
             }
 
-            sendranks($array,$pattern);
-        }
+            sortArrayByKey($array,'score');
 
-        function convert_digi($tid){
-
-            $strtid = (string)$tid;
-            $count = mb_strlen($strtid);
-            $digiarray = array();
-
-            if($count == 2){
-                $digiarray = str_split($strtid);
-            }elseif($count == 3){
-                $digiarray = array_merge($digiarray,array(mb_substr($strtid,0,1)));
-                $digiarray = array_merge($digiarray,array(mb_substr($strtid,1,2)));
-            }
-
-            $digiarray[0] = intval($digiarray[0]);
-            $digiarray[1] = intval($digiarray[1]);
-            dd($digiarray);
-
-            return $digiarray;
-        }
-
-        //性別と年代ランキング
-        function sex_age_rank($allid,$pattern){
-
-            $array = array();
-
-            $parray = array();
-            $tid = gettid($pattern);
-            $parray = convert_digi($tid);
-            $uinfo = $parray[0];
-            $oinfo = $parray[1];
-
-            $com = 'users.sex';
-            if($uinfo == 1){
-                $val = '男';
-            }else{
-                $val = '女';
-            }
-
-            $com2 = 'users.age';
-            $val2 = $oinfo;
-
-            foreach($allid as $value){
-
-                $ans = DB::table('reviews')
-                    ->join('users','users.id','=','reviews.users_id')
-                    ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
-                    ->where([
-                        [$com,'=',$val],
-                        [$com2,'=',$val2],
-                        ['reviews.getgoods_id','=',$value],
-                    ])
-                    ->get();
-
-                //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans);
-
-                //配列へ情報を格納する
-                if($info['id'] != 0){
-                    //配列へ情報を格納する
-                    $array = array_merge($array,array($info));
-                }
-            }
+            $array = array_slice($array,0,20,true);
 
             sendranks($array,$pattern);
         }
@@ -313,39 +250,8 @@ class RankController extends Controller
 
         }
 
-
         //ここから↓でusersrank,genresrank,scenesrankを実行する
         //引数は$allidとpatternsテーブルのidが必須である。
-
-        //性別のみ(全商品id,1は性別,patterns_id)
-//        usersrank($allid,1,1);
-//        usersrank($allid,1,2);
-//
-//        //年代別のみ(2は年代別)
-//        for($i=3;$i <= 14;$i++){
-//            usersrank($allid,2,$i);
-//        }
-//
-//        //趣味別のみ
-//        for($i=15;$i <= 30;$i++){
-//            usersrank($allid,3,$i);
-//        }
-//
-//        //シーンのみ
-//        for($i=31;$i <= 43;$i++){
-//            scenesrank($allid,$i);
-//        }
-//
-//        //ジャンルのみ
-//        for($i=44;$i <= 58;$i++){
-//            genresrank($allid,$i);
-//        }
-
-//        //性別と年代ランキング
-//        for($i=59;$i <=82;$i++){
-//            sex_age_rank($allid,$i);
-//        }
-
 
 
 
@@ -371,5 +277,30 @@ class RankController extends Controller
 
     }
 
+    //追加メソッド
+    public function rankView(){
+
+        //ランキングテーブル全取得
+        $rank_table = Rank::all();
+        //商品テーブル全取得
+        $getgoods_table = Getgoods::all();
+
+        $ranking = array();
+
+        foreach($rank_table as $rank){
+            foreach ($getgoods_table as $getgoods) {
+                if($rank['getgoods_id'] == $getgoods['id']){
+                    $ranking[] = array('name' => $getgoods['name'], 'image' => $getgoods['image'], 'genres' => $getgoods['genres_id'], 'scenes' => 1, 'rate' => $rank['average_rate'], 'url' => $getgoods['url']);
+                    break;
+                }
+            }
+            if($rank['ranking_no'] == 20){
+                break;
+            }
+        }
+
+        return view('scene', compact('ranking'));
+
+    }
 
 }
