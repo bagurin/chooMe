@@ -30,10 +30,10 @@ Route::get('/product-register/', function () {
 
 Route::post('/product-register',array('uses'=>'UploadController@postIndex'));
 
-//試しttt
+
 Route::get('/ranking','RankController@ranking');
 
-
+//管理者以外
 Route::group(['middleware' => 'guest:admin'], function () { //←このグループで括る
     Route::get('/admin/login','AdminAuthController@showLoginForm');
     Route::post('/admin/login','AdminAuthController@login');
@@ -41,6 +41,7 @@ Route::group(['middleware' => 'guest:admin'], function () { //←このグルー
     Route::post('/admin/password/reset', 'AdminPasswordController@reset');
     Route::get('/admin/password/reset/{token?}', 'AdminPasswordController@showResetForm');
 });
+//管理者グループ
 Route::group(['middleware' => 'auth:admin'], function () { //←このグループで括る
     Route::get('/admin', 'AdminHomeController@index');
     Route::get('/admin/home','AdminHomeController@index');
@@ -71,5 +72,3 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 Route::get('/home', 'HomeController@index');
-
-//test
