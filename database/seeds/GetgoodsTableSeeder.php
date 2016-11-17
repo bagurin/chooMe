@@ -16,7 +16,7 @@ class GetgoodsTableSeeder extends Seeder
         DB::table('getgoods')->insert([
             'name' => 'm4a1',
             'genres_id' => '1',
-            'image' => '/image',
+            'image' => '/images/present2.jpg',
             'url' => 'i',
             'created_at' => date("Y-m-d H:i:s"),
         ]);
