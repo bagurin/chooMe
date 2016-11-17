@@ -154,17 +154,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="col-md-4">
-                                            <button type="submit" class="btn btn-primary">
-                                                <i class="fa fa-btn fa-sign-in"></i> ログイン
-                                            </button>
-										</div>
-										<div class="col-md-6">
-                                            <a class="btn btn-link" href="{{ url('/password/reset') }}">パスワードをお忘れですか?</a>
-                                        </div>
+
+                                            <input type="submit" value="ログイン">
+
+
+
                                     </div>
+									<div class="cta"><a href="{{ url('/password/reset') }}">パスワードをお忘れですか?</a></div>
+
 								</form>
+
 							  </div>
+
 							  <div class="form">
 								<h3>新規アカウント作成</h3>
 								<form action="{{ url('/register') }}" method="post">
@@ -272,11 +273,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</select><br>
 									</div>
 									<div class="form-group">
-										<div class="col-md-6 col-md-offset-4">
-											<button type="submit" class="btn btn-primary">
-												<i class="fa fa-btn fa-user"></i> 登録
-											</button>
-										</div>
+
+											<input type="submit" value="登録">
+
+
 									</div>
 								  {{--<input type="text" name="Username" placeholder="ユーザー名" required="">--}}
 								  {{--<input type="password" name="password" id="password" placeholder="パスワード" required="">--}}
@@ -389,23 +389,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li>
 									<div class="col-sm-6">
 										<ul class="multi-column-dropdown">
-											<li><a href="/scene/">誕生日</a></li>
-											<li><a href="/scene/">結婚記念日</a></li>
-											<li><a href="/scene/">クリスマス</a></li>
-											<li><a href="/scene/">出産祝い</a></li>
-											<li><a href="/scene/">結婚祝い</a></li>
-											<li><a href="/scene/">手土産</a></li>
-											<li><a href="/scene/">引っ越し</a></li>
+											<li><a href="/scene/?id=1">誕生日</a></li>
+											<li><a href="/scene/?id=2">結婚記念日</a></li>
+											<li><a href="/scene/?id=3">クリスマス</a></li>
+											<li><a href="/scene/?id=4">出産祝い</a></li>
+											<li><a href="/scene/?id=5">結婚祝い</a></li>
+											<li><a href="/scene/?id=6">手土産</a></li>
+											<li><a href="/scene/?id=7">引っ越し</a></li>
 										</ul>
 									</div>
 									<div class="col-sm-6">
 										<ul class="multi-column-dropdown">
-											<li><a href="/genres.html">お中元＆お歳暮</a></li>
-											<li><a href="/genres.html">父の日</a></li>
-											<li><a href="/genres.html">母の日</a></li>
-											<li><a href="/genres.html">敬老の日</a></li>
-											<li><a href="/genres.html">卒業＆就職祝い</a></li>
-											<li><a href="/genres.html">入学祝い</a></li>
+											<li><a href="/scene/?id=8">お中元＆お歳暮</a></li>
+											<li><a href="/scene/?id=9">父の日</a></li>
+											<li><a href="/scene/?id=10">母の日</a></li>
+											<li><a href="/scene/?id=11">敬老の日</a></li>
+											<li><a href="/scene/?id=12">卒業＆就職祝い</a></li>
+											<li><a href="/scene/?id=13">入学祝い</a></li>
 										</ul>
 									</div>
 
@@ -417,36 +417,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">年代別<b class="caret"></b></a>
 								<ul class="dropdown-menu multi-column columns-3">
 									<li>
-										<div class="col-sm-3">
+										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">
-												<li><a href="/genres.html">10歳以下</a></li>
-												<li><a href="/genres.html">10代前半</a></li>
-												<li><a href="/genres.html">10代後半</a></li>
-												<li><a href="/genres.html">20代前半</a></li>
+												<li><a href="/age/?id=1">10歳未満</a></li>
+												<li><a href="/age/?id=2">10代前半</a></li>
+												<li><a href="/age/?id=3">10代後半</a></li>
+												<li><a href="/age/?id=4">20代前半</a></li>
 											</ul>
 										</div>
-										<div class="col-sm-3">
+										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">
-												<li><a href="/genres.html">20代後半</a></li>
-												<li><a href="/genres.html">30代前半</a></li>
-												<li><a href="/genres.html">30代後半</a></li>
-												<li><a href="/genres.html">40代前半</a></li>
+												<li><a href="/age/?id=5">20代後半</a></li>
+												<li><a href="/age/?id=6">30代前半</a></li>
+												<li><a href="/age/?id=7">30代後半</a></li>
+												<li><a href="/age/?id=8">40代前半</a></li>
 											</ul>
 										</div>
-										<div class="col-sm-3">
+										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">
-												<li><a href="/genres.html">40代後半</a></li>
-												<li><a href="/genres.html">50代</a></li>
-												<li><a href="/genres.html">60代</a></li>
-												<li><a href="/genres.html">70代</a></li>
-											</ul>
-										</div>
-										<div class="col-sm-3">
-											<ul class="multi-column-dropdown">
-												<li><a href="/genres.html">80代</a></li>
-												<li><a href="/genres.html">90代</a></li>
-												<li><a href="/genres.html">100以上</a></li>
-
+												<li><a href="/age/?id=9">40代後半</a></li>
+												<li><a href="/age/?id=10">50代</a></li>
+												<li><a href="/age/?id=11">60代</a></li>
+												<li><a href="/age/?id=12">70歳以上</a></li>
 											</ul>
 										</div>
 										<div class="clearfix"></div>
