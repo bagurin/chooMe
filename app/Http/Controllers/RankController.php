@@ -226,6 +226,7 @@ class RankController extends Controller
             sendranks($array,$pattern);
         }
 
+        //t_idを分解して各主キーを作る
         function convert_digi($tid){
 
             $strtid = (string)$tid;
@@ -241,7 +242,6 @@ class RankController extends Controller
 
             $digiarray[0] = intval($digiarray[0]);
             $digiarray[1] = intval($digiarray[1]);
-            dd($digiarray);
 
             return $digiarray;
         }
@@ -292,6 +292,146 @@ class RankController extends Controller
             sendranks($array,$pattern);
         }
 
+        //性別とジャンルランキング
+        function sex_genres_rank($allid,$pattern){
+
+            $array = array();
+
+            $parray = array();
+            $tid = gettid($pattern);
+            $parray = convert_digi($tid);
+            $uinfo = $parray[0];
+            $oinfo = $parray[1];
+
+            $com = 'users.sex';
+            if($uinfo == 1){
+                $val = '男';
+            }else{
+                $val = '女';
+            }
+
+            $com2 = 'getgoods.genres_id';
+            $val2 = $oinfo;
+
+            foreach($allid as $value){
+
+                $ans = DB::table('reviews')
+                    ->join('users','users.id','=','reviews.users_id')
+                    ->join('getgoods','getgoods.id','=','reviews.getgoods_id')
+                    ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
+                    ->where([
+                        [$com,'=',$val],
+                        [$com2,'=',$val2],
+                        ['reviews.getgoods_id','=',$value],
+                    ])
+                    ->get();
+
+                //取得した情報を分解するgetiacメソッドを実行する
+                $info = getiac($ans);
+
+                //配列へ情報を格納する
+                if($info['id'] != 0){
+                    //配列へ情報を格納する
+                    $array = array_merge($array,array($info));
+                }
+            }
+
+            sendranks($array,$pattern);
+        }
+
+        //性別とシーンランキング（誕生日・Xmas）
+        function sex_scene_rank($allid,$pattern){
+
+            $array = array();
+
+            $parray = array();
+            $tid = gettid($pattern);
+            $parray = convert_digi($tid);
+            $uinfo = $parray[0];
+            $oinfo = $parray[1];
+
+            $com = 'users.sex';
+            if($uinfo == 1){
+                $val = '男';
+            }else{
+                $val = '女';
+            }
+
+            $com2 = 'scenes.id';
+            $val2 = $oinfo;
+
+            foreach($allid as $value){
+
+                $ans = DB::table('reviews')
+                    ->join('users','users.id','=','reviews.users_id')
+                    ->join('scenes','scenes.id','=','reviews.scenes_id')
+                    ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
+                    ->where([
+                        [$com,'=',$val],
+                        [$com2,'=',$val2],
+                        ['reviews.getgoods_id','=',$value],
+                    ])
+                    ->get();
+
+                //取得した情報を分解するgetiacメソッドを実行する
+                $info = getiac($ans);
+
+                //配列へ情報を格納する
+                if($info['id'] != 0){
+                    //配列へ情報を格納する
+                    $array = array_merge($array,array($info));
+                }
+            }
+
+            sendranks($array,$pattern);
+        }
+
+        //年代とシーンランキング（誕生日・Xmas）
+        function age_scene_rank($allid,$pattern){
+
+            $array = array();
+
+            $parray = array();
+            $tid = gettid($pattern);
+            $parray = convert_digi($tid);
+            $uinfo = $parray[0];
+            $oinfo = $parray[1];
+
+            $com = 'users.age';
+            $val = $uinfo;
+
+            $com2 = 'scenes.id';
+            $val2 = $oinfo;
+
+            foreach($allid as $value){
+
+                $ans = DB::table('reviews')
+                    ->join('users','users.id','=','reviews.users_id')
+                    ->join('scenes','scenes.id','=','reviews.scenes_id')
+                    ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
+                    ->where([
+                        [$com,'=',$val],
+                        [$com2,'=',$val2],
+                        ['reviews.getgoods_id','=',$value],
+                    ])
+                    ->get();
+
+                //取得した情報を分解するgetiacメソッドを実行する
+                $info = getiac($ans);
+
+                //配列へ情報を格納する
+                if($info['id'] != 0){
+                    //配列へ情報を格納する
+                    $array = array_merge($array,array($info));
+                }
+            }
+
+            sendranks($array,$pattern);
+        }
+
+
+
+
 
         //商品id全件取得
         $all = DB::table('getgoods')
@@ -318,33 +458,51 @@ class RankController extends Controller
         //引数は$allidとpatternsテーブルのidが必須である。
 
         //性別のみ(全商品id,1は性別,patterns_id)
-//        usersrank($allid,1,1);
-//        usersrank($allid,1,2);
-//
-//        //年代別のみ(2は年代別)
-//        for($i=3;$i <= 14;$i++){
-//            usersrank($allid,2,$i);
-//        }
-//
-//        //趣味別のみ
-//        for($i=15;$i <= 30;$i++){
-//            usersrank($allid,3,$i);
-//        }
-//
-//        //シーンのみ
-//        for($i=31;$i <= 43;$i++){
-//            scenesrank($allid,$i);
-//        }
-//
-//        //ジャンルのみ
-//        for($i=44;$i <= 58;$i++){
-//            genresrank($allid,$i);
-//        }
+        usersrank($allid,1,1);
+        usersrank($allid,1,2);
 
-//        //性別と年代ランキング
-//        for($i=59;$i <=82;$i++){
-//            sex_age_rank($allid,$i);
-//        }
+        //年代別のみ($iはpatterns_id)
+        for($i=3;$i <= 14;$i++){
+            usersrank($allid,2,$i);
+        }
+
+        //趣味別のみ
+        for($i=15;$i <= 30;$i++){
+            usersrank($allid,3,$i);
+        }
+
+        //シーンのみ
+        for($i=31;$i <= 43;$i++){
+            scenesrank($allid,$i);
+        }
+
+        //ジャンルのみ
+        for($i=44;$i <= 58;$i++){
+            genresrank($allid,$i);
+        }
+
+        //性別と年代ランキング
+        for($i=59;$i <=82;$i++){
+            sex_age_rank($allid,$i);
+        }
+
+        //性別とジャンルランキング
+        for($i=111;$i <= 140;$i++){
+            sex_genres_rank($allid,$i);
+        }
+
+        //性別と誕生日・Xmasランキング
+        for($i=83;$i <= 86;$i++){
+            sex_scene_rank($allid,$i);
+        }
+
+        //年代と誕生日・Xmasランキング
+        for($i=87;$i <= 110;$i++){
+            age_scene_rank($allid,$i);
+        }
+
+
+
 
 
 
