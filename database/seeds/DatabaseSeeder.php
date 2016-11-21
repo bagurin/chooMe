@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GenresTableSeeder::class);
         $this->call(ReviewsTableSeeder::class);
         $this->call(RanksTableSeeder::class);
+        $this->call(GoodstypesTableSeeder::class);
 
 
     }

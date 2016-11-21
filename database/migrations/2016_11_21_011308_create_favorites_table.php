@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReviewsTable extends Migration
+class CreateFavoritesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,13 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
-            $table->increments('id');
+        //
+        Schema::create('favorites', function (Blueprint $table) {
+
+            $table->integer('id');
             $table->integer('getgoods_id');
             $table->integer('users_id');
-            $table->integer('scenes_id');
-            $table->integer('goodstypes_id');
-            $table->string('comment');
-            $table->integer('rate');
 
-            $table->timestamps();
         });
     }
 
@@ -32,6 +29,7 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('reviews');
+        //
+        Schema::drop('favorites');
     }
 }
