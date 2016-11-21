@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rank extends Model
 {
-//aa
+    
     protected $table = 'ranks';
 
     protected $fillable = [

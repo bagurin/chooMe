@@ -14,7 +14,7 @@ class RanksTableSeeder extends Seeder
 
         DB::table('ranks')->truncate();
 
-        for($g=1;$g<=140;$g++){
+        for($g=1;$g<=548;$g++){
             for($i=1;$i<=20;$i++){
 
                 DB::table('ranks')->insert([
