@@ -19,6 +19,7 @@ class ReviewsTableSeeder extends Seeder
             'comment' => '千早かわいいよね',
             'rate' => '4',
             'scenes_id' => '1',
+            'goodstypes_id' => 1,
             'created_at' => date("Y-m-d H:i:s"),
 
         ]);
@@ -28,6 +29,7 @@ class ReviewsTableSeeder extends Seeder
             'comment' => '千早かわいくね？',
             'rate' => '5',
             'scenes_id' => '1',
+            'goodstypes_id' => 1,
             'created_at' => date("Y-m-d H:i:s"),
 
         ]);
@@ -37,6 +39,7 @@ class ReviewsTableSeeder extends Seeder
             'comment' => '千早かわいい',
             'rate' => '3',
             'scenes_id' => '1',
+            'goodstypes_id' => 1,
             'created_at' => date("Y-m-d H:i:s"),
 
         ]);
@@ -46,6 +49,7 @@ class ReviewsTableSeeder extends Seeder
             'comment' => '千早かかかわいいよ',
             'rate' => '4',
             'scenes_id' => '2',
+            'goodstypes_id' => 1,
             'created_at' => date("Y-m-d H:i:s"),
 
         ]);
@@ -55,6 +59,7 @@ class ReviewsTableSeeder extends Seeder
             'comment' => '千早かわいいよ',
             'rate' => '4',
             'scenes_id' => '1',
+            'goodstypes_id' => 1,
             'created_at' => date("Y-m-d H:i:s"),
 
         ]);
@@ -64,6 +69,7 @@ class ReviewsTableSeeder extends Seeder
             'comment' => '千早かわいいべ',
             'rate' => '4',
             'scenes_id' => '1',
+            'goodstypes_id' => 1,
             'created_at' => date("Y-m-d H:i:s"),
 
         ]);
@@ -73,6 +79,7 @@ class ReviewsTableSeeder extends Seeder
             'comment' => '千早かわいいんです',
             'rate' => '5',
             'scenes_id' => '1',
+            'goodstypes_id' => 1,
             'created_at' => date("Y-m-d H:i:s"),
 
         ]);
