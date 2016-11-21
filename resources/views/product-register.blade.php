@@ -16,7 +16,7 @@
         <div class="general_agileits_genres">
             <h4 class="latest-text w3_latest_text">商品登録</h4>
             <div class="container">
-                <div class="col-md-10 well">
+                <div class="col-md-12 well">
                     データベースに商品の登録とレビュー・評価を投稿します。<br>
                     既に同名の商品がデータベースに存在した場合、画像のアップロードは行われず、<br>
                     レビューと評価のみを登録します。
@@ -29,9 +29,13 @@
 
                 <form enctype="multipart/form-data" method="post" action="{{url('/product-register/')}}">
                     {{ csrf_field() }}
-                    <div class="col-md-6">
+                    <div class="col-md-2">
                     <input type="text" id="name" name="name" placeholder="商品名"></div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
+                        <input type="radio" name="wantgood" value="1" checked>もらって嬉しかったもの
+                        <input type="radio" name="wantgood" value="2">欲しいもの
+                    </div>
+                    <div class="col-md-5">
                         ジャンル:
                         <select id="genres" name="genres">
                             <option value="1">本</option>
@@ -99,7 +103,7 @@
 
                         {{--ログインしていない場合（ゲストユーザー）--}}
 
-                        <div class="col-md-10 well" >
+                        <div class="col-md-12 well" >
                             現在ユーザーログインされていません。<br>
                             商品を登録するにはログインするか、ゲストユーザーとして以下のユーザー情報を入力してください。<br>
                         </div>
