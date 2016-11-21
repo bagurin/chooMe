@@ -109,7 +109,7 @@ class RankController extends Controller
         }
 
         //ユーザー情報ランキング（change = 性別:1 年代:2 趣味:3）
-        function usersrank($allid,$change,$pattern){
+        function usersrank($allid,$change,$pattern,$goodstypes){
 
             $array = array();
 
@@ -150,6 +150,7 @@ class RankController extends Controller
                     ->where([
                         [$com,'=',$val],
                         ['reviews.getgoods_id','=',$value],
+                        ['reviews.goodstypes_id','=',$goodstypes],
                     ])
                     ->get();
 
@@ -168,7 +169,7 @@ class RankController extends Controller
         }
 
         //ジャンルランキング
-        function genresrank($allid,$pattern){
+        function genresrank($allid,$pattern,$goodstypes){
 
             $array = array();
 
@@ -182,6 +183,7 @@ class RankController extends Controller
                     ->where([
                         ['getgoods.genres_id','=',$genre],
                         ['reviews.getgoods_id','=',$value],
+                        ['reviews.goodstypes_id','=',$goodstypes],
                     ])
                     ->get();
 
@@ -198,7 +200,7 @@ class RankController extends Controller
 
 
         //シーンランキング
-        function scenesrank($allid,$pattern){
+        function scenesrank($allid,$pattern,$goodstypes){
 
             $array = array();
 
@@ -212,6 +214,7 @@ class RankController extends Controller
                     ->where([
                         ['scenes.id','=',$scene],
                         ['reviews.getgoods_id','=',$value],
+                        ['reviews.goodstypes_id','=',$goodstypes],
                     ])
                     ->get();
 
@@ -247,7 +250,7 @@ class RankController extends Controller
         }
 
         //性別と年代ランキング
-        function sex_age_rank($allid,$pattern){
+        function sex_age_rank($allid,$pattern,$goodstypes){
 
             $array = array();
 
@@ -276,6 +279,7 @@ class RankController extends Controller
                         [$com,'=',$val],
                         [$com2,'=',$val2],
                         ['reviews.getgoods_id','=',$value],
+                        ['reviews.goodstypes_id','=',$goodstypes],
                     ])
                     ->get();
 
@@ -293,7 +297,7 @@ class RankController extends Controller
         }
 
         //性別とジャンルランキング
-        function sex_genres_rank($allid,$pattern){
+        function sex_genres_rank($allid,$pattern,$goodstypes){
 
             $array = array();
 
@@ -323,6 +327,7 @@ class RankController extends Controller
                         [$com,'=',$val],
                         [$com2,'=',$val2],
                         ['reviews.getgoods_id','=',$value],
+                        ['reviews.goodstypes_id','=',$goodstypes],
                     ])
                     ->get();
 
@@ -340,7 +345,7 @@ class RankController extends Controller
         }
 
         //性別とシーンランキング（誕生日・Xmas）
-        function sex_scene_rank($allid,$pattern){
+        function sex_scene_rank($allid,$pattern,$goodstypes){
 
             $array = array();
 
@@ -370,6 +375,7 @@ class RankController extends Controller
                         [$com,'=',$val],
                         [$com2,'=',$val2],
                         ['reviews.getgoods_id','=',$value],
+                        ['reviews.goodstypes_id','=',$goodstypes],
                     ])
                     ->get();
 
@@ -387,7 +393,7 @@ class RankController extends Controller
         }
 
         //年代とシーン　ランキング（誕生日・Xmas）
-        function age_scene_rank($allid,$pattern){
+        function age_scene_rank($allid,$pattern,$goodstypes){
 
             $array = array();
 
@@ -413,6 +419,7 @@ class RankController extends Controller
                         [$com,'=',$val],
                         [$com2,'=',$val2],
                         ['reviews.getgoods_id','=',$value],
+                        ['reviews.goodstypes_id','=',$goodstypes],
                     ])
                     ->get();
 
@@ -481,7 +488,7 @@ class RankController extends Controller
         }
 
         //性別と年代と誕生日・クリスマス　ランキング
-        function sex_age_scene_rank($allid,$pattern){
+        function sex_age_scene_rank($allid,$pattern,$goodstypes){
 
             $array = array();
 
@@ -517,6 +524,7 @@ class RankController extends Controller
                         [$com2,'=',$val2],
                         [$com3,'=',$val3],
                         ['reviews.getgoods_id','=',$value],
+                        ['reviews.goodstypes_id','=',$goodstypes],
                     ])
                     ->get();
 
@@ -534,7 +542,7 @@ class RankController extends Controller
         }
 
         //性別と年代とジャンル　ランキング
-        function sex_age_genre_rank($allid,$pattern){
+        function sex_age_genre_rank($allid,$pattern,$goodstypes){
 
             $array = array();
 
@@ -575,6 +583,7 @@ class RankController extends Controller
                         [$com2,'=',$val2],
                         [$com3,'=',$val3],
                         ['reviews.getgoods_id','=',$value],
+                        ['reviews.goodstypes_id','=',$goodstypes],
                     ])
                     ->get();
 
@@ -677,27 +686,27 @@ class RankController extends Controller
         //全処理
         for($i=1;$i <= 548;$i++){
             if($i <= 2){
-                usersrank($allid,1,$i);
+                usersrank($allid,1,$i,1);
             }elseif($i >= 3 and $i <=14){
-                usersrank($allid,2,$i);
+                usersrank($allid,2,$i,1);
             }elseif($i >= 15 and $i <=30){
-                usersrank($allid,3,$i);
+                usersrank($allid,3,$i,1);
             }elseif($i >= 31 and $i <= 43){
-                scenesrank($allid,$i);
+                scenesrank($allid,$i,1);
             }elseif($i >= 44 and $i <= 58){
-                genresrank($allid,$i);
+                genresrank($allid,$i,1);
             }elseif($i >= 59 and $i <= 82){
-                sex_age_rank($allid,$i);
+                sex_age_rank($allid,$i,1);
             }elseif($i >= 83 and $i <= 86){
-                sex_scene_rank($allid,$i);
+                sex_scene_rank($allid,$i,1);
             }elseif($i >= 87 and $i <= 110){
-                age_scene_rank($allid,$i);
+                age_scene_rank($allid,$i,1);
             }elseif($i >= 111 and $i <= 140){
-                sex_genres_rank($allid,$i);
+                sex_genres_rank($allid,$i,1);
             }elseif($i >= 141 and $i <= 188){
-                sex_age_scene_rank($allid,$i);
+                sex_age_scene_rank($allid,$i,1);
             }elseif($i >= 189 and $i <= 548){
-                sex_age_genre_rank($allid,$i);
+                sex_age_genre_rank($allid,$i,1);
             }
 
         }
