@@ -21,6 +21,23 @@ class RanksTableSeeder extends Seeder
                     'ranking_no' => $i,
                     'getgoods_id' => 1,
                     'score' => 0.00,
+                    'goodstypes_id' => 1,
+                    'average_rate' => 0,
+                    'patterns_id' => $g,
+                    'created_at' => date("Y-m-d H:i:s"),
+                ]);
+
+            }
+        }
+
+        for($g=1;$g<=548;$g++){
+            for($i=1;$i<=20;$i++){
+
+                DB::table('ranks')->insert([
+                    'ranking_no' => $i,
+                    'getgoods_id' => 1,
+                    'score' => 0.00,
+                    'goodstypes_id' => 2,
                     'average_rate' => 0,
                     'patterns_id' => $g,
                     'created_at' => date("Y-m-d H:i:s"),

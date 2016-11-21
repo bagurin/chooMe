@@ -16,6 +16,7 @@ class CreateRanksTable extends Migration
             $table->integer('ranking_no');
             $table->integer('getgoods_id');
             $table->double('score',5,3);
+            $table->integer('goodstypes_id');
             $table->float('average_rate');
             $table->integer('patterns_id');
 
