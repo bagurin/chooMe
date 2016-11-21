@@ -234,21 +234,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="col-md-8">
 									<p>年齢</p>
 									<select id="age" name="age">
-										<option value="1-10">10歳以下</option>
-										<option value="11-15">10代前半</option>
-										<option value="15-19">10代後半</option>
-										<option value="20-25">20代前半</option>
-										<option value="25-29">20代後半</option>
-										<option value="30-35">30代前半</option>
-										<option value="35-39">30代後半</option>
-										<option value="40-45">40代前半</option>
-										<option value="45-49">40代後半</option>
-										<option value="50-59">50代</option>
-										<option value="60-69">60代</option>
-										<option value="70-79">70代</option>
-										<option value="80-89">80代</option>
-										<option value="90-99">90代</option>
-										<option value="100">100以上</option>
+										<option value="1">10歳未満</option>
+										<option value="2">10代前半</option>
+										<option value="3">10代後半</option>
+										<option value="4">20代前半</option>
+										<option value="5">20代後半</option>
+										<option value="6">30代前半</option>
+										<option value="7">30代後半</option>
+										<option value="8">40代前半</option>
+										<option value="9">40代後半</option>
+										<option value="10">50代</option>
+										<option value="11">60代</option>
+										<option value="12">70歳以上</option>
+
 									</select><br>
 									</div>
 									<div class="col-md-12">
@@ -278,70 +276,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 									</div>
-								  {{--<input type="text" name="Username" placeholder="ユーザー名" required="">--}}
-								  {{--<input type="password" name="password" id="password" placeholder="パスワード" required="">--}}
-									{{--<input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="パスワード（確認)" required="">--}}
-								  {{--<input type="email" name="Email" placeholder="メールアドレス" required="">--}}
-									{{--<p>年齢</p>--}}
-									{{--<select id="age" name="age">--}}
-										{{--<option value="1-10">10歳以下</option>--}}
-										{{--<option value="11-15">10代前半</option>--}}
-										{{--<option value="15-19">10代後半</option>--}}
-										{{--<option value="20-25">20代前半</option>--}}
-										{{--<option value="25-29">20代後半</option>--}}
-										{{--<option value="30-35">30代前半</option>--}}
-										{{--<option value="35-39">30代後半</option>--}}
-										{{--<option value="40-45">40代前半</option>--}}
-										{{--<option value="45-49">40代後半</option>--}}
-										{{--<option value="50-59">50代</option>--}}
-										{{--<option value="60-69">60代</option>--}}
-										{{--<option value="70-79">70代</option>--}}
-										{{--<option value="80-89">80代</option>--}}
-										{{--<option value="90-99">90代</option>--}}
-										{{--<option value="100">100以上</option>--}}
-									{{--</select><br>--}}
-									{{--<p>性別</p>--}}
-									{{--<input type="radio" name="sex" value="男" checked>男--}}
-									{{--<input type="radio" name="sex" value="女">女--}}
-									{{--<p>趣味</p>--}}
-									{{--<select id="hobby" name="hobby">--}}
-										{{--<option value="sport">スポーツ</option>--}}
-										{{--<option value="book">読書</option>--}}
-										{{--<option value="pc">PC</option>--}}
-										{{--<option value="trip">旅行</option>--}}
-										{{--<option value="music">音楽</option>--}}
-										{{--<option value="movie">映画鑑賞</option>--}}
-										{{--<option value="carbike">車＆バイク</option>--}}
-										{{--<option value="game">ゲーム</option>--}}
-										{{--<option value="cook">料理</option>--}}
-										{{--<option value="sake">お酒</option>--}}
-										{{--<option value="shopping">ショッピング</option>--}}
-										{{--<option value="sewing">手芸＆裁縫</option>--}}
-										{{--<option value="gourmet">グルメ</option>--}}
-										{{--<option value="gardening">ガーデニング</option>--}}
-										{{--<option value="idol">アイドル</option>--}}
-										{{--<option value="etc">その他</option>--}}
-									{{--</select><br>--}}
-									{{--<p>--}}
-								{{--<input type="submit" value="Register">--}}
-							{{--</p>--}}
+
 								</form>
-								<!-- <script>
-  								//var form = document.forms[0];
-  								form.onsubmit = function() {
-    								// エラーメッセージをクリアする
-							    	form.password.setCustomValidity("");
-    								// パスワードの一致確認
-    								if (form.password.value != form.passwordConfirm.value) {
-      								// 一致していなかったら、エラーメッセージを表示する
-      								form.password.setCustomValidity("パスワードと確認用パスワードが一致しません");
-    								}
-  								};
-  							// 入力値チェックエラーが発生したときの処理
-  							//form.addEventListener("invalid", function() {
-    							//document.getElementById("errorMessage").innerHTML = "入力値にエラーがあります";
-  							//}, false);
-								</script> -->
+								
 							  </div>
 
 							</div>
