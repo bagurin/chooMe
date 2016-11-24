@@ -25,4 +25,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     if File.exists? afterScriptPath then
         config.vm.provision "shell", path: afterScriptPath
     end
+
+    config.vm.provider :virtualbox do |vb|
+      vb.customize ["setextradata", :id, "VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled", 0]
+    end
+
+
 end
+
