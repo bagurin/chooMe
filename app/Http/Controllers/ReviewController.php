@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Review;
 use Request;
-use Illuminate\Support\Facades\Session;
 use App\Getgoods;
 use App\User;
 use Auth;
@@ -12,27 +11,38 @@ use Auth;
 class ReviewController extends Controller
 {
 
-    // 商品名保持(一時データなのでリロードしたらエラーはかれる)
-    public function getName()
+    // 入力された商品名を元に似た名前の商品があるかを検索し連想配列で返す
+    public function getDate()
     {
-        // post内容を取得
-        $postdata = Session::get('_old_input');
+        //$name = Request::get('name');
 
-        return view('review',$postdata);
+        $name = 'ak47';
+
+        $list = Getgoods::where('name', 'LIKE', '%'.$name.'%')->paginate(10);
+        dd($list);
+
+        return view('search-result')->with('list', $list);
     }
 
     // レビューをデータベースに格納
     public function review(){
 
-        // ユーザー名からID取得
-        $user_name = Auth::user()->name;
+        //id用変数
         $user_id = -1;
-        $users_table = User::all();
-        foreach ($users_table as $user) {
-            if($user_name == $user['name']){
-                $user_id = $user['id'];
-                break;
-            }
+
+        //ログインしているかで取得するidを変更
+        if(Auth::guest()) {
+            //ゲストユーザーid取得用データ取得
+            $sex = Request::get('sex');
+            $age = Request::get('age');
+            $hobbies = Request::get('hobbies_id');
+            //ゲストユーザーid取得
+            $user_id = User::where('sex', $sex)->where('age', $age)->where('hobbies_id', $hobbies)-get('id');
+        }else{
+            // ログインユーザーID取得し、connectをtrueに
+            $user_id = Auth::user()->id;
+            User::where('id', $user_id)->update(['connect'=>true]);
+
         }
 
 
@@ -43,19 +53,15 @@ class ReviewController extends Controller
         // 商品id変数
         $getgoods_id = -1;
 
-        // テーブル全件取得
-        $getgoods_table = Getgoods::all();
 
         //商品名からidを取得
-        foreach ($getgoods_table as $getgoods) {
-            if($syohin == $getgoods['name']){
-                $getgoods_id = $getgoods['id'];
-                break;
-            }
-        }
+        $getgoods_id = Getgoods::where('name', $syohin)->get('id');
 
-        $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id, 'scenes_id' => 1, 'comment' => $comment, 'rate' => (int)$rate);
+        $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id,
+                            'scenes_id' => 1, 'comment' => $comment, 'rate' => (int)$rate);
         Review::create($review);
+
+        // ランキングページにする際ゲストなら表示できるようにする
         return redirect('/');
     }
 
