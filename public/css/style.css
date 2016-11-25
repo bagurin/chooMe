@@ -97,13 +97,13 @@ input[type="submit"],.agileinfo_chat a,.w3ls_footer_grid1_left p a,.w3l_sign_in_
     line-height: 0;
 }
 .w3_search{
-	float: left;
+    float: left;
     width: 40%;
     margin-left: 9em;
-	margin-top: .7em;
+    margin-top: .7em;
 }
 .w3_search input[type="text"]{
-	outline: none;
+    outline: none;
     border: none;
     background:#EFEFEF;
     padding: 10px;
@@ -116,7 +116,7 @@ input[type="submit"],.agileinfo_chat a,.w3ls_footer_grid1_left p a,.w3l_sign_in_
     border-bottom-left-radius: 25px;
 }
 .w3_search input[type="submit"]{
-	outline: none;
+    outline: none;
     border: none;
     background: #212121;
     padding: 10px 0;
@@ -1247,6 +1247,11 @@ h3.head {
 		float: right;
 		width: 50%;
 	}
+    .w3_search_modal {
+        margin-left: 0;
+        float: left;
+        width: 100%;
+    }
 }
 @media (max-width: 667px){
 	.agile_mid_2_home {
