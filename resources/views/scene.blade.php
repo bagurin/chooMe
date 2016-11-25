@@ -3,8 +3,166 @@
 @section('content')
 
 
+    <?php
+    function rateToStar($rate){
+        round($rate,1);
+    switch($rate){
+        case 0:
+        case 0.1:
+        case 0.2:
+        case 0.3:
+            echo'
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            </p>';
+            break;
+        case 0.4:
+        case 0.5:
+        case 0.6:
+        case 0.7:
+            echo'
+            <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            </p>';
+            break;
+        case 0.8:
+        case 0.9:
+        case 1:
+        case 1.1:
+        case 1.2:
+        case 1.3:
+            echo'
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            </p>';
+            break;
+        case 1.4:
+        case 1.5:
+        case 1.6:
+        case 1.7:
+            echo'
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            </p>';
+            break;
+        case 1.8:
+        case 1.9:
+        case 2:
+        case 2.1:
+        case 2.2:
+        case 2.3:
+            echo'
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            </p>';
+            break;
+        case 2.4:
+        case 2.5:
+        case 2.6:
+        case 2.7:
+            echo'
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            </p>';
+            break;
+        case 2.8:
+        case 2.9:
+        case 3:
+        case 3.1:
+        case 3.2:
+        case 3.3:
+            echo'
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            </p>';
+            break;
+        case 3.4:
+        case 3.5:
+        case 3.6:
+        case 3.7:
+            echo'
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            </p>';
+            break;
+        case 3.8:
+        case 3.9:
+        case 4:
+        case 4.1:
+        case 4.2:
+        case 4.3:
+            echo'
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+            </p>';
+            break;
+        case 4.4:
+        case 4.5:
+        case 4.6:
+        case 4.7:
+            echo'
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a>
+            </p>';
+            break;
+        case 4.8:
+        case 4.9:
+        case 5:
+            echo'
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
+            </p>';
+            break;
+    }
 
-<div class="general_social_icons">
+
+
+
+    }
+
+    function genreidToGenre($genre){
+        switch($genre){
+
+        }
+    }
+    ?>
+
+
+
+    <div class="general_social_icons">
     <nav class="social">
         <ul>
             <li class="w3_twitter"><a href="#">Twitter <i class="fa fa-twitter"></i></a></li>
@@ -48,9 +206,9 @@
 
                                             </div>
                                             <div class="col-md-6 agile_tv_series_grid_right">
-                                                <p class="fexi_header">Test {{$rank['ranking_no']}}位プレゼント</p>
+                                                <p class="fexi_header">{{$rank['ranking_no']}}位</p>
 
-                                                <p class="fexi_header_para"><span>Date of Release<label>:</label></span> Jun 10, 2016 </p>
+                                                <p class="fexi_header_para"><span>商品名<label>:</label></span>{{$rank['name']}}</p>
                                                 <p class="fexi_header_para">
                                                     <span>ジャンル<label>:</label></span>
                                                     {{$rank['genres']}}
@@ -59,18 +217,11 @@
                                                     <span>シーン<label>:</label> </span>
                                                     {{$rank['scenes']}}
                                                 </p>
-                                                <p class="fexi_header_para">
-                                                    <span>レート<label>:</label></span>
-                                                    {{$rank['rate']}}
-                                                </p>
 
                                                 <p class="fexi_header_para fexi_header_para1"><span>評価<label>:</label></span>
-                                                    <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-                                                    <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-                                                    <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-                                                    <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-                                                    <a href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
-                                                </p>
+
+                                                    {{rateToStar($rank['rate'])}}
+
                                             </div>
                                             <div class="clearfix"> </div>
                                 {{--</ul>--}}
