@@ -664,27 +664,27 @@ class RankCommand extends Command
             if ($i <= 2) {
                 usersrank($allid, 1, $i, 1);
                 if($i == 2){
-                    $this->info('性別のみ(get) : Completed!!');
+                    $this->info('性別(get)  :   Completed!!');
                 }
             } elseif ($i >= 3 and $i <= 14) {
                 usersrank($allid, 2, $i, 1);
                 if($i == 14){
-                    $this->info('年代のみ(get) : Completed!!');
+                    $this->info('年代(get)  :   Completed!!');
                 }
             } elseif ($i >= 15 and $i <= 30) {
                 usersrank($allid, 3, $i, 1);
                 if($i == 30){
-                    $this->info('趣味のみ(get) : Completed!!');
+                    $this->info('趣味(get)  :   Completed!!');
                 }
             } elseif ($i >= 31 and $i <= 43) {
                 scenesrank($allid, $i, 1);
                 if($i == 43){
-                    $this->info('シーンのみ(get) : Completed!!');
+                    $this->info('シーン(get) :   Completed!!');
                 }
             } elseif ($i >= 44 and $i <= 58) {
                 genresrank($allid, $i, 1);
                 if($i == 58){
-                    $this->info('ジャンルのみ(get) : Completed!!');
+                    $this->info('ジャンル(get):   Completed!!');
                 }
             } elseif ($i >= 59 and $i <= 82) {
                 sex_age_rank($allid, $i, 1);
@@ -699,12 +699,12 @@ class RankCommand extends Command
             } elseif ($i >= 87 and $i <= 110) {
                 age_scene_rank($allid, $i, 1);
                 if($i == 110){
-                    $this->info('年代×誕生日･Xmas(get) : Completed!!');
+                    $this->info('年代×誕生日･Xmas(get) :  Completed!!');
                 }
             } elseif ($i >= 111 and $i <= 140) {
                 sex_genres_rank($allid, $i, 1);
                 if($i == 140){
-                    $this->info('性別×ジャンル(get) : Completed!!');
+                    $this->info('性別×ジャンル(get)   :   Completed!!');
                 }
             } elseif ($i >= 141 and $i <= 188) {
                 sex_age_scene_rank($allid, $i, 1);
@@ -714,7 +714,7 @@ class RankCommand extends Command
             } elseif ($i >= 189 and $i <= 548) {
                 sex_age_genre_rank($allid, $i, 1);
                 if($i == 548){
-                    $this->info('性別×年代×ジャンル(get) : Completed!!');
+                    $this->info('性別×年代×ジャンル(get) :  Completed!!');
                 }
             }
         }

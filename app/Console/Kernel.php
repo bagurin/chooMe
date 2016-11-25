@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\Inspire::class,
+        Commands\RankCommand::class,
     ];
 
     /**
@@ -26,5 +27,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')
                  ->hourly();
+        //$schedule->command('command:ranking')->dailyAt('05:00');
+        $schedule->command('command:ranking')->everyMinute();
     }
 }
