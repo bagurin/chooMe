@@ -36,11 +36,12 @@
                 printTable($list);
             ?>
             </table>
+            {!! $list->render() !!}
 
     </div>
 
         </div>
-    {!! $list->render() !!}
+
 
 
 
