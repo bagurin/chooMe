@@ -2,20 +2,18 @@
 
 @section('content')
 
-<?php
-    function printTable($table){
-    echo '<table table-bordered>' . PHP_EOL;
-        foreach($table as $line){
-            echo '<tr>';
-            foreach($line as $cell){
-                echo'<td>'.$cell.'</td>';
-            }
-            echo '</tr>'. PHP_EOL;
-        }
-        echo '</table>'. PHP_EOL;
-}
 
-?>
+    <?php
+    function printTable($list){
+        foreach($list as $item){
+
+            echo '<tr><td>'.$item->name.'</td><td><img src="'.$item->image.'"></td></tr>' . PHP_EOL;
+        }
+    }
+
+
+    ?>
+
 
     <div class="general_social_icons">
         <nav class="social">
@@ -30,11 +28,20 @@
 
     <div class="container">
         <div class="bs-docs-example">
+            <table class="table table-bordered">
+                <thead>
+                <tr><th>商品名</th><th>商品画像</th></tr>
+                </thead>
             <?php
                 printTable($list);
-        ?>
+            ?>
+            </table>
+
     </div>
 
-    @funtion
+        </div>
+    {!! $list->render() !!}
+
+
 
 @endsection
