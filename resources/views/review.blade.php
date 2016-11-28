@@ -2,6 +2,39 @@
 
 @section('content')
 
+    <style>
+        label {
+            margin-left: 0em;
+        }
+        .pink-button {
+            display: inline-block;
+            padding: 5px;
+            width: 200px;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            font-size: 14px;
+            text-overflow: ellipsis;
+            background-color: #ff9393;
+            color: white;
+            box-shadow: #888 2px 2px 1px;
+            cursor: pointer;
+        }
+        .pink-button:hover {
+            background-color: #fc6c6c;
+        }
+        .pink-button:hover {
+            background-color: #fc6c6c;
+        }
+        .pink-button:active {
+            box-shadow: #f75454 1px 1px 1px;
+            position: relative;
+            top: 1px; left: 1px;
+        }
+        .pink-button input {
+            display: none;
+        }
+    </style>
 
     <div class="general_social_icons">
         <nav class="social">
@@ -39,7 +72,7 @@
                         <option value="2">★★☆☆☆</option>
                         <option value="1">★☆☆☆☆</option>
                     </select></p><br>
-                    <input type="submit" value="レビューを登録する">
+                    <label class="pink-button"><input type="submit">レビューを登録する</label>
                 </form>
             </div>
 
