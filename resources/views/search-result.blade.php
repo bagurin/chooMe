@@ -7,7 +7,7 @@
     function printTable($list){
         foreach($list as $item){
 
-            echo '<tr><td><a href="/review?'.$item->name.'">'.$item->name.'</td><td><img src="'.$item->image.'"></td></tr>' . PHP_EOL;
+            echo '<tr><td><a href="/review/'.$item->name.'">'.$item->name.'</td><td><img src="'.$item->image.'"></td></tr>' . PHP_EOL;
         }
     }
 
