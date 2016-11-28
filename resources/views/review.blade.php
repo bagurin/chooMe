@@ -98,6 +98,61 @@
                         <option value="1">★☆☆☆☆</option>
                     </select></p><br>
                     </div>
+
+                    @if(Auth::check() == false)
+
+                        {{--ログインしていない場合（ゲストユーザー）--}}
+
+                        <div class="col-md-12 well" >
+                            現在ユーザーログインされていません。<br>
+                            商品を登録するにはログインするか、ゲストユーザーとして以下のユーザー情報を入力してください。<br>
+                        </div>
+                        <div class="col-md-3">
+                            性別:
+                            <input type="radio" name="sex" value="1" checked>男
+                            <input type="radio" name="sex" value="2">女
+                        </div>
+                        <div class="col-md-5">
+                            年齢:
+                            <select id="age" name="age">
+                                <option value="1">10歳未満</option>
+                                <option value="2">10代前半</option>
+                                <option value="3">10代後半</option>
+                                <option value="4">20代前半</option>
+                                <option value="5">20代後半</option>
+                                <option value="6">30代前半</option>
+                                <option value="7">30代後半</option>
+                                <option value="8">40代前半</option>
+                                <option value="9">40代後半</option>
+                                <option value="10">50代</option>
+                                <option value="11">60代</option>
+                                <option value="12">70歳以上</option>
+                                <
+                            </select><br>
+                        </div>
+                        <div class="col-md-4">
+                            趣味:
+                            <select id="hobbies_id" name="hobbies_id">
+                                <option value="1">スポーツ</option>
+                                <option value="2">読書</option>
+                                <option value="3">PC</option>
+                                <option value="4">旅行</option>
+                                <option value="5">音楽</option>
+                                <option value="6">映画鑑賞</option>
+                                <option value="7">車＆バイク</option>
+                                <option value="8">ゲーム</option>
+                                <option value="9">料理</option>
+                                <option value="10">お酒</option>
+                                <option value="11">ショッピング</option>
+                                <option value="12">手芸＆裁縫</option>
+                                <option value="13">グルメ</option>
+                                <option value="14">ガーデニング</option>
+                                <option value="15">アイドル</option>
+                                <option value="16">その他</option>
+                            </select><br>
+                        </div>
+
+                    @endif
                     <div class="col-md-12">
                     <label class="pink-button"><input type="submit">レビューを登録する</label>
                         </div>
