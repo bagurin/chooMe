@@ -5,7 +5,7 @@
 <!-- banner -->
 	<div id="slidey" style="display:none;">
 		<ul>
-			<li><img src="/images/present1.jpg" alt=" "><p class='title'>Present1</p><p class='description'> Present1,TestText</p></li>
+			<li><img src="/images/design.png" alt=" "><p class='title'>Android</p><p class='description'> Web版よりも高機能なAndroid版リリース</p></li>
 			<li><img src="/images/present2.jpg" alt=" "><p class='title'>Present2</p><p class='description'> Present2,TestText</p></li>
 			<li><img src="/images/present3.jpg" alt=" "><p class='title'>Present3</p><p class='description'> Present3,TestText</p></li>
 			<li><img src="/images/present4.jpeg" alt=" "><p class='title'>Present4</p><p class='description'> Present4,TestText</p></li>
