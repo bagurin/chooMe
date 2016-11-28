@@ -54,6 +54,25 @@
                         </select><br>
                     </div>
                     <div class="col-md-12">
+                        シーン:
+                        <select id="scene" name="scene">
+                            <option value="1">誕生日</option>
+                            <option value="2">結婚記念日</option>
+                            <option value="3">クリスマス</option>
+                            <option value="4">出産祝い</option>
+                            <option value="5">結婚祝い</option>
+                            <option value="6">手土産</option>
+                            <option value="7">引っ越し</option>
+                            <option value="8">お中元＆お歳暮</option>
+                            <option value="9">父の日</option>
+                            <option value="10">母の日</option>
+                            <option value="11">敬老の日</option>
+                            <option value="12">卒業＆就職祝い</option>
+                            <option value="13">入学祝い</option>
+
+                        </select><br>
+                    </div>
+                    <div class="col-md-12">
                         <style>
                             label {
                                 margin-left: 0em;
@@ -110,6 +129,9 @@
                         {{ csrf_field() }}
 
                         {{--<input type="text" name="name" id="name" readonly="readonly" value="{{ $name }}"><br>--}}
+
+
+
                     <div class="col-md-6">
                         <textarea name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
                     </div>
