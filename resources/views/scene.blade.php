@@ -153,11 +153,7 @@
 
     }
 
-    function genreidToGenre($genre){
-        switch($genre){
 
-        }
-    }
     ?>
 
 
@@ -182,7 +178,7 @@
             <!--/browse-agile-w3ls -->
             <div class="browse-agile-w3ls general-w3ls">
                 <div class="tittle-head">
-                    <h4 class="latest-text">ランキングTOP20</h4>
+                    <h4 class="latest-text">シーン別ランキングTOP20</h4>
 
 
                 </div>
@@ -213,10 +209,10 @@
                                                     <span>ジャンル<label>:</label></span>
                                                     {{$rank['genres']}}
                                                 </p>
-                                                <p class="fexi_header_para">
-                                                    <span>シーン<label>:</label> </span>
-                                                    {{$rank['scenes']}}
-                                                </p>
+                                                {{--<p class="fexi_header_para">--}}
+                                                    {{--<span>シーン<label>:</label> </span>--}}
+                                                    {{--{{$rank['scenes']}}--}}
+                                                {{--</p>--}}
 
                                                 <p class="fexi_header_para fexi_header_para1"><span>評価<label>:</label></span>
 
