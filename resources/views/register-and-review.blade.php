@@ -25,7 +25,7 @@
                 <!-- general -->
 
 
-                <form enctype="multipart/form-data" method="post" action="{{url('/product-register/')}}">
+                <form enctype="multipart/form-data" method="post" action="{{url('/register-and-review/')}}">
                     {{ csrf_field() }}
                     <div class="col-md-6">
                         <input type="text" id="name" name="name" placeholder="商品名"></div>
@@ -90,28 +90,30 @@
 
 
                         <label class="my-file-input"><input type="file" id="image" name="image" accept="image/*">商品画像を選択</label>
+
                         <script>
                             document.getElementById("image").addEventListener("change", function(e){
                                 e.target.nextSibling.nodeValue = e.target.files.length ? e.target.files[0].name : "商品画像を選択";
                             });
                         </script>
                     </div>
-                    </form>
-                </div>
+
+
 
                     {{--<div class="well">--}}
                         {{--商品のレビューと評価（5段階）を登録します。--}}
                     {{--</div>--}}
 
-                <div class="container">
-                    <form method="post" action="{{url('/review/')}}">
+
+
 
                         {{ csrf_field() }}
 
                         {{--<input type="text" name="name" id="name" readonly="readonly" value="{{ $name }}"><br>--}}
-
+                    <div class="col-md-6">
                         <textarea name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
-
+                    </div>
+                    <div class="col-md-6">
                         <p>評価
                             <select id="rate" name="rate" size="1">
                                 <option value="5">★★★★★</option>
@@ -120,7 +122,65 @@
                                 <option value="2">★★☆☆☆</option>
                                 <option value="1">★☆☆☆☆</option>
                             </select></p><br>
-                        <input type="submit" value="レビューを登録する">
+                    </div>
+
+                    @if(Auth::check() == false)
+
+                        {{--ログインしていない場合（ゲストユーザー）--}}
+
+                        <div class="col-md-12 well" >
+                            現在ユーザーログインされていません。<br>
+                            商品を登録するにはログインするか、ゲストユーザーとして以下のユーザー情報を入力してください。<br>
+                        </div>
+                        <div class="col-md-3">
+                            性別:
+                            <input type="radio" name="sex" value="1" checked>男
+                            <input type="radio" name="sex" value="2">女
+                        </div>
+                        <div class="col-md-5">
+                            年齢:
+                            <select id="age" name="age">
+                                <option value="1">10歳未満</option>
+                                <option value="2">10代前半</option>
+                                <option value="3">10代後半</option>
+                                <option value="4">20代前半</option>
+                                <option value="5">20代後半</option>
+                                <option value="6">30代前半</option>
+                                <option value="7">30代後半</option>
+                                <option value="8">40代前半</option>
+                                <option value="9">40代後半</option>
+                                <option value="10">50代</option>
+                                <option value="11">60代</option>
+                                <option value="12">70歳以上</option>
+                                <
+                            </select><br>
+                        </div>
+                        <div class="col-md-4">
+                            趣味:
+                            <select id="hobbies_id" name="hobbies_id">
+                                <option value="1">スポーツ</option>
+                                <option value="2">読書</option>
+                                <option value="3">PC</option>
+                                <option value="4">旅行</option>
+                                <option value="5">音楽</option>
+                                <option value="6">映画鑑賞</option>
+                                <option value="7">車＆バイク</option>
+                                <option value="8">ゲーム</option>
+                                <option value="9">料理</option>
+                                <option value="10">お酒</option>
+                                <option value="11">ショッピング</option>
+                                <option value="12">手芸＆裁縫</option>
+                                <option value="13">グルメ</option>
+                                <option value="14">ガーデニング</option>
+                                <option value="15">アイドル</option>
+                                <option value="16">その他</option>
+                            </select><br>
+                        </div>
+
+                    @endif
+                    <div class="col-md-12">
+                        <label class="my-file-input"><input type="submit">商品とレビューを登録する</label>
+                    </div>
                 </form>
             </div>
 
