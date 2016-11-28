@@ -28,6 +28,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('inspire')
                  ->hourly();
         //$schedule->command('command:ranking')->dailyAt('05:00');
-        $schedule->command('command:ranking')->everyMinute();
+        $schedule->command('command:ranking')->dailyAt('05:00');
     }
 }
