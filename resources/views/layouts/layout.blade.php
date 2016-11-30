@@ -326,23 +326,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li>
 									<div class="col-sm-6">
 										<ul class="multi-column-dropdown">
-											<li><a href="/scene/?id=1">誕生日</a></li>
-											<li><a href="/scene/?id=2">結婚記念日</a></li>
-											<li><a href="/scene/?id=3">クリスマス</a></li>
-											<li><a href="/scene/?id=4">出産祝い</a></li>
-											<li><a href="/scene/?id=5">結婚祝い</a></li>
-											<li><a href="/scene/?id=6">手土産</a></li>
-											<li><a href="/scene/?id=7">引っ越し</a></li>
+											<li><a href="/scene/?pattern=1">誕生日</a></li>
+											<li><a href="/scene/?pattern=2">結婚記念日</a></li>
+											<li><a href="/scene/?pattern=3">クリスマス</a></li>
+											<li><a href="/scene/?pattern=4">出産祝い</a></li>
+											<li><a href="/scene/?pattern=5">結婚祝い</a></li>
+											<li><a href="/scene/?pattern=6">手土産</a></li>
+											<li><a href="/scene/?pattern=7">引っ越し</a></li>
 										</ul>
 									</div>
 									<div class="col-sm-6">
 										<ul class="multi-column-dropdown">
-											<li><a href="/scene/?id=8">お中元＆お歳暮</a></li>
-											<li><a href="/scene/?id=9">父の日</a></li>
-											<li><a href="/scene/?id=10">母の日</a></li>
-											<li><a href="/scene/?id=11">敬老の日</a></li>
-											<li><a href="/scene/?id=12">卒業＆就職祝い</a></li>
-											<li><a href="/scene/?id=13">入学祝い</a></li>
+											<li><a href="/scene/?pattern=8">お中元＆お歳暮</a></li>
+											<li><a href="/scene/?pattern=9">父の日</a></li>
+											<li><a href="/scene/?pattern=10">母の日</a></li>
+											<li><a href="/scene/?pattern=11">敬老の日</a></li>
+											<li><a href="/scene/?pattern=12">卒業＆就職祝い</a></li>
+											<li><a href="/scene/?pattern=13">入学祝い</a></li>
 										</ul>
 									</div>
 
@@ -356,26 +356,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li>
 										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">
-												<li><a href="/age/?id=1">10歳未満</a></li>
-												<li><a href="/age/?id=2">10代前半</a></li>
-												<li><a href="/age/?id=3">10代後半</a></li>
-												<li><a href="/age/?id=4">20代前半</a></li>
+												<li><a href="/age/?pattern=1">10歳未満</a></li>
+												<li><a href="/age/?pattern=2">10代前半</a></li>
+												<li><a href="/age/?pattern=3">10代後半</a></li>
+												<li><a href="/age/?pattern=4">20代前半</a></li>
 											</ul>
 										</div>
 										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">
-												<li><a href="/age/?id=5">20代後半</a></li>
-												<li><a href="/age/?id=6">30代前半</a></li>
-												<li><a href="/age/?id=7">30代後半</a></li>
-												<li><a href="/age/?id=8">40代前半</a></li>
+												<li><a href="/age/?pattern=5">20代後半</a></li>
+												<li><a href="/age/?pattern=6">30代前半</a></li>
+												<li><a href="/age/?pattern=7">30代後半</a></li>
+												<li><a href="/age/?pattern=8">40代前半</a></li>
 											</ul>
 										</div>
 										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">
-												<li><a href="/age/?id=9">40代後半</a></li>
-												<li><a href="/age/?id=10">50代</a></li>
-												<li><a href="/age/?id=11">60代</a></li>
-												<li><a href="/age/?id=12">70歳以上</a></li>
+												<li><a href="/age/?pattern=9">40代後半</a></li>
+												<li><a href="/age/?pattern=10">50代</a></li>
+												<li><a href="/age/?pattern=11">60代</a></li>
+												<li><a href="/age/?pattern=12">70歳以上</a></li>
 											</ul>
 										</div>
 										<div class="clearfix"></div>
@@ -383,8 +383,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</ul>
 							</li>
 
-							<li><a href="/product-register/">商品登録</a></li>
-							<li><a href="/review/">Short Codes</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">年代&性別<b class="caret"></b></a>
+								<ul class="dropdown-menu multi-column columns-3">
+									<li>
+										<div class="col-sm-4">
+											<ul class="multi-column-dropdown">
+												<li><a href="#">子メニュー</a>
+
+													<ul>
+
+														<li><a href="#">孫メニュー</a></li>
+
+														<li><a href="#">孫メニュー</a>
+
+															<ul>
+
+																<li><a href="#">ひ孫メニュー</a></li>
+
+																<li><a href="#">ひ孫メニュー</a></li>
+
+																<li><a href="#">ひ孫メニュー</a></li>
+
+																<li><a href="#">ひ孫メニュー</a></li>
+
+															</ul>
+
+														</li>
+
+														<li><a href="#">孫メニュー</a></li>
+
+														<li><a href="#">孫メニュー</a></li>
+
+													</ul>
+
+												</li>
+
+
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<li><a href="/register-and-review/">test</a></li>
 							<li><a href="/list.html">A - z list</a></li>
 						</ul>
 					</nav>
