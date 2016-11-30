@@ -15,7 +15,7 @@ class AccesskeysTableSeeder extends Seeder
         DB::table('accesskeys')->truncate();
         DB::table('accesskeys')->insert([
             'os' => 'android',
-            'key' => 'choome',
+            'key' => '6ac8ca22fe2db1141f252c3b1ec8ee355733c99ae5a6f8d279fcded467585526',
         ]);
     }
 }
