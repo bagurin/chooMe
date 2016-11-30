@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ReviewsTableSeeder::class);
         $this->call(RanksTableSeeder::class);
         $this->call(GoodstypesTableSeeder::class);
+        $this->call(AccesskeysTableSeeder::class);
 
 
     }
