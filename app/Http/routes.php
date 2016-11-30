@@ -16,8 +16,12 @@ Route::get('/', function () {
     return view('top');
 });
 
+Route::get('/about/', function () {
+    return view('about');
+});
 
-//管理者以外
+Route::get('/scene/', 'RankingViewController@rankView');
+
 Route::group(['middleware' => 'guest:admin'], function () { //←このグループで括る
     Route::get('/admin/login','AdminAuthController@showLoginForm');
     Route::post('/admin/login','AdminAuthController@login');
@@ -25,7 +29,6 @@ Route::group(['middleware' => 'guest:admin'], function () { //←このグルー
     Route::post('/admin/password/reset', 'AdminPasswordController@reset');
     Route::get('/admin/password/reset/{token?}', 'AdminPasswordController@showResetForm');
 });
-//管理者グループ
 Route::group(['middleware' => 'auth:admin'], function () { //←このグループで括る
     Route::get('/admin', 'AdminHomeController@index');
     Route::get('/admin/home','AdminHomeController@index');
@@ -56,3 +59,28 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 Route::get('/home', 'HomeController@index');
+
+
+// まーしー追加
+Route::get('/register-and-review/', function(){
+    return view('register-and-review');
+});
+
+Route::get('/register-or-review/', function(){
+    return view('register-or-review');
+});
+
+Route::post('/register-and-review/', 'UploadController@postIndex');
+
+Route::post('/review/', 'ReviewController@review');
+Route::get('/review/{name}', 'ReviewController@viewReview');
+
+Route::post('/register-or-review/', 'ReviewController@getData');
+//Route::post('/search-result/', 'ReviewController@getData');
+Route::get('/search-result/', 'ReviewController@viewData');
+
+//api
+Route::group(['prefix' => '/api/1.0/'], function () {
+    Route::get('profile/{token}/{key}', 'ApiController@apiProfile');
+    Route::get('ranking/{pattern}/{key}', 'ApiController@apiRanking');
+});
