@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('sex');
             $table->integer('hobbies_id');
             $table->boolean('connect');
+            $table->string('access_token');
 
             $table->rememberToken();
             $table->timestamps();

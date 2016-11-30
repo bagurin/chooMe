@@ -16,22 +16,6 @@ Route::get('/', function () {
     return view('top');
 });
 
-Route::get('/about/', function () {
-    return view('about');
-});
-
-Route::get('/scene/', function () {
-    return view('scene');
-});
-
-Route::get('/product-register/', function () {
-    return view('product-register');
-});
-
-Route::post('/product-register',array('uses'=>'UploadController@postIndex'));
-
-
-Route::get('/ranking','RankController@ranking');
 
 //管理者以外
 Route::group(['middleware' => 'guest:admin'], function () { //←このグループで括る
