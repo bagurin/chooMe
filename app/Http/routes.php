@@ -52,10 +52,6 @@ Route::group(['middleware' => 'guest:user'], function() {
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/profile', 'UserInfoController@getProfile');
     Route::post('/profile', 'UserInfoController@postProfile');
-    Route::group(['prefix' => 'api'], function () {
-        // 試し
-        Route::resource('userss', 'UsersController@index');
-    });
 });
 
 Route::get('/home', 'HomeController@index');
