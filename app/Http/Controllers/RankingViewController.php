@@ -15,8 +15,8 @@ class RankingViewController extends Controller
     public function rankView(){
 
         // ランキング用idをセッションに
-        if(isset($_GET['id'])){
-            Session::put('id', (int)htmlspecialchars($_GET['id']));
+        if(isset($_GET['pattern'])){
+            Session::put('pattern', (int)htmlspecialchars($_GET['pattern']));
         }
 
         // ゲストユーザーかつ商品登録をしていないなら商品登録
@@ -30,7 +30,7 @@ class RankingViewController extends Controller
         }
 
         // ランキングパターンid
-        $id = Session::get('id');
+        $pattern = Session::get('pattern');
         //ランキングテーブル全取得
         $rank_table = Rank::all();
         //商品テーブル全取得
@@ -42,7 +42,7 @@ class RankingViewController extends Controller
         $ranking = array();
 
         foreach($rank_table as $rank){
-            if($rank['patterns_id'] == $id) {
+            if($rank['patterns_id'] == $pattern) {
                 foreach ($getgoods_table as $getgoods) {
                     if ($rank['getgoods_id'] == $getgoods['id']) {
                         foreach ($genres_table as $genres){
