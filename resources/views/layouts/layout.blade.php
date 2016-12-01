@@ -326,23 +326,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li>
 									<div class="col-sm-6">
 										<ul class="multi-column-dropdown">
-											<li><a href="/scene/?pattern=1">誕生日</a></li>
-											<li><a href="/scene/?pattern=2">結婚記念日</a></li>
-											<li><a href="/scene/?pattern=3">クリスマス</a></li>
-											<li><a href="/scene/?pattern=4">出産祝い</a></li>
-											<li><a href="/scene/?pattern=5">結婚祝い</a></li>
-											<li><a href="/scene/?pattern=6">手土産</a></li>
-											<li><a href="/scene/?pattern=7">引っ越し</a></li>
+											<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">誕生日<b class="caret"></b></a>
+											<ul class="dropdown-menu multi-column columns-3">
+												{{--getgoodstype = 1 が　もらって嬉しかったもの 2が欲しいもの--}}
+												<li class="dropdown"><a href="/scene/?pattern=1&?getgoodstype=1">test</a></li>
+												</ul></li>
+											<li><a href="/scene/?pattern=2&?getgoodstype=1">結婚記念日</a></li>
+											<li><a href="/scene/?pattern=3&?getgoodstype=1">クリスマス</a></li>
+											<li><a href="/scene/?pattern=4&?getgoodstype=1">出産祝い</a></li>
+											<li><a href="/scene/?pattern=5&?getgoodstype=1">結婚祝い</a></li>
+											<li><a href="/scene/?pattern=6&?getgoodstype=1">手土産</a></li>
+											<li><a href="/scene/?pattern=7&?getgoodstype=1">引っ越し</a></li>
 										</ul>
 									</div>
 									<div class="col-sm-6">
 										<ul class="multi-column-dropdown">
-											<li><a href="/scene/?pattern=8">お中元＆お歳暮</a></li>
-											<li><a href="/scene/?pattern=9">父の日</a></li>
-											<li><a href="/scene/?pattern=10">母の日</a></li>
-											<li><a href="/scene/?pattern=11">敬老の日</a></li>
-											<li><a href="/scene/?pattern=12">卒業＆就職祝い</a></li>
-											<li><a href="/scene/?pattern=13">入学祝い</a></li>
+											<li><a href="/scene/?pattern=8&?getgoodstype=1">お中元＆お歳暮</a></li>
+											<li><a href="/scene/?pattern=9&?getgoodstype=1">父の日</a></li>
+											<li><a href="/scene/?pattern=10&?getgoodstype=1">母の日</a></li>
+											<li><a href="/scene/?pattern=11&?getgoodstype=1">敬老の日</a></li>
+											<li><a href="/scene/?pattern=12&?getgoodstype=1">卒業＆就職祝い</a></li>
+											<li><a href="/scene/?pattern=13&?getgoodstype=1">入学祝い</a></li>
 										</ul>
 									</div>
 
@@ -356,26 +360,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li>
 										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">
-												<li><a href="/age/?pattern=1">10歳未満</a></li>
-												<li><a href="/age/?pattern=2">10代前半</a></li>
-												<li><a href="/age/?pattern=3">10代後半</a></li>
-												<li><a href="/age/?pattern=4">20代前半</a></li>
+												<li><a href="/age/?pattern=1&?getgoodstype=1">10歳未満</a></li>
+												<li><a href="/age/?pattern=2&?getgoodstype=1">10代前半</a></li>
+												<li><a href="/age/?pattern=3&?getgoodstype=1">10代後半</a></li>
+												<li><a href="/age/?pattern=4&?getgoodstype=1">20代前半</a></li>
 											</ul>
 										</div>
 										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">
-												<li><a href="/age/?pattern=5">20代後半</a></li>
-												<li><a href="/age/?pattern=6">30代前半</a></li>
-												<li><a href="/age/?pattern=7">30代後半</a></li>
-												<li><a href="/age/?pattern=8">40代前半</a></li>
+												<li><a href="/age/?pattern=5&?getgoodstype=1">20代後半</a></li>
+												<li><a href="/age/?pattern=6&?getgoodstype=1">30代前半</a></li>
+												<li><a href="/age/?pattern=7&?getgoodstype=1">30代後半</a></li>
+												<li><a href="/age/?pattern=8&?getgoodstype=1">40代前半</a></li>
 											</ul>
 										</div>
 										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">
-												<li><a href="/age/?pattern=9">40代後半</a></li>
-												<li><a href="/age/?pattern=10">50代</a></li>
-												<li><a href="/age/?pattern=11">60代</a></li>
-												<li><a href="/age/?pattern=12">70歳以上</a></li>
+												<li><a href="/age/?pattern=9&?getgoodstype=1">40代後半</a></li>
+												<li><a href="/age/?pattern=10&?getgoodstype=1">50代</a></li>
+												<li><a href="/age/?pattern=11&?getgoodstype=1">60代</a></li>
+												<li><a href="/age/?pattern=12&?getgoodstype=1">70歳以上</a></li>
 											</ul>
 										</div>
 										<div class="clearfix"></div>
