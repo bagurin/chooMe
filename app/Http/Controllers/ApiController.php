@@ -50,74 +50,89 @@ class ApiController extends Controller
         // ランキングパターンid
         if(!isset($_GET['pattern'])){
             $error = 'patternIdがありません。';
-            return json_encode($error,JSON_UNESCAPED_UNICODE);
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
         }
         $pattern = $_GET['pattern'];
 
         // goodstype
         if(!isset($_GET['goodstype'])){
             $error = 'goodsTypeがありません。';
-            return json_encode($error,JSON_UNESCAPED_UNICODE);
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
         }
         $goodstype = $_GET['goodstype'];
 
         // キー
         if(!isset($_GET['key'])){
             $error = 'キーがありません。';
-            return json_encode($error,JSON_UNESCAPED_UNICODE);
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
         }
         $key = $_GET['key'];
 
         if($cipher->keycheck($key,$osid)){
 
-            // 商品タイプid
-//            if(isset($_GET['goodstype'])){
-//                $error = 'goodstypeがありません。';
-//                return json_encode($error,JSON_UNESCAPED_UNICODE);
-//            }
-//            $goodstype = $_GET['goodstype'];
+            $rankgoods = Rank::join_goods()->leftjoin_genres()->select_rank()
+                ->where_rank($pattern, $goodstype)->orderBy_rank()->get();
 
-            //ランキングテーブル全取得
-            $rank_table = Rank::all();
-            //商品テーブル全取得
-            $getgoods_table = Getgoods::all();
-            //ジャンルテーブル
-            $genres_table = Genres::all();
-            $genres_name = '';
-            $ranking = array();
+            $returnarray = array();
 
-            // ぷーさんが書いたものに修正する
+            foreach ($rankgoods as $key => $val) {
 
-            foreach($rank_table as $rank){
-                if($rank['patterns_id'] == $pattern) {
-                    if($rank['goodstypes_id'] == $goodstype) {
-                        foreach ($getgoods_table as $getgoods) {
-                            if ($rank['getgoods_id'] == $getgoods['id']) {
-                                foreach ($genres_table as $genres) {
-                                    if ($genres['id'] == $getgoods['genres_id']) {
-                                        $genres_name = $genres['name'];
-                                        break;
-                                    }
-                                }
-//                                $ranking[] = array('ranking_no' => $rank['ranking_no'], 'goods_id' => $getgoods['id'],
-//                                    'name' => $getgoods['name'], 'image' => $getgoods['image'],
-//                                    'genres' => $genres_name, 'rate' => $rank['average_rate']);
-                                $ranking[] = array($rank['ranking_no'] => array('goods_id' => $getgoods['id'],
-                                    'name' => $getgoods['name'], 'image' => $getgoods['image'],
-                                    'genres' => $genres_name, 'rate' => $rank['average_rate']));
-                                break;
-                            }
-                        }
-                    }
-                }
+                //オブジェクトを連想配列へ変換
+                $array = json_decode(json_encode($val), true);
+                //ランキングNoを退避
+                $ranking_no = $array['ranking_no'];
+                //ランキング配列からランキングNoを削除
+                unset($array['ranking_no']);
+
+                //ランキングNoをキーに商品情報を配列に格納
+                $goods = array($ranking_no => $array);
+                //返す配列に結合する
+                $returnarray = $returnarray + $goods;
+
             }
 
-            return json_encode($ranking ,JSON_UNESCAPED_UNICODE);
+//            //ランキングテーブル全取得
+//            $rank_table = Rank::all();
+//            //商品テーブル全取得
+//            $getgoods_table = Getgoods::all();
+//            //ジャンルテーブル
+//            $genres_table = Genres::all();
+//            $genres_name = '';
+//            $ranking = array();
+
+
+//            foreach($rank_table as $rank){
+//                if($rank['patterns_id'] == $pattern) {
+//                    if($rank['goodstypes_id'] == $goodstype) {
+//                        foreach ($getgoods_table as $getgoods) {
+//                            if ($rank['getgoods_id'] == $getgoods['id']) {
+//                                foreach ($genres_table as $genres) {
+//                                    if ($genres['id'] == $getgoods['genres_id']) {
+//                                        $genres_name = $genres['name'];
+//                                        break;
+//                                    }
+//                                }
+////                                $ranking[] = array('ranking_no' => $rank['ranking_no'], 'goods_id' => $getgoods['id'],
+////                                    'name' => $getgoods['name'], 'image' => $getgoods['image'],
+////                                    'genres' => $genres_name, 'rate' => $rank['average_rate']);
+//                                $ranking[] = array($rank['ranking_no'] => array('goods_id' => $getgoods['id'],
+//                                    'name' => $getgoods['name'], 'image' => $getgoods['image'],
+//                                    'genres' => $genres_name, 'rate' => $rank['average_rate']));
+//                                break;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+
+            $returnarray = json_encode($returnarray, 256);
+
+            return $returnarray;
 
         }
 
         $error = 'キーが正しくありません。';
-        return json_encode($error ,JSON_UNESCAPED_UNICODE);
+        return json_encode($error, JSON_UNESCAPED_UNICODE);
 
     }
 
