@@ -11,7 +11,7 @@ use App\Genres;
 class RankingViewController extends Controller
 {
 
-    //追加メソッド
+    //ランキング表示
     public function rankView(){
 
         // ランキング用idをセッションに
@@ -29,35 +29,29 @@ class RankingViewController extends Controller
             return redirect('/register-or-review/');
         }
 
+        // goodstypeをセッションに
+        if(isset($_GET['goodstype'])){
+            Session::put('goodstype', (int)htmlspecialchars($_GET['goodstype']));
+        }
+
         // ランキングパターンid
         $pattern = Session::get('pattern');
-        //ランキングテーブル全取得
-        $rank_table = Rank::all();
-        //商品テーブル全取得
-        $getgoods_table = Getgoods::all();
-        //ジャンルテーブル
-        $genres_table = Genres::all();
-        $genres_name = '';
+
+        // goodstype
+        $goodstype = Session::get('goodstype');
+
+        $rankgoods = Rank::join_goods()->leftjoin_genres()->select_rank()
+            ->where_rank($pattern, $goodstype)->orderBy_rank()->get();
 
         $ranking = array();
 
-        foreach($rank_table as $rank){
-            if($rank['patterns_id'] == $pattern) {
-                foreach ($getgoods_table as $getgoods) {
-                    if ($rank['getgoods_id'] == $getgoods['id']) {
-                        foreach ($genres_table as $genres){
-                            if($genres['id'] == $getgoods['genres_id']){
-                                $genres_name = $genres['name'];
-                                break;
-                            }
-                        }
-                        $ranking[] = array('ranking_no' => $rank['ranking_no'], 'name' => $getgoods['name'],
-                                                'image' => $getgoods['image'], 'genres' => $genres_name,
-                                                'rate' => $rank['average_rate'], 'url' => $getgoods['url']);
-                        break;
-                    }
-                }
-            }
+        foreach ($rankgoods as $key => $val) {
+
+            //オブジェクトを連想配列へ変換
+            $array = json_decode(json_encode($val), true);
+
+            $ranking[] = $array;
+
         }
 
         Session::forget('connect');
