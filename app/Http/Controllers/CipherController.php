@@ -36,10 +36,8 @@ class CipherController extends Controller
                 $str .= $chars[mt_rand(0, 61)];
             }
 
-            $flag = DB::table('users')
-                ->where([
-                    ['access_token','=',$str],
-                ])
+            //トークンの重複チェック
+            $flag = DB::table('users')->where([['access_token','=',$str]])
                 ->count();
 
             if($flag == 0){
@@ -53,23 +51,57 @@ class CipherController extends Controller
     //登録してトークンを返す
     public function apiregister(){
 
+        if(!isset($_POST['key'])){
+            $error = 'キーがありません';
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
+        }
+
         $key = $_POST['key'];
         if($this->keycheck($key,1)){
+            if(!isset($_POST['name'])){
+                $error = '名前がありません';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
             $name = $_POST['name'];
+
+            if(!isset($_POST['email'])){
+                $error = 'メールアドレスがありません';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
             $email = $_POST['email'];
+
+            if(!isset($_POST['password'])){
+                $error = 'パスワードがありません';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
             $password = $_POST['password'];
+
+            if(!isset($_POST['age'])){
+                $error = '年代がありません';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
             $age = $_POST['age'];
+
+            if(!isset($_POST['sex'])){
+                $error = '性別がありません';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
             $sex = $_POST['sex'];
+
+            if(!isset($_POST['hobbies_id'])){
+                $error = '趣味がありません';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
             $hobbies_id = $_POST['hobbies_id'];
 
+            //ランダムなトークンを生成
             $token = $this->makeRandStr();
 
-            $flag = DB::table('users')
-                ->where([
-                    ['email','=',$email],
-                ])
+            //eメール重複チェック
+            $flag = DB::table('users')->where([['email','=',$email]])
                 ->count();
 
+            //メールアドレスに重複がなければ登録を実行する
             if($flag == 0){
                 DB::table('users')->insert([
                     'name' => $name,
@@ -84,7 +116,7 @@ class CipherController extends Controller
                 ]);
 
                 //トークンを返す
-                return \Response::json($token);
+                return json_encode($token,JSON_UNESCAPED_UNICODE);
             }else{
 
                 //エラーメッセージを返す
@@ -125,7 +157,7 @@ class CipherController extends Controller
         }else{
             //エラーメッセージを返す
             $error = "ユーザー情報が正しくありません";
-            return $error;
+            return json_encode($error,JSON_UNESCAPED_UNICODE);
         }
 
     }
@@ -134,14 +166,25 @@ class CipherController extends Controller
     //受け取ったパラメータでログインできればトークンを発行、登録しトークンを返す
     public function gettoken(){
 
+        if(!isset($_POST['key'])){
+            $error = 'キーがありません';
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
+        }
+
         $key = $_POST['key'];
-        //$key = $_GET['key'];
 
         if($this->keycheck($key,1)){
+            if(!isset($_POST['email'])){
+                $error = 'メールアドレスがありません';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
             $email = $_POST['email'];
-            //$email = $_GET['email'];
+
+            if(!isset($_POST['password'])){
+                $error = 'パスワードがありません';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
             $password = $_POST['password'];
-            //$password = $_GET['password'];
 
             $userinfo = array('email'=>$email,'password'=>$password);
             return json_encode($this->authcheck($userinfo),JSON_UNESCAPED_UNICODE);
