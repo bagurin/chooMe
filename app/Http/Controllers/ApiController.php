@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Genres;
 use App\Getgoods;
+use App\Pattern;
 use App\Rank;
 use App\Http\Controllers\CipherController as Cipher;
 
@@ -71,63 +72,24 @@ class ApiController extends Controller
         if($cipher->keycheck($key,$osid)){
 
             $rankgoods = Rank::join_goods()->leftjoin_genres()->select_rank()
-                ->where_rank($pattern, $goodstype)->orderBy_rank()->get();
+            ->where_rank($pattern, $goodstype)->orderBy_rank()->get()->toArray();
 
-            $returnarray = array();
+            $pattern_name = Pattern::get_name($pattern)->get()->toArray();
+            $pname = $pattern_name[0]['name'];
 
-            foreach ($rankgoods as $key => $val) {
 
-                //オブジェクトを連想配列へ変換
-                $array = json_decode(json_encode($val), true);
-                //ランキングNoを退避
-                $ranking_no = $array['ranking_no'];
-                //ランキング配列からランキングNoを削除
-                unset($array['ranking_no']);
+            $return_array = array("Type"=>"Ranking","Pattern"=>$pname);
+            $items_array = array();
 
-                //ランキングNoをキーに商品情報を配列に格納
-                $goods = array($ranking_no => $array);
-                //返す配列に結合する
-                $returnarray = $returnarray + $goods;
+            foreach ($rankgoods as $val) {
+                $item_array = array("Item"=>$val);
 
+                $items_array = array_merge($items_array,array($item_array));
             }
 
-//            //ランキングテーブル全取得
-//            $rank_table = Rank::all();
-//            //商品テーブル全取得
-//            $getgoods_table = Getgoods::all();
-//            //ジャンルテーブル
-//            $genres_table = Genres::all();
-//            $genres_name = '';
-//            $ranking = array();
+            $return_array = array_merge($return_array,array("Items"=>$items_array));
 
-
-//            foreach($rank_table as $rank){
-//                if($rank['patterns_id'] == $pattern) {
-//                    if($rank['goodstypes_id'] == $goodstype) {
-//                        foreach ($getgoods_table as $getgoods) {
-//                            if ($rank['getgoods_id'] == $getgoods['id']) {
-//                                foreach ($genres_table as $genres) {
-//                                    if ($genres['id'] == $getgoods['genres_id']) {
-//                                        $genres_name = $genres['name'];
-//                                        break;
-//                                    }
-//                                }
-////                                $ranking[] = array('ranking_no' => $rank['ranking_no'], 'goods_id' => $getgoods['id'],
-////                                    'name' => $getgoods['name'], 'image' => $getgoods['image'],
-////                                    'genres' => $genres_name, 'rate' => $rank['average_rate']);
-//                                $ranking[] = array($rank['ranking_no'] => array('goods_id' => $getgoods['id'],
-//                                    'name' => $getgoods['name'], 'image' => $getgoods['image'],
-//                                    'genres' => $genres_name, 'rate' => $rank['average_rate']));
-//                                break;
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-
-            $returnarray = json_encode($returnarray, 256);
-
-            return $returnarray;
+            return json_encode($return_array, 256);
 
         }
 
