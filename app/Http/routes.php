@@ -83,4 +83,6 @@ Route::group(['prefix' => '/api/1.0/'], function () {
     Route::post('/gettoken','CipherController@gettoken');
     //ユーザー情報とトークンを登録し、トークンを返す
     Route::post('/apiregister','CipherController@apiregister');
+    //トークンからユーザー情報を取得する
+    Route::post('/profile','CipherController@token_profile');
 });

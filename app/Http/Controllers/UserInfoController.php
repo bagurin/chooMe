@@ -23,7 +23,7 @@ class UserInfoController extends Controller
     public function getProfile()
     {
         //変更して下さい
-        return view('user.profile')->with(['user' => $this->user]);
+        return view('welcome')->with(['user' => $this->user]);
     }
 
     public function postProfile(Request $request)
@@ -33,6 +33,8 @@ class UserInfoController extends Controller
         $validator = Validator::make($request->all(), [
             'name'  => 'required|max:255',
             'email' => 'required|email|max:255',
+            'age' => 'required|max:4',
+            'hobbies_id' => 'required|max:10',
         ]);
 
         if ($validator->fails())
@@ -48,6 +50,6 @@ class UserInfoController extends Controller
         ]);
 
         //変更してください
-        return redirect('/home');
+        return redirect('/profile');
     }
 }

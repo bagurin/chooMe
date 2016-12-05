@@ -19,6 +19,81 @@ class CipherController extends Controller
         return view('welcome');
     }
 
+    //トークンからユーザーidを返す
+    public function token_getid($token){
+        if($this->token_check($token)){
+            $userinfo = DB::table('users')->select('id')
+                ->where([['access_token','=',$token]])
+                ->get();
+            $userinfo = (array)$userinfo[0];
+            $id = $userinfo['id'];
+
+            return $id;
+        }else{
+            return false;
+        }
+    }
+
+    //トークンが存在する検査する
+    public function token_check($token){
+
+        $flag = DB::table('users')->where([['access_token','=',$token]])
+            ->count();
+
+        if ($flag == 1) {
+            return true;
+        }else{
+            //エラーメッセージを返す
+            $error = "トークンが正しくありません";
+            return false;
+        }
+    }
+
+    //トークンからユーザー情報を返す
+    public function token_profile(){
+
+        if(!isset($_POST['key'])){
+            $error = 'キーがありません';
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
+        }
+        $key = $_POST['key'];
+
+        if($this->keycheck($key,1)){
+            if(!isset($_POST['token'])){
+                $error = 'トークンがありません';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
+            $token = $_POST['token'];
+
+            if($this->token_check($token)){
+                $userinfo = DB::table('users')->select('name','email','age','sex','hobbies_id')
+                    ->where([['access_token','=',$token]])
+                    ->get();
+                $userinfo = (array)$userinfo[0];
+
+                //JSON
+                $return_array = array("Type"=>"Profile",);
+                $items_array = array();
+
+                $item_array = array("Item"=>$userinfo);
+
+                $items_array = array_merge($items_array,array($item_array));
+
+                $return_array = array_merge($return_array,array("Items"=>$items_array));
+
+                //返却
+                return json_encode($return_array,256);
+            }else{
+                $error = 'トークンが正しくありません';
+                return json_encode($error,JSON_UNESCAPED_UNICODE);
+            }
+        }else{
+            $error = 'キーが正しくありません';
+            return json_encode($error,JSON_UNESCAPED_UNICODE);
+        }
+
+    }
+
     //ランダムにアクセストークンを生成
     public function makeRandStr($length = 32) {
         static $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJLKMNOPQRSTUVWXYZ0123456789';
@@ -131,7 +206,7 @@ class CipherController extends Controller
     }
 
     //ユーザー情報でログインできれば、トークンを生成し、返す
-    public function authcheck($userinfo){
+    public function authtoken_gen($userinfo){
 
         if (Auth::attempt($userinfo)) {
 
@@ -187,7 +262,7 @@ class CipherController extends Controller
             $password = $_POST['password'];
 
             $userinfo = array('email'=>$email,'password'=>$password);
-            return json_encode($this->authcheck($userinfo),JSON_UNESCAPED_UNICODE);
+            return json_encode($this->authtoken_gen($userinfo),JSON_UNESCAPED_UNICODE);
         }else{
             //エラーメッセージを返す
             $error = 'キーが正しくありません';

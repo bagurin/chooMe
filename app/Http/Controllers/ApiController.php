@@ -14,34 +14,6 @@ class ApiController extends Controller
     //return json_encode($this->authcheck($userinfo),JSON_UNESCAPED_UNICODE);
     //これをつかって返す
 
-    // apiプロフィール用
-    public function apiProfile(){
-
-//        $cipher = new Cipher();
-//        $osid = 1;
-//
-//        // トークン
-//        if(!isset($_GET['token'])){
-//            $error = 'tokenがありません。';
-//            return json_encode($error,JSON_UNESCAPED_UNICODE);
-//        }
-//        $pattern = $_GET['pattern'];
-//
-//        // キー
-//        if(!isset($_GET['key'])){
-//            $error = 'キーがありません。';
-//            return json_encode($error,JSON_UNESCAPED_UNICODE);
-//        }
-//        $key = $_GET['key'];
-//
-//        if($cipher->keycheck($key,$osid)){
-//            return json_encode($userInfo ,JSON_UNESCAPED_UNICODE);
-//        }
-//
-//        $error = 'キーが正しくありません。';
-//        return json_encode($error ,JSON_UNESCAPED_UNICODE);
-    }
-
     // apiランキング用
     public function apiRanking(){
 
