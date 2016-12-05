@@ -77,7 +77,6 @@ Route::get('/search-result/', 'ReviewController@viewData');
 
 //api
 Route::group(['prefix' => '/api/1.0/'], function () {
-    Route::get('profile/', 'ApiController@apiProfile');
     Route::get('ranking/', 'ApiController@apiRanking');
     //ユーザーログインによるトークン発行処理
     Route::post('/gettoken','CipherController@gettoken');
