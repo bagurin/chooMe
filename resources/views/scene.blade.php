@@ -4,9 +4,9 @@
 
 
     <?php
-    function rateToStar($rate){
-        round($rate,1);
-    switch($rate){
+    function rateToStar($average_rate){
+        round($average_rate,1);
+    switch($average_rate){
         case 0:
         case 0.1:
         case 0.2:
@@ -216,7 +216,7 @@
 
                                                 <p class="fexi_header_para fexi_header_para1"><span>評価<label>:</label></span>
 
-                                                    {{rateToStar($rank['rate'])}}
+                                                    {{rateToStar($rank['average_rate'])}}
 
                                             </div>
                                             <div class="clearfix"> </div>
