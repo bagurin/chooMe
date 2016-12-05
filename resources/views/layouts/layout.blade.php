@@ -51,6 +51,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	});
 </script>
+
+	<!-- Magnific Popup core CSS file -->
+	<link rel="stylesheet" href="/css/magnific-popup.css">
+
+	<!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+	<script src="/js/jquery-2.1.4.min.js"></script>
+
+	<!-- Magnific Popup core JS file -->
+	<script src="/js/jquery.magnific-popup.js"></script>
+
+
+
 <!-- //banner-bottom-plugin -->
 <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700italic,700,400italic,300italic,300' rel='stylesheet' type='text/css'>
 <!-- start-smoth-scrolling -->
@@ -303,6 +315,216 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 <!-- //bootstrap-pop-up -->
 <!-- nav -->
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+{{--<div id="popup">--}}
+	{{--<div class="modal-dialog" role="document">--}}
+		{{--<div class="modal-content">--}}
+			{{--<div class="modal-header">--}}
+				{{--Sign In & Sign Up--}}
+			{{--</div>--}}
+			{{--<section>--}}
+				{{--<div class="modal-body">--}}
+					{{--<div class="w3_login_module">--}}
+						{{--<div class="module form-module">--}}
+							{{--<div class="toggle"><i class="fa fa-times fa-pencil"></i>--}}
+								{{--<div class="tooltip">Register</div>--}}
+							{{--</div>--}}
+							{{--<div class="form">--}}
+								{{--<h3>ログイン</h3>--}}
+								{{--<form action="{{ url('/login') }}" method="post">--}}
+									{{--{{ csrf_field() }}--}}
+
+									{{--<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">--}}
+
+
+										{{--<div class="col-md-12">--}}
+											{{--<input id="email" type="email" class="form-control" name="email" placeholder="メールアドレス" value="{{ old('email') }}">--}}
+
+											{{--@if ($errors->has('email'))--}}
+												{{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('email') }}</strong>--}}
+                                    {{--</span>--}}
+											{{--@endif--}}
+										{{--</div>--}}
+									{{--</div>--}}
+									{{--<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">--}}
+
+
+										{{--<div class="col-md-12">--}}
+											{{--<input id="password" type="password" class="form-control" name="password" placeholder="パスワード">--}}
+
+											{{--@if ($errors->has('password'))--}}
+												{{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('password') }}</strong>--}}
+                                    {{--</span>--}}
+											{{--@endif--}}
+										{{--</div>--}}
+									{{--</div>--}}
+
+									{{--<div class="form-group">--}}
+										{{--<div class="col-md-8 col-md-offset-2">--}}
+											{{--<div class="checkbox">--}}
+
+												{{--<input type="checkbox" name="remember">アカウント情報を保存する--}}
+
+											{{--</div>--}}
+										{{--</div>--}}
+									{{--</div>--}}
+
+									{{--<div class="form-group">--}}
+
+										{{--<input type="submit" value="ログイン">--}}
+
+
+
+									{{--</div>--}}
+									{{--<div class="cta"><a href="{{ url('/password/reset') }}">パスワードをお忘れですか?</a></div>--}}
+
+								{{--</form>--}}
+
+							{{--</div>--}}
+
+							{{--<div class="form">--}}
+								{{--<h3>新規アカウント作成</h3>--}}
+								{{--<form action="{{ url('/register') }}" method="post">--}}
+									{{--{{ csrf_field() }}--}}
+
+									{{--<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">--}}
+
+
+										{{--<div class="col-md-12">--}}
+											{{--<input id="name" type="text" class="form-control" placeholder="ユーザー名	" name="name" value="{{ old('name') }}">--}}
+
+											{{--@if ($errors->has('name'))--}}
+												{{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('name') }}</strong>--}}
+                                    {{--</span>--}}
+											{{--@endif--}}
+										{{--</div>--}}
+									{{--</div>--}}
+
+									{{--<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">--}}
+
+
+										{{--<div class="col-md-12">--}}
+											{{--<input id="email" type="email" class="form-control" placeholder="メールアドレス" name="email" value="{{ old('email') }}">--}}
+
+											{{--@if ($errors->has('email'))--}}
+												{{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('email') }}</strong>--}}
+                                    {{--</span>--}}
+											{{--@endif--}}
+										{{--</div>--}}
+									{{--</div>--}}
+
+									{{--<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">--}}
+
+
+										{{--<div class="col-md-12">--}}
+											{{--<input id="password" type="password" class="form-control" placeholder="パスワード" name="password">--}}
+
+											{{--@if ($errors->has('password'))--}}
+												{{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('password') }}</strong>--}}
+                                    {{--</span>--}}
+											{{--@endif--}}
+										{{--</div>--}}
+									{{--</div>--}}
+
+									{{--<div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">--}}
+
+
+										{{--<div class="col-md-12">--}}
+											{{--<input id="password-confirm" type="password" class="form-control" placeholder="パスワード(再確認)" name="password_confirmation">--}}
+
+											{{--@if ($errors->has('password_confirmation'))--}}
+												{{--<span class="help-block">--}}
+                                        {{--<strong>{{ $errors->first('password_confirmation') }}</strong>--}}
+                                    {{--</span>--}}
+											{{--@endif--}}
+										{{--</div>--}}
+									{{--</div>--}}
+									{{--<div class="col-md-4">--}}
+										{{--<p>性別</p>--}}
+										{{--<input type="radio" name="sex" value="男" checked>男--}}
+										{{--<input type="radio" name="sex" value="女">女--}}
+									{{--</div>--}}
+									{{--<div class="col-md-8">--}}
+										{{--<p>年齢</p>--}}
+										{{--<select id="age" name="age">--}}
+											{{--<option value="1">10歳未満</option>--}}
+											{{--<option value="2">10代前半</option>--}}
+											{{--<option value="3">10代後半</option>--}}
+											{{--<option value="4">20代前半</option>--}}
+											{{--<option value="5">20代後半</option>--}}
+											{{--<option value="6">30代前半</option>--}}
+											{{--<option value="7">30代後半</option>--}}
+											{{--<option value="8">40代前半</option>--}}
+											{{--<option value="9">40代後半</option>--}}
+											{{--<option value="10">50代</option>--}}
+											{{--<option value="11">60代</option>--}}
+											{{--<option value="12">70歳以上</option>--}}
+
+										{{--</select><br>--}}
+									{{--</div>--}}
+									{{--<div class="col-md-12">--}}
+										{{--<p>趣味</p>--}}
+										{{--<select id="hobbies_id" name="hobbies_id">--}}
+											{{--<option value="1">スポーツ</option>--}}
+											{{--<option value="2">読書</option>--}}
+											{{--<option value="3">PC</option>--}}
+											{{--<option value="4">旅行</option>--}}
+											{{--<option value="5">音楽</option>--}}
+											{{--<option value="6">映画鑑賞</option>--}}
+											{{--<option value="7">車＆バイク</option>--}}
+											{{--<option value="8">ゲーム</option>--}}
+											{{--<option value="9">料理</option>--}}
+											{{--<option value="10">お酒</option>--}}
+											{{--<option value="11">ショッピング</option>--}}
+											{{--<option value="12">手芸＆裁縫</option>--}}
+											{{--<option value="13">グルメ</option>--}}
+											{{--<option value="14">ガーデニング</option>--}}
+											{{--<option value="15">アイドル</option>--}}
+											{{--<option value="16">その他</option>--}}
+										{{--</select><br>--}}
+									{{--</div>--}}
+									{{--<div class="form-group">--}}
+
+										{{--<input type="submit" value="登録">--}}
+
+
+									{{--</div>--}}
+
+								{{--</form>--}}
+
+							{{--</div>--}}
+
+						{{--</div>--}}
+					{{--</div>--}}
+				{{--</div>--}}
+			{{--</section>--}}
+		{{--</div>--}}
+	{{--</div>--}}
+
+{{--</div>--}}
+
+
+
+
+
 	<div class="movies_nav">
 		<div class="container">
 			<nav class="navbar navbar-default">
@@ -525,5 +747,19 @@ $(document).ready(function(){
 			});
 	</script>
 <!-- //here ends scrolling icon -->
+
+
+<script>
+	$(document).ready(function() {
+		$('.open-popup-link').magnificPopup({
+			type:'inline'
+		});
+	});
+</script>
 </body>
 </html>
+
+
+
+
+
