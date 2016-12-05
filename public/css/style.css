@@ -536,9 +536,9 @@ p.fexi_header_para1 a i {
 .form-module {
 	position: relative;
     background: #ffffff;
-    max-width: 400px;
+    max-width: 800px;
     width: 100%;
-    height:450px;
+    height:700px;
     border-top: 5px solid #ff9393;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
     margin:1em auto;
