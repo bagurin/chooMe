@@ -3516,6 +3516,7 @@ tbody.collapse.in {
   background-image: none;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
+
 .open > .dropdown-menu {
   display: block;
 }
@@ -5819,7 +5820,7 @@ button.close {
 .modal-body {
   position: relative;
   padding: 15px;
-  height : 500px;
+  height : 800px;
 }
 .modal-footer {
   padding: 15px;
