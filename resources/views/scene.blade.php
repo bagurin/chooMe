@@ -169,7 +169,7 @@
     </nav>
 </div>
 <!-- /w3l-medile-movies-grids -->
-    <div class="white-popup" id="test-popup"  data-backdrop="static">
+    <div class="white-popup mfp-hide" id="test-popup"  data-backdrop="static">
         <div class="modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
