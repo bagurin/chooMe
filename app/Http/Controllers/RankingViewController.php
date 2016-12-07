@@ -24,10 +24,10 @@ class RankingViewController extends Controller
             Session::put('goodstype', (int)htmlspecialchars($_GET['getgoodstype']));
         }
 
-//        // ゲストユーザーかつ商品登録をしていない or 登録ユーザーかつ１日１回商品登録をしていないなら商品登録
-//        if(Auth::guest() && !Session::get('connect') || !Auth::guest() && !Auth::user()->connect) {
-//            return redirect('/register-or-review/');
-//        }
+        // ゲストユーザーかつ商品登録をしていない or 登録ユーザーかつ１日１回商品登録をしていないなら商品登録
+        if(Auth::guest() && !Session::get('connect') || !Auth::guest() && !Auth::user()->connect) {
+            return redirect('/register-or-review/');
+        }
 
         // ランキングパターンid
         $pattern = Session::get('pattern');
