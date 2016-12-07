@@ -169,7 +169,7 @@
     </nav>
 </div>
 <!-- /w3l-medile-movies-grids -->
-    @if(Auth::check() == false || Auth::users()->connect == false)
+    @if(Auth::check() == false || Auth::user()->connect == false)
         <script>
         $.magnificPopup.open({
         items: {src: '#test-popup'},
