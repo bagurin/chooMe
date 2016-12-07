@@ -169,17 +169,7 @@
     </nav>
 </div>
 <!-- /w3l-medile-movies-grids -->
-    @if(Auth::check() == false || Auth::user()->connect == false)
-        <script>
-        $.magnificPopup.open({
-        items: {src: '#test-popup'},
-        type: 'inline',
-        modal: true,
-        }, 0);
-        </script>
-    @endif
-
-    <div class="white-popup mfp-hide" id="test-popup"  data-backdrop="static">
+    <div class="white-popup" id="test-popup"  data-backdrop="static">
         <div class="modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -452,7 +442,7 @@
                                                 <option value="10">50代</option>
                                                 <option value="11">60代</option>
                                                 <option value="12">70歳以上</option>
-                                                <
+
                                             </select><br>
                                         </div>
                                         <div class="col-md-4">
@@ -727,6 +717,7 @@
                     </div>
                 </div>
                 <!-- pop-up-box -->
+
                 <script src="/js/jquery.magnific-popup.js" type="text/javascript"></script>
                 <!--//pop-up-box -->
                 <div id="small-dialog" class="mfp-hide">
@@ -754,7 +745,17 @@
 
                     });
                 </script>
-                <!-- //Latest-tv-series -->
+    @if(Auth::check() == false || Auth::user()->connect == false)
+        <script>
+            $.magnificPopup.open({
+                items: {src: '#test-popup'},
+                type: 'inline',
+                modal: true,
+            }, 0);
+        </script>
+    @endif
+
+    <!-- //Latest-tv-series -->
         <!-- //movie-browse-agile -->
         <!--body wrapper start-->
         <!--body wrapper start-->
