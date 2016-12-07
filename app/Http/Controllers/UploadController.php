@@ -7,9 +7,10 @@ use App\User;
 use Validator;
 use Request;
 use Auth;
+use Session;
 use App\Getgoods;
 
-class UploadController extends ReviewController
+class UploadController extends Controller
 {
     // 商品をデータベースに格納しレビューをする
     public function postIndex(\Illuminate\Http\Request $request)
@@ -85,10 +86,10 @@ class UploadController extends ReviewController
         if(Auth::guest()) {
             //ゲストユーザーid取得用データ取得
             $sex = Request::get('sex');
-            $age = Request::get('age');
+            $age = (int)Request::get('age');
             $hobbies = Request::get('hobbies_id');
             //ゲストユーザーid取得
-            $user_id = User::where('sex', $sex)->where('age', $age)->where('hobbies_id', $hobbies)-get('id');
+            $user_id = User::where('sex', $sex)->where('age', $age)->where('hobbies_id', $hobbies)->get(['id']);
         }else{
             // ログインユーザーID取得し、connectをtrueに
             $user_id = Auth::user()->id;
@@ -127,7 +128,6 @@ class UploadController extends ReviewController
 
         if(Auth::guest()) {
             Session::put('connect', true);
-            return redirect('/scene/');
         }
         return redirect('/scene/');
     }

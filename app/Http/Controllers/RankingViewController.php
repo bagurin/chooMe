@@ -19,19 +19,14 @@ class RankingViewController extends Controller
             Session::put('pattern', (int)htmlspecialchars($_GET['pattern']));
         }
 
-        // ゲストユーザーかつ商品登録をしていないなら商品登録
-        if(Auth::guest() && Session::get('connect') != true){
-            return redirect('/register-or-review/');
-        }
-
-        //ユーザーのconnect列がfalseなら商品登録
-        if(!Auth::user()->connect){
-            return redirect('/register-or-review/');
-        }
-
         // goodstypeをセッションに
-        if(isset($_GET['goodstype'])){
-            Session::put('goodstype', (int)htmlspecialchars($_GET['goodstype']));
+        if(isset($_GET['getgoodstype'])){
+            Session::put('goodstype', (int)htmlspecialchars($_GET['getgoodstype']));
+        }
+
+        // ゲストユーザーかつ商品登録をしていない or 登録ユーザーかつ１日１回商品登録をしていないなら商品登録
+        if(Auth::guest() && !Session::get('connect') || !Auth::guest() && !Auth::user()->connect) {
+            return redirect('/register-or-review/');
         }
 
         // ランキングパターンid
@@ -49,15 +44,14 @@ class RankingViewController extends Controller
 
             //オブジェクトを連想配列へ変換
             $array = json_decode(json_encode($val), true);
-
             $ranking[] = $array;
 
         }
 
-        Session::forget('connect');
+        //ゲスト用connectをfalseに
+        Session::put('connect', false);
 
         return view('scene', compact('ranking'));
-
     }
 
 }

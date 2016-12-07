@@ -51,7 +51,7 @@ class ReviewController extends Controller
             $age = Request::get('age');
             $hobbies = Request::get('hobbies_id');
             //ゲストユーザーid取得
-            $user_id = User::where('sex', $sex)->where('age', $age)->where('hobbies_id', $hobbies)-get('id');
+            $user_id = User::where('sex', $sex)->where('age', $age)->where('hobbies_id', $hobbies)->get(['id']);
         }else{
             // ログインユーザーID取得し、connectをtrueに
             $user_id = Auth::user()->id;
@@ -76,7 +76,11 @@ class ReviewController extends Controller
             'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
         Review::create($review);
 
-        // ランキングページにする際ゲストなら表示できるようにする
+        if(Auth::guest()) {
+            Session::put('connect', true);
+        }
+
+        // ランキングページ表示
         return redirect('/scene/');
     }
 
