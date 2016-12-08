@@ -778,22 +778,10 @@ class RankCommand extends Command
             }
         }
 
+        //ユーザー全件のconnectをfalseにする
+        DB::table('users')
+            ->update(['connect' => false, 'updated_at' => date("Y-m-d H:i:s")]);
+
     }
-
-
-
-    //return \Response::json($ans);
-
-//        $users =Auth::user();
-//
-//        return \Response::json($users);
-//
-//        $query = User::query();
-//
-//        $users = DB::table('users')->get();
-//
-//
-//        return \Response::json($users);
-
 
 }
