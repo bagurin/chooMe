@@ -22,6 +22,7 @@ class ReviewController extends Controller
     // 入力された商品名を元に似た名前の商品があるかを検索し連想配列で返す
     public function getData()
     {
+
         Session::put('goods_name', Request::get('Search'));
 
         //$list = Getgoods::where('name', 'LIKE', "%{$name}%")->paginate(1);
@@ -32,7 +33,7 @@ class ReviewController extends Controller
 
         $name = Session::get('goods_name');
 
-        $list = Getgoods::where('name', 'LIKE', "%".$name."%")->paginate(1);
+        $list = Getgoods::where('name', 'LIKE', "%".$name."%")->paginate(10);
 
         return view('search-result', compact('list'));
 
