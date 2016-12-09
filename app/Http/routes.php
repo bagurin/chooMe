@@ -74,6 +74,9 @@ Route::get('/review/{name}', 'ReviewController@viewReview');
 Route::post('/register-or-review/', 'ReviewController@getData');
 //Route::post('/search-result/', 'ReviewController@getData');
 Route::get('/search-result/', 'ReviewController@viewData');
+Route::get('/search/', function(){
+    return view('search');
+});
 
 //api
 Route::group(['prefix' => '/api/1.0/'], function () {
