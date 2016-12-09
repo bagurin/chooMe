@@ -7,14 +7,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="One Movies Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<!--    <meta name="csrf-token" content="{{ csrf_token() }}">-->
-<!--    <script>-->
-<!--        $.ajaxSetup({-->
-<!--            headers: {-->
-<!--                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')-->
-<!--            }-->
-<!--        });-->
-<!--    </script>-->
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
         function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- //for-mobile-apps -->
@@ -117,6 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </style>
 <div class="searchbar">
     <form method="post" action="/register-or-review/">
+        {{ csrf_field() }}
         <input type="text" name="Search" placeholder="検索する商品名" required>
         <input type="submit" value="Go" >
     </form>
