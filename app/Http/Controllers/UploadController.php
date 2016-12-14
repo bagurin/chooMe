@@ -60,7 +60,7 @@ class UploadController extends Controller
         $image->move('media', $name);
 
         // 画像保存先pathとファイル名を連結
-        $path = public_path() . '/media/' . $name;
+        $path = '/media/' . $name;
 
         //url生成
         $url = 'https://www.amazon.co.jp/gp/search/ref=nb_sb_noss_1?__mk_ja_JP=%E3%82%AB%E3%
@@ -123,7 +123,6 @@ class UploadController extends Controller
         Review::create($review);
 
 //--------------------------------------レビュー--------------------------------------------
-
 
 
         if(Auth::guest()) {
