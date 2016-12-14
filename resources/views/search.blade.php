@@ -108,10 +108,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </style>
 <div class="searchbar">
-    <input type="text" name="Search" placeholder="検索する商品名" required>
-    <input type="submit" value="Go" >
-
-
+    <form method="post" action="/register-or-review/">
+        {{ csrf_field() }}
+        <input type="text" name="Search" placeholder="検索する商品名" required>
+        <input type="submit" value="Go" >
+    </form>
 </div>
 </body>
 <!-- Bootstrap Core JavaScript -->
