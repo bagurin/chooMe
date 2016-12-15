@@ -1007,37 +1007,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a href="#s5">年代別</a>
 					<span id="s5"></span>
 					<ul class="subs">
-						<li><a href="/age/?pattern=1&getgoodstype=1">男性</a>
+						<li><a class="rank" href="/age/?pattern=1&getgoodstype=1">男性</a>
 							<ul>
-								<li><a href="/age/?pattern=11&getgoodstype=1">10歳未満</a></li>
-								<li><a href="/age/?pattern=12&getgoodstype=1">10代前半</a></li>
-								<li><a href="/age/?pattern=13&getgoodstype=1">10代後半</a></li>
-								<li><a href="/age/?pattern=14&getgoodstype=1">20代前半</a></li>
-								<li><a href="/age/?pattern=15&getgoodstype=1">20代後半</a></li>
-								<li><a href="/age/?pattern=16&getgoodstype=1">30代前半</a></li>
-								<li><a href="/age/?pattern=17&getgoodstype=1">30歳後半</a></li>
-								<li><a href="/age/?pattern=18&getgoodstype=1">40代前半</a></li>
-								<li><a href="/age/?pattern=19&getgoodstype=1">40代後半</a></li>
-								<li><a href="/age/?pattern=110&getgoodstype=1">50代</a></li>
-								<li><a href="/age/?pattern=111&getgoodstype=1">60代</a></li>
-								<li><a href="/age/?pattern=112&getgoodstype=1">70歳以上</a></li>
+								<li><a class="rank" href="/age/?pattern=11&getgoodstype=1">10歳未満</a></li>
+								<li><a class="rank" href="/age/?pattern=12&getgoodstype=1">10代前半</a></li>
+								<li><a class="rank" href="/age/?pattern=13&getgoodstype=1">10代後半</a></li>
+								<li><a class="rank" href="/age/?pattern=14&getgoodstype=1">20代前半</a></li>
+								<li><a class="rank" href="/age/?pattern=15&getgoodstype=1">20代後半</a></li>
+								<li><a class="rank" href="/age/?pattern=16&getgoodstype=1">30代前半</a></li>
+								<li><a class="rank" href="/age/?pattern=17&getgoodstype=1">30歳後半</a></li>
+								<li><a class="rank" href="/age/?pattern=18&getgoodstype=1">40代前半</a></li>
+								<li><a class="rank" href="/age/?pattern=19&getgoodstype=1">40代後半</a></li>
+								<li><a class="rank" href="/age/?pattern=110&getgoodstype=1">50代</a></li>
+								<li><a class="rank" href="/age/?pattern=111&getgoodstype=1">60代</a></li>
+								<li><a class="rank" href="/age/?pattern=112&getgoodstype=1">70歳以上</a></li>
 							</ul>
 						</li>
 						</li>
-						<li><a href="/age/?pattern=2&getgoodstype=1">女性</a>
+						<li><a class="rank" href="/age/?pattern=2&getgoodstype=1">女性</a>
 							<ul>
-								<li><a href="/age/?pattern=21&getgoodstype=1">10歳未満</a></li>
-								<li><a href="/age/?pattern=22&getgoodstype=1">10代前半</a></li>
-								<li><a href="/age/?pattern=23&getgoodstype=1">10代後半</a></li>
-								<li><a href="/age/?pattern=24&getgoodstype=1">20代前半</a></li>
-								<li><a href="/age/?pattern=25&getgoodstype=1">20代後半</a></li>
-								<li><a href="/age/?pattern=26&getgoodstype=1">30代前半</a></li>
-								<li><a href="/age/?pattern=27&getgoodstype=1">30歳後半</a></li>
-								<li><a href="/age/?pattern=28&getgoodstype=1">40代前半</a></li>
-								<li><a href="/age/?pattern=29&getgoodstype=1">40代後半</a></li>
-								<li><a href="/age/?pattern=210&getgoodstype=1">50代</a></li>
-								<li><a href="/age/?pattern=211&getgoodstype=1">60代</a></li>
-								<li><a href="/age/?pattern=212&getgoodstype=1">70歳以上</a></li>
+								<li><a class="rank" href="/age/?pattern=21&getgoodstype=1">10歳未満</a></li>
+								<li><a class="rank" href="/age/?pattern=22&getgoodstype=1">10代前半</a></li>
+								<li><a class="rank" href="/age/?pattern=23&getgoodstype=1">10代後半</a></li>
+								<li><a class="rank" href="/age/?pattern=24&getgoodstype=1">20代前半</a></li>
+								<li><a class="rank" href="/age/?pattern=25&getgoodstype=1">20代後半</a></li>
+								<li><a class="rank" href="/age/?pattern=26&getgoodstype=1">30代前半</a></li>
+								<li><a class="rank" href="/age/?pattern=27&getgoodstype=1">30歳後半</a></li>
+								<li><a class="rank" href="/age/?pattern=28&getgoodstype=1">40代前半</a></li>
+								<li><a class="rank" href="/age/?pattern=29&getgoodstype=1">40代後半</a></li>
+								<li><a class="rank" href="/age/?pattern=210&getgoodstype=1">50代</a></li>
+								<li><a class="rank" href="/age/?pattern=211&getgoodstype=1">60代</a></li>
+								<li><a class="rank" href="/age/?pattern=212&getgoodstype=1">70歳以上</a></li>
 							</ul>
 						</li>
 					</ul>
