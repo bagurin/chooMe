@@ -5,8 +5,8 @@
 
     <?php
     function rateToStar($average_rate){
-        round($average_rate,1);
-    switch($average_rate){
+    $avgrate = round($average_rate,1);
+    switch($avgrate){
         case 0:
         case 0.1:
         case 0.2:

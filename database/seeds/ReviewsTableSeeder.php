@@ -16,7 +16,7 @@ class ReviewsTableSeeder extends Seeder
         DB::table('reviews')->insert([
             'getgoods_id' => '1',
             'users_id' => '481',
-            'comment' => '千早かわいいよね',
+            'comment' => 'おいしいです',
             'rate' => '4',
             'scenes_id' => '1',
             'goodstypes_id' => 1,
@@ -26,7 +26,7 @@ class ReviewsTableSeeder extends Seeder
         DB::table('reviews')->insert([
             'getgoods_id' => '1',
             'users_id' => '482',
-            'comment' => '千早かわいくね？',
+            'comment' => 'おいしい！',
             'rate' => '5',
             'scenes_id' => '1',
             'goodstypes_id' => 1,
@@ -36,7 +36,7 @@ class ReviewsTableSeeder extends Seeder
         DB::table('reviews')->insert([
             'getgoods_id' => '1',
             'users_id' => '485',
-            'comment' => '千早かわいい',
+            'comment' => 'Very Delicious',
             'rate' => '3',
             'scenes_id' => '1',
             'goodstypes_id' => 1,
@@ -46,7 +46,7 @@ class ReviewsTableSeeder extends Seeder
         DB::table('reviews')->insert([
             'getgoods_id' => '1',
             'users_id' => '483',
-            'comment' => '千早かかかわいいよ',
+            'comment' => '千早愛らしいよ',
             'rate' => '4',
             'scenes_id' => '2',
             'goodstypes_id' => 1,
@@ -56,7 +56,7 @@ class ReviewsTableSeeder extends Seeder
         DB::table('reviews')->insert([
             'getgoods_id' => '2',
             'users_id' => '481',
-            'comment' => '千早かわいいよ',
+            'comment' => '空を飛べるような錯覚に陥るほどおいしいです',
             'rate' => '4',
             'scenes_id' => '1',
             'goodstypes_id' => 1,
@@ -66,7 +66,7 @@ class ReviewsTableSeeder extends Seeder
         DB::table('reviews')->insert([
             'getgoods_id' => '2',
             'users_id' => '482',
-            'comment' => '千早かわいいべ',
+            'comment' => 'ハイになれます',
             'rate' => '4',
             'scenes_id' => '1',
             'goodstypes_id' => 1,
@@ -76,12 +76,40 @@ class ReviewsTableSeeder extends Seeder
         DB::table('reviews')->insert([
             'getgoods_id' => '2',
             'users_id' => '485',
-            'comment' => '千早かわいいんです',
+            'comment' => 'すごく気分がよくなります',
             'rate' => '5',
             'scenes_id' => '1',
             'goodstypes_id' => 1,
             'created_at' => date("Y-m-d H:i:s"),
+        ]);
+        DB::table('reviews')->insert([
+            'getgoods_id' => '3',
+            'users_id' => '481',
+            'comment' => '京都の定番です。',
+            'rate' => '3',
+            'scenes_id' => '1',
+            'goodstypes_id' => 1,
+            'created_at' => date("Y-m-d H:i:s"),
 
+        ]);
+        DB::table('reviews')->insert([
+            'getgoods_id' => '3',
+            'users_id' => '482',
+            'comment' => '抹茶がおいしいです！',
+            'rate' => '3',
+            'scenes_id' => '1',
+            'goodstypes_id' => 1,
+            'created_at' => date("Y-m-d H:i:s"),
+
+        ]);
+        DB::table('reviews')->insert([
+            'getgoods_id' => '3',
+            'users_id' => '485',
+            'comment' => 'いちごもおいしいですね',
+            'rate' => '4',
+            'scenes_id' => '1',
+            'goodstypes_id' => 1,
+            'created_at' => date("Y-m-d H:i:s"),
         ]);
 
     }

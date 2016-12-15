@@ -14,17 +14,25 @@ class GetgoodsTableSeeder extends Seeder
         DB::table('getgoods')->truncate();
 
         DB::table('getgoods')->insert([
-            'name' => 'm4a1',
-            'genres_id' => '2',
-            'image' => '/images/present2.jpg',
+            'name' => 'たこ昌：たこ焼き',
+            'genres_id' => '7',
+            'image' => '/images/たこ焼き.jpg',
             'url' => 'i',
             'created_at' => date("Y-m-d H:i:s"),
         ]);
 
         DB::table('getgoods')->insert([
-            'name' => 'ak47',
-            'genres_id' => '1',
-            'image' => '/image',
+            'name' => 'だっさい',
+            'genres_id' => '7',
+            'image' => '/images/dassai.jpg',
+            'url' => 'a',
+            'created_at' => date("Y-m-d H:i:s"),
+        ]);
+
+        DB::table('getgoods')->insert([
+            'name' => '八ツ橋',
+            'genres_id' => '7',
+            'image' => '/images/やつはし.jpg',
             'url' => 'a',
             'created_at' => date("Y-m-d H:i:s"),
         ]);
