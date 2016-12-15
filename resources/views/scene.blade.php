@@ -403,7 +403,6 @@
                                     <option value="10">50代</option>
                                     <option value="11">60代</option>
                                     <option value="12">70歳以上</option>
-                                    <
                                 </select><br>
                             </div>
                             <div class="col-md-4">
@@ -433,6 +432,32 @@
                             <label class="my-file-input"><input type="submit" class="send" name="send">登録する</label>
                         </div>
                         </form>
+                        <script type="text/javascript">
+                            $('form').submit(function(event) {
+                                // HTMLでの送信をキャンセル
+                                event.preventDefault();
+
+                                // 操作対象のフォーム要素を取得
+                                var $form = $(this);
+                                // 送信
+                                $.ajax({
+                                    url: $form.attr('action'),
+                                    type: $form.attr('method'),
+                                    data: $form.serialize(),
+
+                                    // 通信成功時の処理
+                                    success: function(result) {
+                                        // 入力値を初期化
+                                        $form[0].reset();
+                                        //モーダル閉じる
+                                        $.magnificPopup.close();
+                                    },
+                                    error: function() {
+                                        alert("すでに登録されています。商品検索からレビューをお願いします。");
+                                    }
+                                });
+                            });
+                        </script>
                     </div>
 
 
@@ -738,7 +763,7 @@
             $.magnificPopup.open({
                 items: {src: '#test-popup'},
                 type: 'inline',
-                modal: true,
+                modal: true
             }, 0);
         </script>
     @endif
