@@ -154,9 +154,12 @@
     }
 
 
+
     ?>
 
-
+<script>
+    var formch = 0;
+</script>
 
     <div class="general_social_icons">
     <nav class="social">
@@ -170,19 +173,21 @@
 </div>
 <!-- /w3l-medile-movies-grids -->
     <div class="white-popup mfp-hide" id="test-popup"  data-backdrop="static">
-        <div class="modal-lg" role="document">
+        <div class="modal-lg2" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     商品&レビュー登録　OR レビューのみ登録
                 </div>
                 <section>
                     <div class="modal-body">
+                        <form enctype="multipart/form-data" method="post" name="registform" action="{{url('/register-and-review/')}}">
                         {{--<div class="w3_login_module">--}}
-                        <div class="module form-module">
+                        <div class="col-md-8">
+                        <div class="module form-module2">
                             <div class="toggle"><i class="fa fa-times fa-pencil"></i>
                                 <div class="tooltip">レビューのみ</div>
                             </div>
-                            <div class="form">
+                            <div class="form" name="form1">
 
                                 <div class="col-md-12 well">
                                     データベースに商品の登録とレビュー・評価を投稿します。<br>
@@ -193,17 +198,12 @@
                                 <!-- general -->
 
 
-                                <form enctype="multipart/form-data" method="post" action="{{url('/register-and-review/')}}">
                                     {{ csrf_field() }}
-                                    <div class="col-md-6">
-                                        <input type="text" id="name" name="name" placeholder="商品名"></div>
-                                    <div class="col-md-6">
-                                        <input type="radio" name="wantgood" value="1" checked>もらって嬉しかったもの
-                                        <input type="radio" name="wantgood" value="2">欲しいもの
-                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="text" id="sub" name="name" placeholder="商品名"></div>
                                     <div class="col-md-12">
                                         ジャンル:
-                                        <select id="genres" name="genres">
+                                        <select id="sub" name="genres">
                                             <option value="1">本</option>
                                             <option value="2">DVD・音楽</option>
                                             <option value="3">TVゲーム</option>
@@ -221,25 +221,7 @@
                                             <option value="15">車&バイク</option>
                                         </select><br>
                                     </div>
-                                    <div class="col-md-12">
-                                        シーン:
-                                        <select id="scene" name="scene">
-                                            <option value="1">誕生日</option>
-                                            <option value="2">結婚記念日</option>
-                                            <option value="3">クリスマス</option>
-                                            <option value="4">出産祝い</option>
-                                            <option value="5">結婚祝い</option>
-                                            <option value="6">手土産</option>
-                                            <option value="7">引っ越し</option>
-                                            <option value="8">お中元＆お歳暮</option>
-                                            <option value="9">父の日</option>
-                                            <option value="10">母の日</option>
-                                            <option value="11">敬老の日</option>
-                                            <option value="12">卒業＆就職祝い</option>
-                                            <option value="13">入学祝い</option>
 
-                                        </select><br>
-                                    </div>
                                     <div class="col-md-12">
                                         <style>
                                             label {
@@ -275,14 +257,32 @@
                                             }
                                         </style>
 
-
-                                        <label class="my-file-input"><input type="file" id="image" name="image" accept="image/*">商品画像を選択</label>
-
+                                        <input type="file" id="file">
+                                        <label class="my-file-input">
+                                            <input type="file" id="sub" name="image" accept="image/*">商品画像を選択
+                                        </label>
+                                        {{--<img src="" id="sub" name="image" style="display:none;">--}}
                                         <script>
                                             document.getElementById("image").addEventListener("change", function(e){
                                                 e.target.nextSibling.nodeValue = e.target.files.length ? e.target.files[0].name : "商品画像を選択";
                                             });
                                         </script>
+                                        <style>
+                                            form img.thumb {
+                                                margin:0 5px 5px 0;
+                                                max-width:160px;
+                                                vertical-align:bottom;
+                                            }
+                                            form .upload label {
+                                                display:inline-block; position:relative;
+                                                overflow:hidden; vertical-align:middle; }
+                                            form .upload label input[type="file"] {
+                                                position:absolute; top:0; right:0; cursor:pointer;
+                                                font-size:100px; opacity:0.01; -ms-filter:"alpha(opacity=1)"; }
+                                            form .upload label input[type="file"]:hover + .button {}
+                                            form .upload .alt  {
+                                                padding:4px; border:1px solid #999; vertical-align:middle; }
+                                        </style>
                                     </div>
 
 
@@ -300,89 +300,16 @@
                                     {{--<input type="text" name="name" id="name" readonly="readonly" value="{{ $name }}"><br>--}}
 
 
-
-                                    <div class="col-md-6">
-                                        <textarea name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>評価
-                                            <select id="rate" name="rate" size="1">
-                                                <option value="5">★★★★★</option>
-                                                <option value="4">★★★★☆</option>
-                                                <option value="3">★★★☆☆</option>
-                                                <option value="2">★★☆☆☆</option>
-                                                <option value="1">★☆☆☆☆</option>
-                                            </select></p><br>
-                                    </div>
-
-                                    @if(Auth::check() == false)
-
-                                        {{--ログインしていない場合（ゲストユーザー）--}}
-
-                                        <div class="col-md-12 well" >
-                                            現在ユーザーログインされていません。<br>
-                                            商品を登録するにはログインするか、ゲストユーザーとして以下のユーザー情報を入力してください。<br>
-                                        </div>
-                                        <div class="col-md-3">
-                                            性別:
-                                            <input type="radio" name="sex" value="1" checked>男
-                                            <input type="radio" name="sex" value="2">女
-                                        </div>
-                                        <div class="col-md-5">
-                                            年齢:
-                                            <select id="age" name="age">
-                                                <option value="1">10歳未満</option>
-                                                <option value="2">10代前半</option>
-                                                <option value="3">10代後半</option>
-                                                <option value="4">20代前半</option>
-                                                <option value="5">20代後半</option>
-                                                <option value="6">30代前半</option>
-                                                <option value="7">30代後半</option>
-                                                <option value="8">40代前半</option>
-                                                <option value="9">40代後半</option>
-                                                <option value="10">50代</option>
-                                                <option value="11">60代</option>
-                                                <option value="12">70歳以上</option>
-                                                <
-                                            </select><br>
-                                        </div>
-                                        <div class="col-md-4">
-                                            趣味:
-                                            <select id="hobbies_id" name="hobbies_id">
-                                                <option value="1">スポーツ</option>
-                                                <option value="2">読書</option>
-                                                <option value="3">PC</option>
-                                                <option value="4">旅行</option>
-                                                <option value="5">音楽</option>
-                                                <option value="6">映画鑑賞</option>
-                                                <option value="7">車＆バイク</option>
-                                                <option value="8">ゲーム</option>
-                                                <option value="9">料理</option>
-                                                <option value="10">お酒</option>
-                                                <option value="11">ショッピング</option>
-                                                <option value="12">手芸＆裁縫</option>
-                                                <option value="13">グルメ</option>
-                                                <option value="14">ガーデニング</option>
-                                                <option value="15">アイドル</option>
-                                                <option value="16">その他</option>
-                                            </select><br>
-                                        </div>
-
-                                    @endif
-                                    <div class="col-md-12">
-                                        <label class="my-file-input"><input type="submit">商品とレビューを登録する</label>
-                                    </div>
-                                </form>
                             </div>
 
 
 
 
-                            <div class="form">
+                            <div class="form" name="form2">
                                 <section>
 
 
-                                    <iframe height="100%" src="search.php">
+                                    <iframe height="100%" src="/search/">
 
                                     </iframe>
 
@@ -400,90 +327,144 @@
 
 
 
-                                    <div class="col-md-6">
-                                        <textarea name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>評価
-                                            <select id="rate" name="rate" size="1">
-                                                <option value="5">★★★★★</option>
-                                                <option value="4">★★★★☆</option>
-                                                <option value="3">★★★☆☆</option>
-                                                <option value="2">★★☆☆☆</option>
-                                                <option value="1">★☆☆☆☆</option>
-                                            </select></p><br>
-                                    </div>
 
-                                    @if(Auth::check() == false)
-
-                                        {{--ログインしていない場合（ゲストユーザー）--}}
-
-                                        <div class="col-md-12 well" >
-                                            現在ユーザーログインされていません。<br>
-                                            商品を登録するにはログインするか、ゲストユーザーとして以下のユーザー情報を入力してください。<br>
-                                        </div>
-                                        <div class="col-md-3">
-                                            性別:
-                                            <input type="radio" name="sex" value="1" checked>男
-                                            <input type="radio" name="sex" value="2">女
-                                        </div>
-                                        <div class="col-md-5">
-                                            年齢:
-                                            <select id="age" name="age">
-                                                <option value="1">10歳未満</option>
-                                                <option value="2">10代前半</option>
-                                                <option value="3">10代後半</option>
-                                                <option value="4">20代前半</option>
-                                                <option value="5">20代後半</option>
-                                                <option value="6">30代前半</option>
-                                                <option value="7">30代後半</option>
-                                                <option value="8">40代前半</option>
-                                                <option value="9">40代後半</option>
-                                                <option value="10">50代</option>
-                                                <option value="11">60代</option>
-                                                <option value="12">70歳以上</option>
-
-                                            </select><br>
-                                        </div>
-                                        <div class="col-md-4">
-                                            趣味:
-                                            <select id="hobbies_id" name="hobbies_id">
-                                                <option value="1">スポーツ</option>
-                                                <option value="2">読書</option>
-                                                <option value="3">PC</option>
-                                                <option value="4">旅行</option>
-                                                <option value="5">音楽</option>
-                                                <option value="6">映画鑑賞</option>
-                                                <option value="7">車＆バイク</option>
-                                                <option value="8">ゲーム</option>
-                                                <option value="9">料理</option>
-                                                <option value="10">お酒</option>
-                                                <option value="11">ショッピング</option>
-                                                <option value="12">手芸＆裁縫</option>
-                                                <option value="13">グルメ</option>
-                                                <option value="14">ガーデニング</option>
-                                                <option value="15">アイドル</option>
-                                                <option value="16">その他</option>
-                                            </select><br>
-                                        </div>
-
-                                    @endif
-                                    <div class="col-md-12">
-                                        <label class="my-file-input"><input type="submit">レビューを登録する</label>
-                                    </div>
 
                                 </section>
 
                             </div>
 
                         </div>
+                            </div>
+                            <input type="hidden" name="name" id="main" value="myForm1のtest1に入力されているもの" />
+                            <input type="hidden" name="genres" id="main" value="myForm1のtest1に入力されているもの" />
+                            <input type="hidden" name="image" id="main" value="myForm1のtest1に入力されているもの" />
+                            <input type="text" name="productname" id="parenttext" value="検索結果から取得した商品名" />
+                        <div class="col-md-4">
+                            <textarea name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
+                        {{--</div>--}}
+                        {{--<div class="col-md-6">--}}
+                            <p>評価
+                                <select id="rate" name="rate" size="1">
+                                    <option value="5">★★★★★</option>
+                                    <option value="4">★★★★☆</option>
+                                    <option value="3">★★★☆☆</option>
+                                    <option value="2">★★☆☆☆</option>
+                                    <option value="1">★☆☆☆☆</option>
+                                </select></p><br>
+                        </div>
+                            <div class="col-md-4">
+                                <input type="radio" name="wantgood" value="1" checked>もらったもの
+                                <input type="radio" name="wantgood" value="2">欲しいもの
+                            </div>
+                            <div class="col-md-4">
+                                シーン:
+                                <select id="scene" name="scene">
+                                    <option value="1">誕生日</option>
+                                    <option value="2">結婚記念日</option>
+                                    <option value="3">クリスマス</option>
+                                    <option value="4">出産祝い</option>
+                                    <option value="5">結婚祝い</option>
+                                    <option value="6">手土産</option>
+                                    <option value="7">引っ越し</option>
+                                    <option value="8">お中元＆お歳暮</option>
+                                    <option value="9">父の日</option>
+                                    <option value="10">母の日</option>
+                                    <option value="11">敬老の日</option>
+                                    <option value="12">卒業＆就職祝い</option>
+                                    <option value="13">入学祝い</option>
+
+                                </select><br>
+                            </div>
+                        @if(Auth::check() == false)
+
+                            {{--ログインしていない場合（ゲストユーザー）--}}
+
+                            {{--<div class="col-md-12 well" >--}}
+                                {{--現在ユーザーログインされていません。<br>--}}
+                                {{--商品を登録するにはログインするか、ゲストユーザーとして以下のユーザー情報を入力してください。<br>--}}
+                            {{--</div>--}}
+                            <div class="col-md-3">
+                                性別:
+                                <input type="radio" name="sex" value="1" checked>男
+                                <input type="radio" name="sex" value="2">女
+                            </div>
+                            <div class="col-md-4">
+                                年齢:
+                                <select id="age" name="age">
+                                    <option value="1">10歳未満</option>
+                                    <option value="2">10代前半</option>
+                                    <option value="3">10代後半</option>
+                                    <option value="4">20代前半</option>
+                                    <option value="5">20代後半</option>
+                                    <option value="6">30代前半</option>
+                                    <option value="7">30代後半</option>
+                                    <option value="8">40代前半</option>
+                                    <option value="9">40代後半</option>
+                                    <option value="10">50代</option>
+                                    <option value="11">60代</option>
+                                    <option value="12">70歳以上</option>
+                                    <
+                                </select><br>
+                            </div>
+                            <div class="col-md-4">
+                                趣味:
+                                <select id="hobbies_id" name="hobbies_id">
+                                    <option value="1">スポーツ</option>
+                                    <option value="2">読書</option>
+                                    <option value="3">PC</option>
+                                    <option value="4">旅行</option>
+                                    <option value="5">音楽</option>
+                                    <option value="6">映画鑑賞</option>
+                                    <option value="7">車＆バイク</option>
+                                    <option value="8">ゲーム</option>
+                                    <option value="9">料理</option>
+                                    <option value="10">お酒</option>
+                                    <option value="11">ショッピング</option>
+                                    <option value="12">手芸＆裁縫</option>
+                                    <option value="13">グルメ</option>
+                                    <option value="14">ガーデニング</option>
+                                    <option value="15">アイドル</option>
+                                    <option value="16">その他</option>
+                                </select><br>
+                            </div>
+
+                        @endif
+                        <div class="col-md-4">
+                            <label class="my-file-input"><input type="submit" class="send" name="send">登録する</label>
+                        </div>
+                        </form>
                     </div>
+
+
                     {{--</div>--}}
                 </section>
             </div>
         </div>
     </div>
     <script>
+        jQuery(function($){
+            //必須入力チェック
+            $.fn.requirdCheck = function(name){
+                var target = this;
+                if (!target.val().length) {
+                    target.addClass('error');
+                    jAlert(name + 'が入力されてません','入力エラー',function(){
+                        target.focus();
+                    });
+                    return false;
+                }
+                return true;
+            }
+            $('input.send').exJConfirm(
+                    '登録しますか？',
+                    '登録確認',{
+                        preCallback : function(){
+                            $($('input.send').attr('form')).find('.error').removeClass('error')
+                            return	$('input.name').requirdCheck('Name')
+                        }
+                    }
+            );
+        });
         $('.toggle').click(function(){
             // Switches the Icon
             $(this).children('i').toggleClass('fa-pencil');
@@ -494,6 +475,13 @@
                 'padding-bottom': 'toggle',
                 opacity: "toggle"
             }, "slow");
+            if(formch == 0){
+                document.registform.action = "{{url('/review/')}}";
+                formch = 1;
+            }else{
+                document.registform.action = "{{url('/register-and-review/')}}";
+                formch = 0;
+            }
         });
     </script>
 
