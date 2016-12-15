@@ -49,7 +49,6 @@ class RankingViewController extends Controller
         }
 
         //ゲスト用connectをfalseに
-        Session::put('connect', false);
 
         return view('scene', compact('ranking'));
     }

@@ -8,6 +8,7 @@ use Validator;
 use Request;
 use Auth;
 use Session;
+use Response;
 use App\Getgoods;
 
 class UploadController extends Controller
@@ -43,9 +44,9 @@ class UploadController extends Controller
         $getgoods_table = Getgoods::all();
 
         foreach ($getgoods_table as $getgoods) {
-            // 同じ商品があったら商品データを渡し、レビュー
+            // 同じ商品があったら
             if ($syohin == $getgoods['name']) {
-                return redirect('/review/'.$syohin);
+                return Response::make("NG", 500);
             }
         }
 
@@ -124,11 +125,8 @@ class UploadController extends Controller
 
 //--------------------------------------レビュー--------------------------------------------
 
+        return Response::make("OK", 200);
 
-        if(Auth::guest()) {
-            Session::put('connect', true);
-        }
-        return redirect('/scene/');
     }
 
 }
