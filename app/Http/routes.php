@@ -20,10 +20,8 @@ Route::get('/about/', function () {
     return view('about');
 });
 
-Route::get('/scene/', 'RankingViewController@rankView');
-//おでん追加
-Route::get('/genre/', 'RankingViewController@rankView');
-Route::get('/age/', 'RankingViewController@rankView');
+Route::get('/ranking/', 'RankingViewController@rankView');
+
 
 Route::group(['middleware' => 'guest:admin'], function () { //←このグループで括る
     Route::get('/admin/login','AdminAuthController@showLoginForm');
