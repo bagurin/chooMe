@@ -76,7 +76,6 @@ class ReviewController extends Controller
 
         //商品名からidを取得
         $getgoods_id = Getgoods::where('name', $syohin)->get(['id']);
-        $getgoods_id = 1;
 
         $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id[0]['id'], 'scenes_id' => $scene,
             'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
