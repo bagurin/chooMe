@@ -507,7 +507,7 @@
                 <!--/browse-agile-w3ls -->
                 <div class="browse-agile-w3ls general-w3ls">
                     <div class="tittle-head">
-                        <h4 class="latest-text">シーン別ランキングTOP20</h4>
+                        <h4 class="latest-text">ジャンル別ランキングTOP20</h4>
 
 
                     </div>
