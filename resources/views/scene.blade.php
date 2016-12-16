@@ -199,8 +199,10 @@
 
 
                                     {{ csrf_field() }}
-                                    <div class="col-md-12">
-                                        <input type="text" id="sub" name="name" placeholder="商品名"></div>
+                                    <div class="col-md-5">
+                                        <input type="text" id="sub" name="name" placeholder="商品名">
+                                    </div>
+                                    {{--<input type="submit" id="check" name="check" value="重複チェック">--}}
                                     <div class="col-md-12">
                                         ジャンル:
                                         <select id="sub" name="genres">
@@ -385,8 +387,8 @@
                             {{--</div>--}}
                             <div class="col-md-3">
                                 性別:
-                                <input type="radio" name="sex" value="1" checked>男
-                                <input type="radio" name="sex" value="2">女
+                                <input type="radio" name="sex" value="男" checked>男
+                                <input type="radio" name="sex" value="女">女
                             </div>
                             <div class="col-md-4">
                                 年齢:
@@ -436,7 +438,6 @@
                             $('form').submit(function(event) {
                                 // HTMLでの送信をキャンセル
                                 event.preventDefault();
-
                                 // 操作対象のフォーム要素を取得
                                 var $form = $(this);
                                 // 送信
@@ -520,7 +521,7 @@
             <!--/browse-agile-w3ls -->
             <div class="browse-agile-w3ls general-w3ls">
                 <div class="tittle-head">
-                    <h4 class="latest-text">シーン別ランキングTOP20</h4>
+                    <h4 class="latest-text">{{ $pattern_name }}ランキングTOP20</h4>
 
 
                 </div>
