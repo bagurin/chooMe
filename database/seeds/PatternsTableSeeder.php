@@ -225,7 +225,7 @@ class PatternsTableSeeder extends Seeder
             DB::table('patterns')->insert([
                 'id' => $c,
                 'name' => $key,
-                't・id' => $value,
+                't_id' => $value,
             ]);
             $c += 1;
         }
