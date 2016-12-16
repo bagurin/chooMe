@@ -6,7 +6,7 @@ use App\Getgoods;
 use App\Rank;
 use Auth;
 use Session;
-use App\Genres;
+use App\Pattern;
 
 class RankingViewController extends Controller
 {
@@ -31,6 +31,8 @@ class RankingViewController extends Controller
 
         // ランキングパターンid
         $pattern = Session::get('pattern');
+        $pattern_name = Pattern::where('id', $pattern)->get(['name'])->toArray();
+        $pattern_name = $pattern_name[0]['name'];
 
         // goodstype
         $goodstype = Session::get('goodstype');
@@ -48,9 +50,8 @@ class RankingViewController extends Controller
 
         }
 
-        //ゲスト用connectをfalseに
-
-        return view('scene', compact('ranking'));
+        //ランキング配列とパターン名
+        return view('scene', compact('ranking', 'pattern_name'));
     }
 
 }
