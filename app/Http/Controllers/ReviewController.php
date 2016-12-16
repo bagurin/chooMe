@@ -57,7 +57,7 @@ class ReviewController extends Controller
         if(Auth::check()) {
             // ログインユーザーID取得し、connectをtrueに
             $user_id = Auth::user()->id;
-            User::where('id', $user_id)->update(['connect'=>true]);
+            UserInfo::where('id', $user_id)->update(['connect'=>true]);
         }else{
             //ゲストユーザーid取得用データ取得
             $sex = Request::get('sex');
@@ -68,14 +68,14 @@ class ReviewController extends Controller
         }
 
         // 名前・コメント・評価点数・商品タイプ取得
-        //$syohin = Request::get('name');
+        $syohin = Request::get('name');
         $comment = Request::get('comment');
         $rate = Request::get('rate');
         $goods_type = (int)Request::input('wantgood');
         $scene = Request::get('scene');
 
         //商品名からidを取得
-        //$getgoods_id = Getgoods::where('name', $syohin)->get(['id']);
+        $getgoods_id = Getgoods::where('name', $syohin)->get(['id']);
         $getgoods_id = 1;
 
         $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id[0]['id'], 'scenes_id' => $scene,
