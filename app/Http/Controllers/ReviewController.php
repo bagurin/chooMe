@@ -81,15 +81,9 @@ class ReviewController extends Controller
             'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
         Review::create($review);
 
-        //return true;
+        //登録成功
         return Response::make("OK！", 200);
 
-//        if(Auth::guest()) {
-//            return redirect('/scene/');
-//        }
-//
-//        // ランキングページ表示
-//        return redirect('/scene/');
 
     }
 
