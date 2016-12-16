@@ -38,6 +38,7 @@ class ReviewController extends Controller
 
         $list = Getgoods::where('name', 'LIKE', "%".$name."%")->paginate(10);
 
+        //ジャンルidをジャンル名に置き換え
         foreach ($list as $item) {
             $genres = Genres::where('id', $item['genres_id'])->get(['name'])->toArray();
             $item['genres_id'] = $genres[0]['name'];

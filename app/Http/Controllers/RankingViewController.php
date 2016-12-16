@@ -50,7 +50,7 @@ class RankingViewController extends Controller
 
         }
 
-        //ゲスト用connectをfalseに
+        //ランキング配列とパターン名
         return view('scene', compact('ranking', 'pattern_name'));
     }
 
