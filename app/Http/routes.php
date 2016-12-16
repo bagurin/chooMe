@@ -21,6 +21,9 @@ Route::get('/about/', function () {
 });
 
 Route::get('/scene/', 'RankingViewController@rankView');
+//おでん追加
+Route::get('/genre/', 'RankingViewController@rankView');
+Route::get('/age/', 'RankingViewController@rankView');
 
 Route::group(['middleware' => 'guest:admin'], function () { //←このグループで括る
     Route::get('/admin/login','AdminAuthController@showLoginForm');
@@ -77,6 +80,8 @@ Route::get('/search-result/', 'ReviewController@viewData');
 Route::get('/search/', function(){
     return view('search');
 });
+
+
 
 //api
 Route::group(['prefix' => '/api/1.0/'], function () {
