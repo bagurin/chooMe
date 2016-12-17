@@ -78,7 +78,10 @@ Route::get('/search/', function(){
     return view('search');
 });
 
-
+//おでん追加
+Route::get('/p-register/', function(){
+    return view('p-register');
+});
 
 //api
 Route::group(['prefix' => '/api/1.0/'], function () {
