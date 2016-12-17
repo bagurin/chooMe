@@ -161,6 +161,9 @@
     var formch = 0;
 </script>
 
+
+
+
     <div class="general_social_icons">
     <nav class="social">
         <ul>
@@ -176,7 +179,7 @@
         <div class="modal-lg2" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    商品&レビュー登録　OR レビューのみ登録
+                    情報提供にご協力を!<font size="2">(ChooMe登録ユーザーは1日1回でOK!)</font>
                 </div>
                 <section>
                     <div class="modal-body">
@@ -189,103 +192,100 @@
                             </div>
                             <div class="form" name="form1">
 
-                                <div class="col-md-12 well">
-                                    データベースに商品の登録とレビュー・評価を投稿します。<br>
-                                </div>
+                                {{--<div class="col-md-12 well">--}}
+                                    {{--データベースに商品の登録とレビュー・評価を投稿します。<br>--}}
+                                {{--</div>--}}
 
 
 
-                                <!-- general -->
+                                {{--<!-- general -->--}}
 
 
-                                    {{ csrf_field() }}
-                                    <div class="col-md-5">
-                                        <input type="text" id="sub" name="name" placeholder="商品名">
-                                    </div>
+                                    {{--{{ csrf_field() }}--}}
+                                    {{--<div class="col-md-5">--}}
+                                        {{--<input type="text" id="name" name="name" placeholder="商品名">--}}
+                                    {{--</div>--}}
                                     {{--<input type="submit" id="check" name="check" value="重複チェック">--}}
-                                    <div class="col-md-12">
-                                        ジャンル:
-                                        <select id="sub" name="genres">
-                                            <option value="1">本</option>
-                                            <option value="2">DVD・音楽</option>
-                                            <option value="3">TVゲーム</option>
-                                            <option value="4">家電・カメラ・AV機器</option>
-                                            <option value="5">パソコン・オフィス用品</option>
-                                            <option value="6">ホーム&キッチン・DIY</option>
-                                            <option value="7">食品・飲料・お酒</option>
-                                            <option value="8">ドラッグ・ビューティ</option>
-                                            <option value="9">ベビー・おもちゃ</option>
-                                            <option value="10">服</option>
-                                            <option value="11">シューズ</option>
-                                            <option value="12">バッグ</option>
-                                            <option value="13">腕時計</option>
-                                            <option value="14">スポーツ&アウトドア</option>
-                                            <option value="15">車&バイク</option>
-                                        </select><br>
-                                    </div>
+                                    {{--<div class="col-md-12">--}}
+                                        {{--ジャンル:--}}
+                                        {{--<select id="genre" name="genres">--}}
+                                            {{--<option value="1">本</option>--}}
+                                            {{--<option value="2">DVD・音楽</option>--}}
+                                            {{--<option value="3">TVゲーム</option>--}}
+                                            {{--<option value="4">家電・カメラ・AV機器</option>--}}
+                                            {{--<option value="5">パソコン・オフィス用品</option>--}}
+                                            {{--<option value="6">ホーム&キッチン・DIY</option>--}}
+                                            {{--<option value="7">食品・飲料・お酒</option>--}}
+                                            {{--<option value="8">ドラッグ・ビューティ</option>--}}
+                                            {{--<option value="9">ベビー・おもちゃ</option>--}}
+                                            {{--<option value="10">服</option>--}}
+                                            {{--<option value="11">シューズ</option>--}}
+                                            {{--<option value="12">バッグ</option>--}}
+                                            {{--<option value="13">腕時計</option>--}}
+                                            {{--<option value="14">スポーツ&アウトドア</option>--}}
+                                            {{--<option value="15">車&バイク</option>--}}
+                                        {{--</select><br>--}}
+                                    {{--</div>--}}
 
-                                    <div class="col-md-12">
-                                        <style>
-                                            label {
-                                                margin-left: 0em;
-                                            }
-                                            .my-file-input {
-                                                display: inline-block;
-                                                padding: 5px;
-                                                width: 200px;
-                                                text-align: center;
-                                                white-space: nowrap;
-                                                overflow: hidden;
-                                                font-size: 14px;
-                                                text-overflow: ellipsis;
-                                                background-color: #ff9393;
-                                                color: white;
-                                                box-shadow: #888 2px 2px 1px;
-                                                cursor: pointer;
-                                            }
-                                            .my-file-input:hover {
-                                                background-color: #fc6c6c;
-                                            }
-                                            .my-file-input:hover {
-                                                background-color: #fc6c6c;
-                                            }
-                                            .my-file-input:active {
-                                                box-shadow: #f75454 1px 1px 1px;
-                                                position: relative;
-                                                top: 1px; left: 1px;
-                                            }
-                                            .my-file-input input {
-                                                display: none;
-                                            }
-                                        </style>
+                                    {{--<div class="col-md-12">--}}
+                                        {{--<style>--}}
+                                            {{--label {--}}
+                                                {{--margin-left: 0em;--}}
+                                            {{--}--}}
+                                            {{--.my-file-input {--}}
+                                                {{--display: inline-block;--}}
+                                                {{--padding: 5px;--}}
+                                                {{--width: 200px;--}}
+                                                {{--text-align: center;--}}
+                                                {{--white-space: nowrap;--}}
+                                                {{--overflow: hidden;--}}
+                                                {{--font-size: 14px;--}}
+                                                {{--text-overflow: ellipsis;--}}
+                                                {{--background-color: #ff9393;--}}
+                                                {{--color: white;--}}
+                                                {{--box-shadow: #888 2px 2px 1px;--}}
+                                                {{--cursor: pointer;--}}
+                                            {{--}--}}
+                                            {{--.my-file-input:hover {--}}
+                                                {{--background-color: #fc6c6c;--}}
+                                            {{--}--}}
+                                            {{--.my-file-input:hover {--}}
+                                                {{--background-color: #fc6c6c;--}}
+                                            {{--}--}}
+                                            {{--.my-file-input:active {--}}
+                                                {{--box-shadow: #f75454 1px 1px 1px;--}}
+                                                {{--position: relative;--}}
+                                                {{--top: 1px; left: 1px;--}}
+                                            {{--}--}}
+                                            {{--.my-file-input input {--}}
+                                                {{--display: none;--}}
+                                            {{--}--}}
+                                        {{--</style>--}}
 
-                                        <input type="file" id="file">
-                                        <label class="my-file-input">
-                                            <input type="file" id="sub" name="image" accept="image/*">商品画像を選択
-                                        </label>
+
+                                        {{--<label class="my-file-input">--}}
+                                            {{--<input type="file" id="image" name="image" accept="image/*">商品画像を選択--}}
+                                        {{--</label>--}}
                                         {{--<img src="" id="sub" name="image" style="display:none;">--}}
-                                        <script>
-                                            document.getElementById("image").addEventListener("change", function(e){
-                                                e.target.nextSibling.nodeValue = e.target.files.length ? e.target.files[0].name : "商品画像を選択";
-                                            });
-                                        </script>
-                                        <style>
-                                            form img.thumb {
-                                                margin:0 5px 5px 0;
-                                                max-width:160px;
-                                                vertical-align:bottom;
-                                            }
-                                            form .upload label {
-                                                display:inline-block; position:relative;
-                                                overflow:hidden; vertical-align:middle; }
-                                            form .upload label input[type="file"] {
-                                                position:absolute; top:0; right:0; cursor:pointer;
-                                                font-size:100px; opacity:0.01; -ms-filter:"alpha(opacity=1)"; }
-                                            form .upload label input[type="file"]:hover + .button {}
-                                            form .upload .alt  {
-                                                padding:4px; border:1px solid #999; vertical-align:middle; }
-                                        </style>
-                                    </div>
+                                        {{--<script>--}}
+                                            {{--document.getElementById("image").addEventListener("change", function(e){--}}
+                                                {{--e.target.nextSibling.nodeValue = e.target.files.length ? e.target.files[0].name : "商品画像を選択";--}}
+                                            {{--});--}}
+                                        {{--</script>--}}
+                                        {{--<style>--}}
+                                            {{--form .upload label {--}}
+                                                {{--display:inline-block; position:relative;--}}
+                                                {{--overflow:hidden; vertical-align:middle; }--}}
+                                            {{--form .upload label input[type="file"] {--}}
+                                                {{--position:absolute; top:0; right:0; cursor:pointer;--}}
+                                                {{--font-size:100px; opacity:0.01; -ms-filter:"alpha(opacity=1)"; }--}}
+                                            {{--form .upload label input[type="file"]:hover + .button {}--}}
+                                            {{--form .upload .alt  {--}}
+                                                {{--padding:4px; border:1px solid #999; vertical-align:middle; }--}}
+                                        {{--</style>--}}
+                                        {{--<br>--}}
+                                        {{--<label class="my-file-input" onClick="SendPname()"><input type="button" onClick="SendPname()">商品情報確定</label>--}}
+                                    {{--</div>--}}
 
 
 
@@ -297,10 +297,15 @@
 
 
 
-                                    {{ csrf_field() }}
+                                    {{--{{ csrf_field() }}--}}
 
                                     {{--<input type="text" name="name" id="name" readonly="readonly" value="{{ $name }}"><br>--}}
+                            <section>
+                                <iframe height="100%" frameborder="0" src="/p-register/">
 
+                                </iframe>
+                                {{ csrf_field() }}
+                            </section>
 
                             </div>
 
@@ -311,7 +316,7 @@
                                 <section>
 
 
-                                    <iframe height="100%" src="/search/">
+                                    <iframe height="100%" frameborder="0" src="/search/">
 
                                     </iframe>
 
@@ -337,10 +342,12 @@
 
                         </div>
                             </div>
-                            <input type="hidden" name="name" id="main" value="myForm1のtest1に入力されているもの" />
-                            <input type="hidden" name="genres" id="main" value="myForm1のtest1に入力されているもの" />
-                            <input type="hidden" name="image" id="main" value="myForm1のtest1に入力されているもの" />
-                            <input type="text" name="productname" id="parenttext" value="検索結果から取得した商品名" />
+
+
+                            <input type="text" class="form-control" name="productname" id="parenttext" value="" readonly="readonly"/>
+                            <input type="text" class="form-control" name="genrename" id="parentgenrename" value="" readonly="readonly"/>
+                            <input type="hidden" class="form-control" name="genreid" id="parentgenreid" value="" readonly="readonly"/>
+                            <input type="hidden" class="form-control" name="image" id="parentimage" value="" readonly="readonly"/>
                         <div class="col-md-4">
                             <textarea name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
                         {{--</div>--}}
@@ -433,6 +440,39 @@
                         <div class="col-md-4">
                             <label class="my-file-input"><input type="submit" class="send" name="send">登録する</label>
                         </div>
+                            <style>
+                                label {
+                                    margin-left: 0em;
+                                }
+                                .my-file-input {
+                                    display: inline-block;
+                                    padding: 5px;
+                                    width: 200px;
+                                    text-align: center;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    font-size: 14px;
+                                    text-overflow: ellipsis;
+                                    background-color: #ff9393;
+                                    color: white;
+                                    box-shadow: #888 2px 2px 1px;
+                                    cursor: pointer;
+                                }
+                                .my-file-input:hover {
+                                    background-color: #fc6c6c;
+                                }
+                                .my-file-input:hover {
+                                    background-color: #fc6c6c;
+                                }
+                                .my-file-input:active {
+                                    box-shadow: #f75454 1px 1px 1px;
+                                    position: relative;
+                                    top: 1px; left: 1px;
+                                }
+                                .my-file-input input {
+                                    display: none;
+                                }
+                            </style>
                         </form>
                         <script type="text/javascript">
                             $('form').submit(function(event) {
