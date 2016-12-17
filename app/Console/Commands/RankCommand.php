@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use DateTime;
 use DB;
 
 class RankCommand extends Command
@@ -39,10 +40,33 @@ class RankCommand extends Command
      */
     public function handle()
     {
-        //
+        //日付の差分でマイナス補正をかける
+        function dateminus($goods_id){
+
+            $date = DB::table('reviews')
+                ->select('created_at')
+                ->where([
+                    ['getgoods_id','=',$goods_id],['goodstypes_id','=',2]])
+                ->orderBy('created_at','desc')
+                ->first();
+
+            $date = (array)$date;
+            $date = $date['created_at'];
+
+            $now_time = date("Y-m-d");
+            $now_time = new DateTime($now_time);
+
+            $review_time = date('Y-m-d',strtotime($date));
+            $review_time = new DateTime($review_time);
+
+            $interval = $review_time->diff($now_time);
+
+            return 0.012 * (int)$interval->format('%a');
+        }
+
         //$this->info('テキスト');
         //取得してきたランキング情報を分解して返す
-        function getiac($ans)
+        function getiac($ans,$goodstypes)
         {
 
             //オブジェクトで返却されるので配列に変換する。([0]なのは１件しか格納されていない為)
@@ -52,8 +76,18 @@ class RankCommand extends Command
             $average = (float)$con["ave"];
             $count = (int)$con["count"];
 
+            if($count == 0){
+                return false;
+            }
+
             //スコアメソッドでスコアを算出して格納する
             $result = score($average, $count);
+            if($goodstypes == 2){
+                $result= $result - dateminus($id);
+                if($result < 0){
+                    $result = 0.000;
+                }
+            }
 
             $info = array('id' => $id, 'score' => $result, 'ave' => $average);
 
@@ -106,7 +140,7 @@ class RankCommand extends Command
         }
 
         //ランクテーブルに格納する(降順された２０件の配列,パターンid)
-        function sendranks($array, $pattern)
+        function sendranks($array, $pattern,$goodstypes)
         {
 
             //ランキングNoを1~20まで変化させる変数
@@ -125,6 +159,7 @@ class RankCommand extends Command
                     ->where([
                         ['ranking_no', '=', $rank],
                         ['patterns_id', '=', $pattern],
+                        ['goodstypes_id','=',$goodstypes],
                     ])
                     ->update(['getgoods_id' => $value['id'], 'score' => $value['score'], 'average_rate' => $value['ave'], 'updated_at' => date("Y-m-d H:i:s")]);
 
@@ -181,16 +216,18 @@ class RankCommand extends Command
                     ->get();
 
                 //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans);
+                $info = getiac($ans,$goodstypes);
 
-                if ($info['id'] != 0) {
+                if ($info != false) {
                     //配列へ情報を格納する
                     $array = array_merge($array, array($info));
                 }
             }
 
-            //ランキングを格納するメソッドを実行する
-            sendranks($array, $pattern);
+            if(count($array) != 0){
+                //ランキングを格納するメソッドを実行する
+                sendranks($array, $pattern,$goodstypes);
+            }
 
         }
 
@@ -214,15 +251,18 @@ class RankCommand extends Command
                     ])
                     ->get();
 
-                $info = getiac($ans);
+                $info = getiac($ans,$goodstypes);
 
-                if ($info['id'] != 0) {
+                if ($info != false) {
                     //配列へ情報を格納する
                     $array = array_merge($array, array($info));
                 }
             }
 
-            sendranks($array, $pattern);
+            if(count($array) != 0){
+                //ランキングを格納するメソッドを実行する
+                sendranks($array, $pattern,$goodstypes);
+            }
         }
 
 
@@ -246,15 +286,18 @@ class RankCommand extends Command
                     ])
                     ->get();
 
-                $info = getiac($ans);
+                $info = getiac($ans,$goodstypes);
 
-                if ($info['id'] != 0) {
+                if ($info != false) {
                     //配列へ情報を格納する
                     $array = array_merge($array, array($info));
                 }
             }
 
-            sendranks($array, $pattern);
+            if(count($array) != 0){
+                //ランキングを格納するメソッドを実行する
+                sendranks($array, $pattern,$goodstypes);
+            }
         }
 
         //t_idを分解して各主キーを作る
@@ -314,16 +357,19 @@ class RankCommand extends Command
                     ->get();
 
                 //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans);
+                $info = getiac($ans,$goodstypes);
 
                 //配列へ情報を格納する
-                if ($info['id'] != 0) {
+                if ($info != false) {
                     //配列へ情報を格納する
                     $array = array_merge($array, array($info));
                 }
             }
 
-            sendranks($array, $pattern);
+            if(count($array) != 0){
+                //ランキングを格納するメソッドを実行する
+                sendranks($array, $pattern,$goodstypes);
+            }
         }
 
         //性別とジャンルランキング
@@ -363,16 +409,19 @@ class RankCommand extends Command
                     ->get();
 
                 //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans);
+                $info = getiac($ans,$goodstypes);
 
                 //配列へ情報を格納する
-                if ($info['id'] != 0) {
+                if ($info != false) {
                     //配列へ情報を格納する
                     $array = array_merge($array, array($info));
                 }
             }
 
-            sendranks($array, $pattern);
+            if(count($array) != 0){
+                //ランキングを格納するメソッドを実行する
+                sendranks($array, $pattern,$goodstypes);
+            }
         }
 
         //性別とシーンランキング（誕生日・Xmas）
@@ -412,16 +461,19 @@ class RankCommand extends Command
                     ->get();
 
                 //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans);
+                $info = getiac($ans,$goodstypes);
 
                 //配列へ情報を格納する
-                if ($info['id'] != 0) {
+                if ($info != false) {
                     //配列へ情報を格納する
                     $array = array_merge($array, array($info));
                 }
             }
 
-            sendranks($array, $pattern);
+            if(count($array) != 0){
+                //ランキングを格納するメソッドを実行する
+                sendranks($array, $pattern,$goodstypes);
+            }
         }
 
         //年代とシーン　ランキング（誕生日・Xmas）
@@ -457,16 +509,19 @@ class RankCommand extends Command
                     ->get();
 
                 //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans);
+                $info = getiac($ans,$goodstypes);
 
                 //配列へ情報を格納する
-                if ($info['id'] != 0) {
+                if ($info != false) {
                     //配列へ情報を格納する
                     $array = array_merge($array, array($info));
                 }
             }
 
-            sendranks($array, $pattern);
+            if(count($array) != 0){
+                //ランキングを格納するメソッドを実行する
+                sendranks($array, $pattern,$goodstypes);
+            }
         }
 
         //patterns_idが296以下であればこちらを
@@ -565,16 +620,19 @@ class RankCommand extends Command
                     ->get();
 
                 //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans);
+                $info = getiac($ans,$goodstypes);
 
                 //配列へ情報を格納する
-                if ($info['id'] != 0) {
+                if ($info != false) {
                     //配列へ情報を格納する
                     $array = array_merge($array, array($info));
                 }
             }
 
-            sendranks($array, $pattern);
+            if(count($array) != 0){
+                //ランキングを格納するメソッドを実行する
+                sendranks($array, $pattern,$goodstypes);
+            }
         }
 
         //性別と年代とジャンル　ランキング
@@ -625,16 +683,19 @@ class RankCommand extends Command
                     ->get();
 
                 //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans);
+                $info = getiac($ans,$goodstypes);
 
                 //配列へ情報を格納する
-                if ($info['id'] != 0) {
+                if ($info != false) {
                     //配列へ情報を格納する
                     $array = array_merge($array, array($info));
                 }
             }
 
-            sendranks($array, $pattern);
+            if(count($array) != 0){
+                //ランキングを格納するメソッドを実行する
+                sendranks($array, $pattern,$goodstypes);
+            }
         }
 
 
@@ -781,6 +842,10 @@ class RankCommand extends Command
         //ユーザー全件のconnectをfalseにする
         DB::table('users')
             ->update(['connect' => false, 'updated_at' => date("Y-m-d H:i:s")]);
+
+        DB::table('users')
+            ->where('name','=','chihaya')
+            ->update(['connect'=>true]);
 
     }
 
