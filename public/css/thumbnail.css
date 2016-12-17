@@ -1,0 +1,7 @@
+.contain {
+    object-fit: contain;
+    width: 300px;
+    height: 150px;
+    background-color: #ccc;
+    border: 1px solid #ccc;
+}
