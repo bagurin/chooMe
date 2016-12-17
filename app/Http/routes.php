@@ -22,7 +22,6 @@ Route::get('/about/', function () {
 
 Route::get('/ranking/', 'RankingViewController@rankView');
 
-
 Route::group(['middleware' => 'guest:admin'], function () { //←このグループで括る
     Route::get('/admin/login','AdminAuthController@showLoginForm');
     Route::post('/admin/login','AdminAuthController@login');
@@ -90,4 +89,7 @@ Route::group(['prefix' => '/api/1.0/'], function () {
     Route::post('/apiregister','CipherController@apiregister');
     //トークンからユーザー情報を取得する
     Route::post('/profile','CipherController@token_profile');
+    //トークンとユーザー情報でプロフィールを変更する
+    Route::post('/changeprof','CipherController@token_changeprof');
+
 });

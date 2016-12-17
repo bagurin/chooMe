@@ -8,6 +8,7 @@ use App\Rank;
 use App\Http\Controllers\CipherController as Cipher;
 use App\Review;
 use Request;
+use App\Http\Controllers\PatternController as Patternc;
 
 
 class ApiController extends Controller
@@ -121,15 +122,9 @@ class ApiController extends Controller
     // apiランキング用
     public function apiRanking(){
 
+        $patternc = new Patternc();
         $cipher = new Cipher();
         $osid = 1;
-
-        // ランキングパターンid
-        if(!isset($_GET['pattern'])){
-            $error = 'patternIdがありません。';
-            return json_encode($error, JSON_UNESCAPED_UNICODE);
-        }
-        $pattern = $_GET['pattern'];
 
         // goodstype
         if(!isset($_GET['goodstype'])){
@@ -144,6 +139,43 @@ class ApiController extends Controller
             return json_encode($error, JSON_UNESCAPED_UNICODE);
         }
         $key = $_GET['key'];
+
+        if(!isset($_GET['age'])){
+            $error = 'ageがありません。';
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
+        }
+        $age = $_GET['age'];
+
+        if(!isset($_GET['sex'])){
+            $error = 'sexがありません。';
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
+        }
+        $sex = $_GET['sex'];
+
+        if(!isset($_GET['hobbie'])){
+            $error = 'hobbieがありません。';
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
+        }
+        $hobbie = $_GET['hobbie'];
+
+        if(!isset($_GET['scene'])){
+            $error = 'キーがありません。';
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
+        }
+        $scene = $_GET['scene'];
+
+        if(!isset($_GET['genre'])){
+            $error = 'キーがありません。';
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
+        }
+        $genre = $_GET['genre'];
+
+        $parray = array('age'=>$age,'sex'=>$sex,'hobbie'=>$hobbie,'scene'=>$scene,'genre'=>$genre);
+
+        $pattern = $patternc->patterncheck($parray);
+        if($pattern == false){
+            return json_encode('パターンが不正です', JSON_UNESCAPED_UNICODE);
+        }
 
         if($cipher->keycheck($key,$osid)){
 
