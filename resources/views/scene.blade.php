@@ -343,15 +343,30 @@
                         </div>
                             </div>
 
-
-                            <input type="text" class="form-control" name="productname" id="parenttext" value="" readonly="readonly"/>
-                            <input type="text" class="form-control" name="genrename" id="parentgenrename" value="" readonly="readonly"/>
+                            <style>
+                                input{
+                                    margin: 10px;
+                                }
+                            </style>
+                            <input type="text" class="form-control" name="productname" id="parenttext" placeholder="商品名" readonly="readonly"/>
+                            <input type="text" class="form-control" name="genrename" id="parentgenrename" placeholder="ジャンル" readonly="readonly"/>
+                            <!-- ジャンルid、画像情報はhiddenで外に-->
                             <input type="hidden" class="form-control" name="genreid" id="parentgenreid" value="" readonly="readonly"/>
                             <input type="hidden" class="form-control" name="image" id="parentimage" value="" readonly="readonly"/>
                         <div class="col-md-4">
+                            <style>
+                            textarea{
+                            margin:15px 0 10px; 0;
+                            }
+                            </style>
                             <textarea name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
                         {{--</div>--}}
                         {{--<div class="col-md-6">--}}
+                            <style>
+                                select{
+                                    margin:5px;
+                                }
+                            </style>
                             <p>評価
                                 <select id="rate" name="rate" size="1">
                                     <option value="5">★★★★★</option>
@@ -362,10 +377,20 @@
                                 </select></p><br>
                         </div>
                             <div class="col-md-4">
+                                <style>
+                                    input{
+                                        margin: 5px;
+                                    }
+                                </style>
                                 <input type="radio" name="wantgood" value="1" checked>もらったもの
                                 <input type="radio" name="wantgood" value="2">欲しいもの
                             </div>
                             <div class="col-md-4">
+                                <style>
+                                    select{
+                                        margin:5px;
+                                    }
+                                </style>
                                 シーン:
                                 <select id="scene" name="scene">
                                     <option value="1">誕生日</option>
@@ -438,6 +463,11 @@
 
                         @endif
                         <div class="col-md-4">
+                            <style>
+                                label{
+                                    margin:17px 0 0 0;
+                                }
+                            </style>
                             <label class="my-file-input"><input type="submit" class="send" name="send">登録する</label>
                         </div>
                             <style>
