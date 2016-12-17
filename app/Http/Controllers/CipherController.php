@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\UserInfo;
 use DB;
 use Validator;
 use Auth;
@@ -16,7 +17,76 @@ class CipherController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     public function show(){
-        return view('welcome');
+
+    }
+
+    public function token_changeprof(){
+
+        //キーチェック
+        if(!isset($_POST['key'])){
+            $error = 'キーがありません';
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
+        }
+        $key = $_POST['key'];
+
+        //キーが正しければトークンを検査する
+        if($this->keycheck($key,1)){
+            if(!isset($_POST['token'])){
+                $error = 'トークンがありません';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
+            $token = $_POST['token'];
+
+            if($this->token_check($token)){
+
+                $id = $this->token_getid($token);
+
+                if(!isset($_POST['name'])){
+                    $error = '名前がありません';
+                    return json_encode($error, JSON_UNESCAPED_UNICODE);
+                }
+                $name = $_POST['name'];
+
+                if(!isset($_POST['email'])){
+                    $error = 'メールアドレスがありません';
+                    return json_encode($error, JSON_UNESCAPED_UNICODE);
+                }
+                $email = $_POST['email'];
+
+                if(!isset($_POST['age'])){
+                    $error = '年代がありません';
+                    return json_encode($error, JSON_UNESCAPED_UNICODE);
+                }
+                $age = $_POST['age'];
+
+                if(!isset($_POST['sex'])){
+                    $error = '性別がありません';
+                    return json_encode($error, JSON_UNESCAPED_UNICODE);
+                }
+                $sex = $_POST['sex'];
+
+                if(!isset($_POST['hobbies_id'])){
+                    $error = '趣味がありません';
+                    return json_encode($error, JSON_UNESCAPED_UNICODE);
+                }
+                $hobbies_id = $_POST['hobbies_id'];
+
+                UserInfo::where('id',$id)
+                    ->update(['name'=>$name,'email'=>$email,
+                        'age'=>$age,'sex'=>$sex,'hobbies_id'=>$hobbies_id]);
+
+                return json_encode('ok',256);
+
+            }else{
+                $error = 'トークンが正しくありません';
+                return json_encode($error,JSON_UNESCAPED_UNICODE);
+            }
+
+        }else{
+            $error = 'キーが正しくありません';
+            return json_encode($error,JSON_UNESCAPED_UNICODE);
+        }
+
     }
 
     //トークンからユーザーidを返す
@@ -34,7 +104,7 @@ class CipherController extends Controller
         }
     }
 
-    //トークンが存在する検査する
+    //トークンが存在するか検査する
     public function token_check($token){
 
         $flag = DB::table('users')->where([['access_token','=',$token]])
