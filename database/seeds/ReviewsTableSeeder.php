@@ -20,7 +20,7 @@ class ReviewsTableSeeder extends Seeder
             'rate' => '4',
             'scenes_id' => '1',
             'goodstypes_id' => 1,
-            'created_at' => date("Y-m-d H:i:s"),
+            'created_at' => date("Y-m-d H:i:s",strtotime('2016-10-16')),
 
         ]);
         DB::table('reviews')->insert([
@@ -30,7 +30,7 @@ class ReviewsTableSeeder extends Seeder
             'rate' => '5',
             'scenes_id' => '1',
             'goodstypes_id' => 1,
-            'created_at' => date("Y-m-d H:i:s"),
+            'created_at' => date("Y-m-d H:i:s",strtotime('2016-10-16')),
 
         ]);
         DB::table('reviews')->insert([
@@ -40,7 +40,7 @@ class ReviewsTableSeeder extends Seeder
             'rate' => '3',
             'scenes_id' => '1',
             'goodstypes_id' => 1,
-            'created_at' => date("Y-m-d H:i:s"),
+            'created_at' => date("Y-m-d H:i:s",strtotime('2016-10-16')),
 
         ]);
         DB::table('reviews')->insert([
@@ -50,7 +50,7 @@ class ReviewsTableSeeder extends Seeder
             'rate' => '4',
             'scenes_id' => '2',
             'goodstypes_id' => 1,
-            'created_at' => date("Y-m-d H:i:s"),
+            'created_at' => date("Y-m-d H:i:s",strtotime('2016-10-16')),
 
         ]);
         DB::table('reviews')->insert([
@@ -110,6 +110,40 @@ class ReviewsTableSeeder extends Seeder
             'scenes_id' => '1',
             'goodstypes_id' => 1,
             'created_at' => date("Y-m-d H:i:s"),
+        ]);
+
+
+        //want
+
+        DB::table('reviews')->insert([
+            'getgoods_id' => '1',
+            'users_id' => '481',
+            'comment' => 'おいしいです',
+            'rate' => '4',
+            'scenes_id' => '1',
+            'goodstypes_id' => 2,
+            'created_at' => date("Y-m-d H:i:s",strtotime('2016-10-15')),
+
+        ]);
+        DB::table('reviews')->insert([
+            'getgoods_id' => '1',
+            'users_id' => '482',
+            'comment' => 'おいしい！',
+            'rate' => '5',
+            'scenes_id' => '1',
+            'goodstypes_id' => 2,
+            'created_at' => date("Y-m-d H:i:s",strtotime('2016-10-14')),
+
+        ]);
+        DB::table('reviews')->insert([
+            'getgoods_id' => '1',
+            'users_id' => '485',
+            'comment' => 'Very Delicious',
+            'rate' => '3',
+            'scenes_id' => '1',
+            'goodstypes_id' => 2,
+            'created_at' => date("Y-m-d H:i:s",strtotime('2016-10-13')),
+
         ]);
 
     }
