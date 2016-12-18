@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Review;
-use App\User;
 use Validator;
 use Request;
 use Auth;
 use Session;
 use Response;
 use App\Getgoods;
+use App\UserInfo;
 
 class UploadController extends Controller
 {
@@ -38,22 +38,21 @@ class UploadController extends Controller
 //--------------------------------------商品登録--------------------------------------------
 
         // 商品名取得
-        $syohin = Request::input('productname');
+        $syohin = Request::get('productname');
 
         // ジャンル番号を取得
-        $genres = (int)Request::input('genreid');
+        $genres = (int)Request::get('genreid');
 
         // アップロード画像を取得
-//        $image = Request::file('image');
-//
-//        // ファイル名を生成し画像をアップロード
+        $image = Request::input('image');
+
+//        //ファイル名を生成し画像をアップロード
 //        $name = md5(sha1(uniqid(mt_rand(), true))) . '.' . $image->getClientOriginalExtension();
 //        $image->move('media', $name);
 //
 //        // 画像保存先pathとファイル名を連結
 //        $path = '/media/' . $name;
-
-$path = 'aiueo';
+        $path = '/media/' . $image;
 
         //url生成
         $url = 'https://www.amazon.co.jp/gp/search/ref=nb_sb_noss_1?__mk_ja_JP=%E3%82%AB%E3%
@@ -75,19 +74,18 @@ $path = 'aiueo';
         //id用変数
         $user_id = -1;
 
-        //ログインしているかで取得するidを変更
-        if(Auth::guest()) {
+        if(Auth::check()) {
+            // ログインユーザーID取得し、connectをtrueに
+            $user_id = Auth::user()->id;
+            UserInfo::where('id', $user_id)->update(['connect'=>true]);
+        }else{
             //ゲストユーザーid取得用データ取得
             $sex = Request::get('sex');
             $age = (int)Request::get('age');
             $hobbies = (int)Request::get('hobbies_id');
             //ゲストユーザーid取得
-            $user_id = User::where('sex', $sex)->where('age', $age)->where('hobbies_id', $hobbies)->get(['id']);
-        }else{
-            // ログインユーザーID取得し、connectをtrueに
-            $user_id = Auth::user()->id;
-            User::where('id', $user_id)->update(['connect'=>true]);
-
+            $id = UserInfo::where('sex', $sex)->where('age', $age)->where('hobbies_id', $hobbies)->get(['id'])->toArray();
+            $user_id = $id[0]['id'];
         }
 
         //コメント・評価点数・シーン取得
@@ -101,18 +99,13 @@ $path = 'aiueo';
         $getgoods_table = Getgoods::all();
 
         //商品名からidを取得
-        foreach ($getgoods_table as $getgoods) {
-            if($syohin == $getgoods['name']){
-                $getgoods_id = $getgoods['id'];
-                break;
-            }
-        }
+        $getgoods_id = Getgoods::where('name', $syohin)->get(['id'])->toArray();
 
         // 商品タイプ取得
         $goods_type = (int)Request::input('wantgood');
 
-        $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scene,
-                           'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
+        $review = array('getgoods_id' => $getgoods_id[0]['id'], 'users_id' => $user_id, 'scenes_id' => $scene,
+            'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
         Review::create($review);
 
 //--------------------------------------レビュー--------------------------------------------
@@ -136,6 +129,18 @@ $path = 'aiueo';
             }
         }
         return Response::make("OK", 200);
+    }
+
+    public function imageTemp(){
+
+        $image = Request::file('image');
+
+        //ファイル名を生成し画像をアップロード
+        $name = md5(sha1(uniqid(mt_rand(), true))) . '.' . $image->getClientOriginalExtension();
+        $image->move('temp', $name);
+
+        return Response::make('/temp/'.$name, 200);
+
     }
 
 }
