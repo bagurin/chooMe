@@ -44,7 +44,7 @@ class UploadController extends Controller
         $genres = (int)Request::get('genreid');
 
         // アップロード画像を取得
-        $image = Request::input('image');
+        $image = Request::get('image');
 
 //        //ファイル名を生成し画像をアップロード
 //        $name = md5(sha1(uniqid(mt_rand(), true))) . '.' . $image->getClientOriginalExtension();

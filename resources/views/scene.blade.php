@@ -455,31 +455,26 @@
                                 }
                             </style>
                         </form>
-                        {{--<script type="text/javascript">--}}
-                            {{--$('form').submit(function(event) {--}}
-                                {{--// HTMLでの送信をキャンセル--}}
-                                {{--event.preventDefault();--}}
-                                {{--// 操作対象のフォーム要素を取得--}}
-                                {{--var $form = $(this);--}}
-                                {{--// 送信--}}
-                                {{--$.ajax({--}}
-                                    {{--url: $form.attr('action'),--}}
-                                    {{--type: $form.attr('method'),--}}
-                                    {{--data: $form.serialize(),--}}
+                        <script type="text/javascript">
+                            $('form').submit(function(event) {
+                                // HTMLでの送信をキャンセル
+                                event.preventDefault();
+                                // 操作対象のフォーム要素を取得
+                                var $form = $(this);
+                                // 送信
+                                $.ajax({
+                                    url: $form.attr('action'),
+                                    type: $form.attr('method'),
+                                    data: $form.serialize(),
 
-                                    {{--// 通信成功時の処理--}}
-                                    {{--success: function(result) {--}}
-                                        {{--// 入力値を初期化--}}
-                                        {{--$form[0].reset();--}}
-                                        {{--//モーダル閉じる--}}
-                                        {{--$.magnificPopup.close();--}}
-                                    {{--},--}}
-                                    {{--error: function() {--}}
-                                        {{--alert("すでに登録されています。商品検索からレビューをお願いします。");--}}
-                                    {{--}--}}
-                                {{--});--}}
-                            {{--});--}}
-                        {{--</script>--}}
+                                    // 通信成功時の処理
+                                    success: function() {
+                                        //モーダル閉じる
+                                        $.magnificPopup.close();
+                                    }
+                                });
+                            });
+                        </script>
                     </div>
 
 

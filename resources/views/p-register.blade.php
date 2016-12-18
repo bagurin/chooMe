@@ -87,7 +87,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             parent.document.registform.productname.value = document.getElementById("name").value;
             parent.document.registform.genreid.value = document.getElementById("genre").value;
             parent.document.registform.genrename.value = genres[document.getElementById("genre").value - 1];
-            parent.document.registform.image.value = document.getElementById("image").value;
+            parent.document.registform.image.value = document.getElementById("image").files[0].name;
 
 //            $("#parenttext",parent.document).value = document.getElementById("name").value;
 //            $("#parentgenre",parent.document).value = document.getElementById("genre").value;
