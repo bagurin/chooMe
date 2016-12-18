@@ -160,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </script>
             <table class="table table-bordered" id="result-table">
                 <thead>
-                <tr><th>商品名</th><th>ジャンル</th><th>商品画像</thth></tr>
+                <tr><th>商品名</th><th>ジャンル</th><th>商品画像</th><th></tr>
                 </thead>
                 <tbody>
             <?php
