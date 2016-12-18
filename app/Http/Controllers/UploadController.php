@@ -40,16 +40,6 @@ class UploadController extends Controller
         // 商品名取得
         $syohin = Request::input('name');
 
-        // テーブル全件取得
-        $getgoods_table = Getgoods::all();
-
-        foreach ($getgoods_table as $getgoods) {
-            // 同じ商品があったら
-            if ($syohin == $getgoods['name']) {
-                return Response::make("NG", 500);
-            }
-        }
-
         // ジャンル番号を取得
         $genres = (int)Request::input('genres');
 
@@ -127,6 +117,23 @@ class UploadController extends Controller
 
         return Response::make("OK", 200);
 
+    }
+
+    public function nameCheck(){
+
+        // 商品名取得
+        $syohin = Request::input('name');
+
+        // テーブル全件取得
+        $getgoods_table = Getgoods::all();
+
+        foreach ($getgoods_table as $getgoods) {
+            // 同じ商品があったら
+            if ($syohin == $getgoods['name']) {
+                return Response::make("NG", 500);
+            }
+        }
+        return Response::make("OK", 200);
     }
 
 }

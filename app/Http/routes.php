@@ -78,6 +78,8 @@ Route::get('/search/', function(){
     return view('search');
 });
 
+Route::post('/check/', 'UploadController@nameCheck');
+
 //おでん追加
 Route::get('/p-register/', function(){
     return view('p-register');
