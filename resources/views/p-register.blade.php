@@ -117,14 +117,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     {{ csrf_field() }}
     <div class="form-group">
-        <div class="col-md-3">
-           <input type="text" id="name" name="name" placeholder="商品名">
-        </div>
-        <div class="col-md-3">
-         <input type="submit" value="重複チェック">
-          <input type="text" placeholder="重複チェック結果" readonly="readonly">
-        </div>
+        <form id="check" method="post" action="{{url('/check/')}}">
+            {{ csrf_field() }}
+            <div class="col-md-3">
+                <input type="text" id="name" name="name" placeholder="商品名">
+            </div>
+            <div class="col-md-3">
+                <input type="submit" value="重複チェック">
+                <input type="text" id="checkResult" disabled="disabled" style=border:none>
+            </div>
+        </form>
     </div>
+
+    <script type="text/javascript"> 
+        $('#check').submit(function(event) { 
+            // HTMLでの送信をキャンセル 
+            event.preventDefault(); 
+            // 操作対象のフォーム要素を取得 
+            var $form = $(this); 
+            //テキストボックス取得
+            var result = document.getElementById('checkResult');
+            // 送信 
+            $.ajax({ 
+                url: $form.attr('action'), 
+                type: $form.attr('method'), 
+                data: $form.serialize(),  
+                // 通信成功時の処理 
+                success: function() {
+                    //重複なし文表示 
+                    result.value = 'ＯＫ';
+                } ,
+                error: function(){
+                    //エラー文表示
+                    result.value = '既に登録されてます';
+                }
+            }); 
+        });
+     </script>
+
     {{--<input type="submit" id="check" name="check" value="重複チェック">--}}
     <div class="form-group">
         <div class="col-md-12">
