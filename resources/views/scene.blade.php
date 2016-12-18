@@ -159,7 +159,52 @@
 
 <script>
     var formch = 0;
+    function wantch(){
+            document.forms.registform.comment.placeholder = "欲しい理由(100文字以内)";
+
+
+    }
+    function reviewch(){
+        document.forms.registform.comment.placeholder = "レビュー(100文字以内)";
+    }
 </script>
+
+    <script>
+        $(function(){
+            $('#registform').submit(function(){
+                var name = $('#parenttext').val();
+                if(name.length == 0){
+                    alert("商品が指定されていません。\n商品を新規に登録するか、検索して商品を選択してください。");
+                    return false;
+                };
+            });
+        });
+
+        $(function() {
+            changeSelect();
+
+            $("input[name=wantgood]").on('change', function() {
+                changeSelect();
+            });
+        });
+
+        function changeSelect() {
+            $("#select").empty();
+            $("#select").append($("#rate option").clone());
+
+            if ($("input[name=wantgood]:checked").val() == 1) {
+                $("#select").val(5);
+                $("#select option[value=0]").remove();
+                $("#select").removeAttr("hidden");
+                $("#ratelabel").removeAttr("hidden");
+            } else if ($("input[name=wantgood]:checked").val() == 2) {
+                $("#select").attr("hidden", "hidden");
+                $("#ratelabel").attr("hidden","hidden")
+                $("#select").val(4);
+            }
+        }
+
+    </script>
 
 
 
@@ -183,123 +228,16 @@
                 </div>
                 <section>
                     <div class="modal-body">
-                        <form enctype="multipart/form-data" method="post" name="registform" action="{{url('/register-and-review/')}}">
+                        <form enctype="multipart/form-data" method="post" name="registform" action="{{url('/register-and-review/')}}" id="registform">
                         {{--<div class="w3_login_module">--}}
                         <div class="col-md-8">
                         <div class="module form-module2">
                             <div class="toggle"><i class="fa fa-times fa-pencil"></i>
-                                <div class="tooltip">レビューのみ</div>
+                                <div class="tooltip">商品検索</div>
                             </div>
                             <div class="form" name="form1">
 
-                                {{--<div class="col-md-12 well">--}}
-                                    {{--データベースに商品の登録とレビュー・評価を投稿します。<br>--}}
-                                {{--</div>--}}
 
-
-
-                                {{--<!-- general -->--}}
-
-
-                                    {{--{{ csrf_field() }}--}}
-                                    {{--<div class="col-md-5">--}}
-                                        {{--<input type="text" id="name" name="name" placeholder="商品名">--}}
-                                    {{--</div>--}}
-                                    {{--<input type="submit" id="check" name="check" value="重複チェック">--}}
-                                    {{--<div class="col-md-12">--}}
-                                        {{--ジャンル:--}}
-                                        {{--<select id="genre" name="genres">--}}
-                                            {{--<option value="1">本</option>--}}
-                                            {{--<option value="2">DVD・音楽</option>--}}
-                                            {{--<option value="3">TVゲーム</option>--}}
-                                            {{--<option value="4">家電・カメラ・AV機器</option>--}}
-                                            {{--<option value="5">パソコン・オフィス用品</option>--}}
-                                            {{--<option value="6">ホーム&キッチン・DIY</option>--}}
-                                            {{--<option value="7">食品・飲料・お酒</option>--}}
-                                            {{--<option value="8">ドラッグ・ビューティ</option>--}}
-                                            {{--<option value="9">ベビー・おもちゃ</option>--}}
-                                            {{--<option value="10">服</option>--}}
-                                            {{--<option value="11">シューズ</option>--}}
-                                            {{--<option value="12">バッグ</option>--}}
-                                            {{--<option value="13">腕時計</option>--}}
-                                            {{--<option value="14">スポーツ&アウトドア</option>--}}
-                                            {{--<option value="15">車&バイク</option>--}}
-                                        {{--</select><br>--}}
-                                    {{--</div>--}}
-
-                                    {{--<div class="col-md-12">--}}
-                                        {{--<style>--}}
-                                            {{--label {--}}
-                                                {{--margin-left: 0em;--}}
-                                            {{--}--}}
-                                            {{--.my-file-input {--}}
-                                                {{--display: inline-block;--}}
-                                                {{--padding: 5px;--}}
-                                                {{--width: 200px;--}}
-                                                {{--text-align: center;--}}
-                                                {{--white-space: nowrap;--}}
-                                                {{--overflow: hidden;--}}
-                                                {{--font-size: 14px;--}}
-                                                {{--text-overflow: ellipsis;--}}
-                                                {{--background-color: #ff9393;--}}
-                                                {{--color: white;--}}
-                                                {{--box-shadow: #888 2px 2px 1px;--}}
-                                                {{--cursor: pointer;--}}
-                                            {{--}--}}
-                                            {{--.my-file-input:hover {--}}
-                                                {{--background-color: #fc6c6c;--}}
-                                            {{--}--}}
-                                            {{--.my-file-input:hover {--}}
-                                                {{--background-color: #fc6c6c;--}}
-                                            {{--}--}}
-                                            {{--.my-file-input:active {--}}
-                                                {{--box-shadow: #f75454 1px 1px 1px;--}}
-                                                {{--position: relative;--}}
-                                                {{--top: 1px; left: 1px;--}}
-                                            {{--}--}}
-                                            {{--.my-file-input input {--}}
-                                                {{--display: none;--}}
-                                            {{--}--}}
-                                        {{--</style>--}}
-
-
-                                        {{--<label class="my-file-input">--}}
-                                            {{--<input type="file" id="image" name="image" accept="image/*">商品画像を選択--}}
-                                        {{--</label>--}}
-                                        {{--<img src="" id="sub" name="image" style="display:none;">--}}
-                                        {{--<script>--}}
-                                            {{--document.getElementById("image").addEventListener("change", function(e){--}}
-                                                {{--e.target.nextSibling.nodeValue = e.target.files.length ? e.target.files[0].name : "商品画像を選択";--}}
-                                            {{--});--}}
-                                        {{--</script>--}}
-                                        {{--<style>--}}
-                                            {{--form .upload label {--}}
-                                                {{--display:inline-block; position:relative;--}}
-                                                {{--overflow:hidden; vertical-align:middle; }--}}
-                                            {{--form .upload label input[type="file"] {--}}
-                                                {{--position:absolute; top:0; right:0; cursor:pointer;--}}
-                                                {{--font-size:100px; opacity:0.01; -ms-filter:"alpha(opacity=1)"; }--}}
-                                            {{--form .upload label input[type="file"]:hover + .button {}--}}
-                                            {{--form .upload .alt  {--}}
-                                                {{--padding:4px; border:1px solid #999; vertical-align:middle; }--}}
-                                        {{--</style>--}}
-                                        {{--<br>--}}
-                                        {{--<label class="my-file-input" onClick="SendPname()"><input type="button" onClick="SendPname()">商品情報確定</label>--}}
-                                    {{--</div>--}}
-
-
-
-
-                                    {{--<div class="well">--}}
-                                    {{--商品のレビューと評価（5段階）を登録します。--}}
-                                    {{--</div>--}}
-
-
-
-
-                                    {{--{{ csrf_field() }}--}}
-
-                                    {{--<input type="text" name="name" id="name" readonly="readonly" value="{{ $name }}"><br>--}}
                             <section>
                                 <iframe height="100%" frameborder="0" src="/p-register/">
 
@@ -348,7 +286,7 @@
                                     margin: 10px;
                                 }
                             </style>
-                            <input type="text" class="form-control" name="productname" id="parenttext" placeholder="商品名" readonly="readonly"/>
+                            <input type="text" class="form-control" name="productname" id="parenttext" value="" placeholder="商品名"  readonly="readonly"/>
                             <input type="text" class="form-control" name="genrename" id="parentgenrename" placeholder="ジャンル" readonly="readonly"/>
                             <!-- ジャンルid、画像情報はhiddenで外に-->
                             <input type="hidden" class="form-control" name="genreid" id="parentgenreid" value="" readonly="readonly"/>
@@ -356,7 +294,7 @@
                         <div class="col-md-4">
                             <style>
                             textarea{
-                            margin:15px 0 10px; 0;
+                            margin:15px 0 10px 0;
                             }
                             </style>
                             <textarea name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
@@ -366,9 +304,14 @@
                                 select{
                                     margin:5px;
                                 }
+                                .nodisp{
+                                    display: none;
+                                }
                             </style>
-                            <p>評価
-                                <select id="rate" name="rate" size="1">
+                            <p id="ratelabel">評価
+                                <select id="select">
+                                </select>
+                                <select id="rate" name="rate" class="nodisp" size="1">
                                     <option value="5">★★★★★</option>
                                     <option value="4">★★★★☆</option>
                                     <option value="3">★★★☆☆</option>
@@ -381,9 +324,15 @@
                                     input{
                                         margin: 5px;
                                     }
+
                                 </style>
-                                <input type="radio" name="wantgood" value="1" checked>もらったもの
-                                <input type="radio" name="wantgood" value="2">欲しいもの
+
+
+
+                                <input type="radio" name="wantgood" value="1" id="good" onclick="reviewch()" checked>もらったもの
+                                <input type="radio" name="wantgood" value="2" id="want" onclick="wantch()">欲しいもの
+
+
                             </div>
                             <div class="col-md-4">
                                 <style>
@@ -468,7 +417,9 @@
                                     margin:17px 0 0 0;
                                 }
                             </style>
-                            <label class="my-file-input"><input type="submit" class="send" name="send">登録する</label>
+                            <label class="my-file-input">
+                                <input type="submit" class="send" name="send" id="send" >
+                                登録する</label>
                         </div>
                             <style>
                                 label {
@@ -504,31 +455,31 @@
                                 }
                             </style>
                         </form>
-                        <script type="text/javascript">
-                            $('form').submit(function(event) {
-                                // HTMLでの送信をキャンセル
-                                event.preventDefault();
-                                // 操作対象のフォーム要素を取得
-                                var $form = $(this);
-                                // 送信
-                                $.ajax({
-                                    url: $form.attr('action'),
-                                    type: $form.attr('method'),
-                                    data: $form.serialize(),
+                        {{--<script type="text/javascript">--}}
+                            {{--$('form').submit(function(event) {--}}
+                                {{--// HTMLでの送信をキャンセル--}}
+                                {{--event.preventDefault();--}}
+                                {{--// 操作対象のフォーム要素を取得--}}
+                                {{--var $form = $(this);--}}
+                                {{--// 送信--}}
+                                {{--$.ajax({--}}
+                                    {{--url: $form.attr('action'),--}}
+                                    {{--type: $form.attr('method'),--}}
+                                    {{--data: $form.serialize(),--}}
 
-                                    // 通信成功時の処理
-                                    success: function(result) {
-                                        // 入力値を初期化
-                                        $form[0].reset();
-                                        //モーダル閉じる
-                                        $.magnificPopup.close();
-                                    },
-                                    error: function() {
-                                        alert("すでに登録されています。商品検索からレビューをお願いします。");
-                                    }
-                                });
-                            });
-                        </script>
+                                    {{--// 通信成功時の処理--}}
+                                    {{--success: function(result) {--}}
+                                        {{--// 入力値を初期化--}}
+                                        {{--$form[0].reset();--}}
+                                        {{--//モーダル閉じる--}}
+                                        {{--$.magnificPopup.close();--}}
+                                    {{--},--}}
+                                    {{--error: function() {--}}
+                                        {{--alert("すでに登録されています。商品検索からレビューをお願いします。");--}}
+                                    {{--}--}}
+                                {{--});--}}
+                            {{--});--}}
+                        {{--</script>--}}
                     </div>
 
 

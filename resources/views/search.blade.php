@@ -44,6 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
 
         });
+
     </script>
 
     <!-- Magnific Popup core CSS file -->
@@ -75,7 +76,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
 <div class="well">
-    データベース内から、入力した文字列に似た商品名を持つ商品を検索します。
+    検索した商品からレビューを登録します。
 </div>
 <style>
     .searchbar input[type="text"] {
