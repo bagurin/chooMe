@@ -195,9 +195,11 @@
             if ($("input[name=wantgood]:checked").val() == 1) {
                 $("#select").val(5);
                 $("#select option[value=0]").remove();
-                $("#select").removeAttr("disabled");
+                $("#select").removeAttr("hidden");
+                $("#ratelabel").removeAttr("hidden");
             } else if ($("input[name=wantgood]:checked").val() == 2) {
-                $("#select").attr("disabled", "disabled");
+                $("#select").attr("hidden", "hidden");
+                $("#ratelabel").attr("hidden","hidden")
                 $("#select").val(4);
             }
         }
@@ -306,7 +308,7 @@
                                     display: none;
                                 }
                             </style>
-                            <p>評価
+                            <p id="ratelabel">評価
                                 <select id="select">
                                 </select>
                                 <select id="rate" name="rate" class="nodisp" size="1">
@@ -315,7 +317,7 @@
                                     <option value="3">★★★☆☆</option>
                                     <option value="2">★★☆☆☆</option>
                                     <option value="1">★☆☆☆☆</option>
-                                </select><label><font size="1">※欲しいものの場合は評価4固定</font></label></p><br>
+                                </select></p><br>
                         </div>
                             <div class="col-md-4">
                                 <style>
