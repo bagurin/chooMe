@@ -64,20 +64,21 @@ class ReviewController extends Controller
             $age = (int)Request::get('age');
             $hobbies = (int)Request::get('hobbies_id');
             //ゲストユーザーid取得
-            $user_id = UserInfo::where('sex', $sex)->where('age', $age)->where('hobbies_id', $hobbies)->get(['id'])->toArray();
+            $id = UserInfo::where('sex', $sex)->where('age', $age)->where('hobbies_id', $hobbies)->get(['id'])->toArray();
+            $user_id = $id[0]['id'];
         }
 
         // 名前・コメント・評価点数・商品タイプ取得
-        $syohin = Request::get('name');
+        $syohin = Request::get('productname');
         $comment = Request::get('comment');
         $rate = Request::get('rate');
         $goods_type = (int)Request::input('wantgood');
         $scene = Request::get('scene');
 
         //商品名からidを取得
-        $getgoods_id = Getgoods::where('name', $syohin)->get(['id']);
+        $getgoods_id = Getgoods::where('name', $syohin)->get(['id'])->toArray();
 
-        $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id[0]['id'], 'scenes_id' => $scene,
+        $review = array('getgoods_id' => $getgoods_id[0]['id'], 'users_id' => $user_id, 'scenes_id' => $scene,
             'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
         Review::create($review);
 

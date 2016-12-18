@@ -19,49 +19,41 @@ class UploadController extends Controller
 
 //-----------------------------------バリデート-------------------------------------------
 
-        $rules = [
-            'name' => 'required',
-            'image' => 'required',
-            'comment' => 'required',
-        ];
-
-        $messages = [
-            'name.required' => '商品名を入力してください',
-            'image.required' => '画像を添付してください',
-            'comment.repuired' => 'レビューを入力してください'
-        ];
-
-        $this->validate($request, $rules, $messages);
+//        $rules = [
+//            'name' => 'required',
+//            'image' => 'required',
+//            'comment' => 'required',
+//        ];
+//
+//        $messages = [
+//            'name.required' => '商品名を入力してください',
+//            'image.required' => '画像を添付してください',
+//            'comment.repuired' => 'レビューを入力してください'
+//        ];
+//
+//        $this->validate($request, $rules, $messages);
 
 //-----------------------------------バリデート-------------------------------------------
 
 //--------------------------------------商品登録--------------------------------------------
 
         // 商品名取得
-        $syohin = Request::input('name');
-
-        // テーブル全件取得
-        $getgoods_table = Getgoods::all();
-
-        foreach ($getgoods_table as $getgoods) {
-            // 同じ商品があったら
-            if ($syohin == $getgoods['name']) {
-                return Response::make("NG", 500);
-            }
-        }
+        $syohin = Request::input('productname');
 
         // ジャンル番号を取得
-        $genres = (int)Request::input('genres');
+        $genres = (int)Request::input('genreid');
 
         // アップロード画像を取得
-        $image = Request::file('image');
+//        $image = Request::file('image');
+//
+//        // ファイル名を生成し画像をアップロード
+//        $name = md5(sha1(uniqid(mt_rand(), true))) . '.' . $image->getClientOriginalExtension();
+//        $image->move('media', $name);
+//
+//        // 画像保存先pathとファイル名を連結
+//        $path = '/media/' . $name;
 
-        // ファイル名を生成し画像をアップロード
-        $name = md5(sha1(uniqid(mt_rand(), true))) . '.' . $image->getClientOriginalExtension();
-        $image->move('media', $name);
-
-        // 画像保存先pathとファイル名を連結
-        $path = '/media/' . $name;
+$path = 'aiueo';
 
         //url生成
         $url = 'https://www.amazon.co.jp/gp/search/ref=nb_sb_noss_1?__mk_ja_JP=%E3%82%AB%E3%
@@ -88,7 +80,7 @@ class UploadController extends Controller
             //ゲストユーザーid取得用データ取得
             $sex = Request::get('sex');
             $age = (int)Request::get('age');
-            $hobbies = Request::get('hobbies_id');
+            $hobbies = (int)Request::get('hobbies_id');
             //ゲストユーザーid取得
             $user_id = User::where('sex', $sex)->where('age', $age)->where('hobbies_id', $hobbies)->get(['id']);
         }else{
@@ -127,6 +119,23 @@ class UploadController extends Controller
 
         return Response::make("OK", 200);
 
+    }
+
+    public function nameCheck(){
+
+        // 商品名取得
+        $syohin = Request::input('name');
+
+        // テーブル全件取得
+        $getgoods_table = Getgoods::all();
+
+        foreach ($getgoods_table as $getgoods) {
+            // 同じ商品があったら
+            if ($syohin == $getgoods['name']) {
+                return Response::make("NG", 500);
+            }
+        }
+        return Response::make("OK", 200);
     }
 
 }

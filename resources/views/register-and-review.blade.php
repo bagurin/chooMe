@@ -156,8 +156,8 @@
                         </div>
                         <div class="col-md-3">
                             性別:
-                            <input type="radio" name="sex" value="1" checked>男
-                            <input type="radio" name="sex" value="2">女
+                            <input type="radio" name="sex" value="男" checked>男
+                            <input type="radio" name="sex" value="女">女
                         </div>
                         <div class="col-md-5">
                             年齢:
