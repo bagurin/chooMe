@@ -159,6 +159,14 @@
 
 <script>
     var formch = 0;
+    function wantch(){
+            document.forms.registform.comment.placeholder = "欲しい理由(100文字以内)";
+
+
+    }
+    function reviewch(){
+        document.forms.registform.comment.placeholder = "レビュー(100文字以内)";
+    }
 </script>
 
     <script>
@@ -171,6 +179,29 @@
                 };
             });
         });
+
+        $(function() {
+            changeSelect();
+
+            $("input[name=wantgood]").on('change', function() {
+                changeSelect();
+            });
+        });
+
+        function changeSelect() {
+            $("#select").empty();
+            $("#select").append($("#rate option").clone());
+
+            if ($("input[name=wantgood]:checked").val() == 1) {
+                $("#select").val(5);
+                $("#select option[value=0]").remove();
+                $("#select").removeAttr("disabled");
+            } else if ($("input[name=wantgood]:checked").val() == 2) {
+                $("#select").attr("disabled", "disabled");
+                $("#select").val(4);
+            }
+        }
+
     </script>
 
 
@@ -204,114 +235,7 @@
                             </div>
                             <div class="form" name="form1">
 
-                                {{--<div class="col-md-12 well">--}}
-                                    {{--データベースに商品の登録とレビュー・評価を投稿します。<br>--}}
-                                {{--</div>--}}
 
-
-
-                                {{--<!-- general -->--}}
-
-
-                                    {{--{{ csrf_field() }}--}}
-                                    {{--<div class="col-md-5">--}}
-                                        {{--<input type="text" id="name" name="name" placeholder="商品名">--}}
-                                    {{--</div>--}}
-                                    {{--<input type="submit" id="check" name="check" value="重複チェック">--}}
-                                    {{--<div class="col-md-12">--}}
-                                        {{--ジャンル:--}}
-                                        {{--<select id="genre" name="genres">--}}
-                                            {{--<option value="1">本</option>--}}
-                                            {{--<option value="2">DVD・音楽</option>--}}
-                                            {{--<option value="3">TVゲーム</option>--}}
-                                            {{--<option value="4">家電・カメラ・AV機器</option>--}}
-                                            {{--<option value="5">パソコン・オフィス用品</option>--}}
-                                            {{--<option value="6">ホーム&キッチン・DIY</option>--}}
-                                            {{--<option value="7">食品・飲料・お酒</option>--}}
-                                            {{--<option value="8">ドラッグ・ビューティ</option>--}}
-                                            {{--<option value="9">ベビー・おもちゃ</option>--}}
-                                            {{--<option value="10">服</option>--}}
-                                            {{--<option value="11">シューズ</option>--}}
-                                            {{--<option value="12">バッグ</option>--}}
-                                            {{--<option value="13">腕時計</option>--}}
-                                            {{--<option value="14">スポーツ&アウトドア</option>--}}
-                                            {{--<option value="15">車&バイク</option>--}}
-                                        {{--</select><br>--}}
-                                    {{--</div>--}}
-
-                                    {{--<div class="col-md-12">--}}
-                                        {{--<style>--}}
-                                            {{--label {--}}
-                                                {{--margin-left: 0em;--}}
-                                            {{--}--}}
-                                            {{--.my-file-input {--}}
-                                                {{--display: inline-block;--}}
-                                                {{--padding: 5px;--}}
-                                                {{--width: 200px;--}}
-                                                {{--text-align: center;--}}
-                                                {{--white-space: nowrap;--}}
-                                                {{--overflow: hidden;--}}
-                                                {{--font-size: 14px;--}}
-                                                {{--text-overflow: ellipsis;--}}
-                                                {{--background-color: #ff9393;--}}
-                                                {{--color: white;--}}
-                                                {{--box-shadow: #888 2px 2px 1px;--}}
-                                                {{--cursor: pointer;--}}
-                                            {{--}--}}
-                                            {{--.my-file-input:hover {--}}
-                                                {{--background-color: #fc6c6c;--}}
-                                            {{--}--}}
-                                            {{--.my-file-input:hover {--}}
-                                                {{--background-color: #fc6c6c;--}}
-                                            {{--}--}}
-                                            {{--.my-file-input:active {--}}
-                                                {{--box-shadow: #f75454 1px 1px 1px;--}}
-                                                {{--position: relative;--}}
-                                                {{--top: 1px; left: 1px;--}}
-                                            {{--}--}}
-                                            {{--.my-file-input input {--}}
-                                                {{--display: none;--}}
-                                            {{--}--}}
-                                        {{--</style>--}}
-
-
-                                        {{--<label class="my-file-input">--}}
-                                            {{--<input type="file" id="image" name="image" accept="image/*">商品画像を選択--}}
-                                        {{--</label>--}}
-                                        {{--<img src="" id="sub" name="image" style="display:none;">--}}
-                                        {{--<script>--}}
-                                            {{--document.getElementById("image").addEventListener("change", function(e){--}}
-                                                {{--e.target.nextSibling.nodeValue = e.target.files.length ? e.target.files[0].name : "商品画像を選択";--}}
-                                            {{--});--}}
-                                        {{--</script>--}}
-                                        {{--<style>--}}
-                                            {{--form .upload label {--}}
-                                                {{--display:inline-block; position:relative;--}}
-                                                {{--overflow:hidden; vertical-align:middle; }--}}
-                                            {{--form .upload label input[type="file"] {--}}
-                                                {{--position:absolute; top:0; right:0; cursor:pointer;--}}
-                                                {{--font-size:100px; opacity:0.01; -ms-filter:"alpha(opacity=1)"; }--}}
-                                            {{--form .upload label input[type="file"]:hover + .button {}--}}
-                                            {{--form .upload .alt  {--}}
-                                                {{--padding:4px; border:1px solid #999; vertical-align:middle; }--}}
-                                        {{--</style>--}}
-                                        {{--<br>--}}
-                                        {{--<label class="my-file-input" onClick="SendPname()"><input type="button" onClick="SendPname()">商品情報確定</label>--}}
-                                    {{--</div>--}}
-
-
-
-
-                                    {{--<div class="well">--}}
-                                    {{--商品のレビューと評価（5段階）を登録します。--}}
-                                    {{--</div>--}}
-
-
-
-
-                                    {{--{{ csrf_field() }}--}}
-
-                                    {{--<input type="text" name="name" id="name" readonly="readonly" value="{{ $name }}"><br>--}}
                             <section>
                                 <iframe height="100%" frameborder="0" src="/p-register/">
 
@@ -378,24 +302,35 @@
                                 select{
                                     margin:5px;
                                 }
+                                .nodisp{
+                                    display: none;
+                                }
                             </style>
                             <p>評価
-                                <select id="rate" name="rate" size="1">
+                                <select id="select">
+                                </select>
+                                <select id="rate" name="rate" class="nodisp" size="1">
                                     <option value="5">★★★★★</option>
                                     <option value="4">★★★★☆</option>
                                     <option value="3">★★★☆☆</option>
                                     <option value="2">★★☆☆☆</option>
                                     <option value="1">★☆☆☆☆</option>
-                                </select></p><br>
+                                </select><label><font size="1">※欲しいものの場合は評価4固定</font></label></p><br>
                         </div>
                             <div class="col-md-4">
                                 <style>
                                     input{
                                         margin: 5px;
                                     }
+
                                 </style>
-                                <input type="radio" name="wantgood" value="1" checked>もらったもの
-                                <input type="radio" name="wantgood" value="2">欲しいもの
+
+
+
+                                <input type="radio" name="wantgood" value="1" id="good" onclick="reviewch()" checked>もらったもの
+                                <input type="radio" name="wantgood" value="2" id="want" onclick="wantch()">欲しいもの
+
+
                             </div>
                             <div class="col-md-4">
                                 <style>
