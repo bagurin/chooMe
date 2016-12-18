@@ -106,8 +106,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <div class="col-md-12 well">
         新規で商品の登録とレビューを投稿します。<br>
-        既存の商品にレビューを投稿する場合は、右上のボタンをクリックしてください。<br>
-        ChooMeにユーザー登録をすれば、レビュー投稿は1日1回でOKになります！
+        既存の商品にレビューを投稿する場合は、右上の商品検索ボタンをクリックしてください。<br>
     </div>
 
 

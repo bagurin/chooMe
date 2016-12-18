@@ -688,7 +688,7 @@ p.fexi_header_para1 a i {
 .form-module2 .toggle .tooltip {
     position: absolute;
     top: 5px;
-    left: -85px;
+    left: -60px;
     display: block;
     background: rgba(0, 0, 0, 0.6);
     width: auto;
@@ -704,7 +704,7 @@ p.fexi_header_para1 a i {
     content: '';
     position: absolute;
     top: 5px;
-    left: 82px;
+    left: 58px;
     display: block;
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;

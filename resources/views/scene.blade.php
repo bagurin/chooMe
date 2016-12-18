@@ -161,6 +161,18 @@
     var formch = 0;
 </script>
 
+    <script>
+        $(function(){
+            $('#registform').submit(function(){
+                var name = $('#parenttext').val();
+                if(name.length == 0){
+                    alert("商品が指定されていません。\n商品を新規に登録するか、検索して商品を選択してください。");
+                    return false;
+                };
+            });
+        });
+    </script>
+
 
 
 
@@ -183,12 +195,12 @@
                 </div>
                 <section>
                     <div class="modal-body">
-                        <form enctype="multipart/form-data" method="post" name="registform" action="{{url('/register-and-review/')}}">
+                        <form enctype="multipart/form-data" method="post" name="registform" action="{{url('/register-and-review/')}}" id="registform">
                         {{--<div class="w3_login_module">--}}
                         <div class="col-md-8">
                         <div class="module form-module2">
                             <div class="toggle"><i class="fa fa-times fa-pencil"></i>
-                                <div class="tooltip">レビューのみ</div>
+                                <div class="tooltip">商品検索</div>
                             </div>
                             <div class="form" name="form1">
 
@@ -348,7 +360,7 @@
                                     margin: 10px;
                                 }
                             </style>
-                            <input type="text" class="form-control" name="productname" id="parenttext" placeholder="商品名" readonly="readonly"/>
+                            <input type="text" class="form-control" name="productname" id="parenttext" value="" placeholder="商品名"  readonly="readonly"/>
                             <input type="text" class="form-control" name="genrename" id="parentgenrename" placeholder="ジャンル" readonly="readonly"/>
                             <!-- ジャンルid、画像情報はhiddenで外に-->
                             <input type="hidden" class="form-control" name="genreid" id="parentgenreid" value="" readonly="readonly"/>
@@ -356,7 +368,7 @@
                         <div class="col-md-4">
                             <style>
                             textarea{
-                            margin:15px 0 10px; 0;
+                            margin:15px 0 10px 0;
                             }
                             </style>
                             <textarea name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
@@ -468,7 +480,9 @@
                                     margin:17px 0 0 0;
                                 }
                             </style>
-                            <label class="my-file-input"><input type="submit" class="send" name="send">登録する</label>
+                            <label class="my-file-input">
+                                <input type="submit" class="send" name="send" id="send" >
+                                登録する</label>
                         </div>
                             <style>
                                 label {
@@ -504,31 +518,31 @@
                                 }
                             </style>
                         </form>
-                        <script type="text/javascript">
-                            $('form').submit(function(event) {
-                                // HTMLでの送信をキャンセル
-                                event.preventDefault();
-                                // 操作対象のフォーム要素を取得
-                                var $form = $(this);
-                                // 送信
-                                $.ajax({
-                                    url: $form.attr('action'),
-                                    type: $form.attr('method'),
-                                    data: $form.serialize(),
+                        {{--<script type="text/javascript">--}}
+                            {{--$('form').submit(function(event) {--}}
+                                {{--// HTMLでの送信をキャンセル--}}
+                                {{--event.preventDefault();--}}
+                                {{--// 操作対象のフォーム要素を取得--}}
+                                {{--var $form = $(this);--}}
+                                {{--// 送信--}}
+                                {{--$.ajax({--}}
+                                    {{--url: $form.attr('action'),--}}
+                                    {{--type: $form.attr('method'),--}}
+                                    {{--data: $form.serialize(),--}}
 
-                                    // 通信成功時の処理
-                                    success: function(result) {
-                                        // 入力値を初期化
-                                        $form[0].reset();
-                                        //モーダル閉じる
-                                        $.magnificPopup.close();
-                                    },
-                                    error: function() {
-                                        alert("すでに登録されています。商品検索からレビューをお願いします。");
-                                    }
-                                });
-                            });
-                        </script>
+                                    {{--// 通信成功時の処理--}}
+                                    {{--success: function(result) {--}}
+                                        {{--// 入力値を初期化--}}
+                                        {{--$form[0].reset();--}}
+                                        {{--//モーダル閉じる--}}
+                                        {{--$.magnificPopup.close();--}}
+                                    {{--},--}}
+                                    {{--error: function() {--}}
+                                        {{--alert("すでに登録されています。商品検索からレビューをお願いします。");--}}
+                                    {{--}--}}
+                                {{--});--}}
+                            {{--});--}}
+                        {{--</script>--}}
                     </div>
 
 
