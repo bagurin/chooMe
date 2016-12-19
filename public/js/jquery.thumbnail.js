@@ -16,7 +16,7 @@ $(function() {
         // 画像表示
         var reader = new FileReader();
         reader.onload = function() {
-            var img_src = $('<img>').attr('src', reader.result);
+            var img_src = $('<img id="thumb">').attr('src', reader.result);
             $('span').html(img_src);
         }
         reader.readAsDataURL(file);

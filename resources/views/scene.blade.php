@@ -204,6 +204,21 @@
             }
         }
 
+
+        $(function(){
+            $("#cancel")
+                    .click(function(){
+                        $("#p-register").contents().find("#name").removeAttr("disabled");
+                        $("#p-register").contents().find("#name").val("");
+                        $("#p-register").contents().find("#check").removeAttr("disabled");
+                        $("#p-register").contents().find("#genre").removeAttr("disabled");
+                        $("#p-register").contents().find("#genre").val("1");
+                        $("#p-register").contents().find("#image").removeAttr("disabled");
+                        $("#p-register").contents().find("#image").val("");
+                        $("#p-register").contents().find("#thumb").remove();
+
+                    });
+        });
     </script>
 
 
@@ -224,13 +239,13 @@
                         <div class="col-md-8 col-sm-8 col-xs-8">
                         <div class="module form-module2">
                             <div class="toggle"><i class="fa fa-times fa-pencil"></i>
-                                <div class="tooltip">商品検索</div>
+                                <div class="tooltip">商品新規登録/検索切り替え</div>
                             </div>
                             <div class="form" name="form1">
 
 
                             <section>
-                                <iframe height="100%" frameborder="0" src="/p-register/">
+                                <iframe height="100%" frameborder="0" id="p-register" name="p-register" src="/p-register/">
 
                                 </iframe>
                                 {{ csrf_field() }}
@@ -288,7 +303,7 @@
                             margin:15px 0 10px 0;
                             }
                             </style>
-                            <textarea width="100px" name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
+                            <textarea width="auto" name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
                         {{--</div>--}}
                         {{--<div class="col-md-6">--}}
                             <style>
@@ -411,6 +426,10 @@
                             <label class="my-file-input">
                                 <input type="submit" class="send" name="send" id="send" >
                                 登録する</label>
+                            <label class="my-file-input">
+                                <input type="button" id="cancel" name="cancel">
+                                商品を選び直す
+                            </label>
                         </div>
                             <style>
                                 label {
@@ -419,7 +438,7 @@
                                 .my-file-input {
                                     display: inline-block;
                                     padding: 5px;
-                                    width: 200px;
+                                    width: auto;
                                     text-align: center;
                                     white-space: nowrap;
                                     overflow: hidden;
