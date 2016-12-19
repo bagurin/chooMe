@@ -130,7 +130,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<div class="w3l_sign_in_register">
 				<ul>
-
+					<li>
+					<img width="30px" height="30px" src="/images/usericon.png">
+						<?php
+					$username = Auth::user()->name;
+					print $username;
+					?>
+					</li>
 					<li><a href="/logout">Logout</a></li>
 				</ul>
 			</div>
