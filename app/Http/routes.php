@@ -79,6 +79,7 @@ Route::get('/search/', function(){
 });
 
 Route::post('/check/', 'UploadController@nameCheck');
+Route::post('/temp/', 'UploadController@imageTemp');
 
 //おでん追加
 Route::get('/p-register/', function(){

@@ -10,6 +10,7 @@ use Session;
 use Response;
 use App\Getgoods;
 use App\UserInfo;
+use File;
 
 class UploadController extends Controller
 {
@@ -44,7 +45,12 @@ class UploadController extends Controller
         $genres = (int)Request::get('genreid');
 
         // アップロード画像を取得
-        $image = Request::get('image');
+        $image = Session::get('path');
+        $name = basename($image);
+
+        if (!File::move($image ,'./media/'.$name)) {
+            Response::make('NG', 500);
+        }
 
 //        //ファイル名を生成し画像をアップロード
 //        $name = md5(sha1(uniqid(mt_rand(), true))) . '.' . $image->getClientOriginalExtension();
@@ -52,11 +58,14 @@ class UploadController extends Controller
 //
 //        // 画像保存先pathとファイル名を連結
 //        $path = '/media/' . $name;
-        $path = '/media/' . $image;
+
+        $path = '/media/' . $name;
 
         //url生成
         $url = 'https://www.amazon.co.jp/gp/search/ref=nb_sb_noss_1?__mk_ja_JP=%E3%82%AB%E3%
                82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=' . $syohin;
+
+        Session::pull('path');
 
         // 配列にまとめてデータベースに追加
         $getgoods = array('name' => $syohin, 'genres_id' => (int)$genres, 'image' => $path, 'url' => $url);
@@ -133,13 +142,15 @@ class UploadController extends Controller
 
     public function imageTemp(){
 
-        $image = Request::file('image');
-
-        //ファイル名を生成し画像をアップロード
-        $name = md5(sha1(uniqid(mt_rand(), true))) . '.' . $image->getClientOriginalExtension();
-        $image->move('temp', $name);
-
-        return Response::make('/temp/'.$name, 200);
+        if(isset($_POST)){
+            $f = $_FILES['image'];
+            if(isset($f) and $f['name']){
+                $file = public_path().'/tmp/'.$f['name'];
+                if(move_uploaded_file($f['tmp_name'],$file)){
+                    Session::put('path', $file);
+                }
+            }
+        }
 
     }
 
