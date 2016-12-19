@@ -83,19 +83,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         function SendParam() {
             var genres = ['本','DVD・音楽','TVゲーム','家電・カメラ・AV機器','パソコン・オフィス用品','ホーム&キッチン・DIY','食品・飲料・お酒','ドラッグ&ビューティー','ベビー・おもちゃ','服','シューズ','バッグ','腕時計','スポーツ&アウトドア','車&バイク'];
 
-            //parent.document.registform（親フォーム名).コントロールのnameの値.value = document.getElementById(送りたい子フォーム内のコントロールのidの値).value;
-            parent.document.registform.productname.value = document.getElementById("name").value;
-            parent.document.registform.genreid.value = document.getElementById("genre").value;
-            parent.document.registform.genrename.value = genres[document.getElementById("genre").value - 1];
-            parent.document.registform.image.value = document.getElementById("image").files[0].name;
+            if(document.getElementById("name").value === ""){
+                alert('商品名を入力してください。')
+            }
+            else {
 
-//            $("#parenttext",parent.document).value = document.getElementById("name").value;
-//            $("#parentgenre",parent.document).value = document.getElementById("genre").value;
-//            $("#parentimage",parent.document).value = document.getElementById("image").value;
+                //parent.document.registform（親フォーム名).コントロールのnameの値.value = document.getElementById(送りたい子フォーム内のコントロールのidの値).value;
+                parent.document.registform.productname.value = document.getElementById("name").value;
+                parent.document.registform.genreid.value = document.getElementById("genre").value;
+                parent.document.registform.genrename.value = genres[document.getElementById("genre").value - 1];
+                parent.document.registform.image.value = document.getElementById("image").value;
 
+                $("#name,#check,#genre,#image").attr("disabled","disabled");
 
-
+            }
         }
+
     </script>
     <!-- start-smoth-scrolling -->
 </head>
@@ -116,44 +119,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     {{ csrf_field() }}
     <div class="form-group">
-        <form id="check" method="post" action="{{url('/check/')}}">
-            {{ csrf_field() }}
-            <div class="col-md-3">
-                <input type="text" id="name" name="name" placeholder="商品名">
-            </div>
-            <div class="col-md-3">
-                <input type="submit" value="重複チェック">
-                <input type="text" id="checkResult" disabled="disabled" style=border:none>
-            </div>
-        </form>
+        <div class="col-md-3">
+           <input type="text" id="name" name="name" value="" placeholder="商品名" required />
+        </div>
+        <div class="col-md-3">
+         <input type="submit" id="check" value="重複チェック">
+          <input type="text" placeholder="重複チェック結果" readonly="readonly">
+        </div>
     </div>
-
-    <script type="text/javascript"> 
-        $('#check').submit(function(event) { 
-            // HTMLでの送信をキャンセル 
-            event.preventDefault(); 
-            // 操作対象のフォーム要素を取得 
-            var $form = $(this); 
-            //テキストボックス取得
-            var result = document.getElementById('checkResult');
-            // 送信 
-            $.ajax({ 
-                url: $form.attr('action'), 
-                type: $form.attr('method'), 
-                data: $form.serialize(),  
-                // 通信成功時の処理 
-                success: function() {
-                    //重複なし文表示 
-                    result.value = 'ＯＫ';
-                } ,
-                error: function(){
-                    //エラー文表示
-                    result.value = '既に登録されてます';
-                }
-            }); 
-        });
-     </script>
-
     {{--<input type="submit" id="check" name="check" value="重複チェック">--}}
     <div class="form-group">
         <div class="col-md-12">
@@ -244,7 +217,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 padding:4px; border:1px solid #999; vertical-align:middle; }
         </style>
         <br>
-        <label class="my-file-input" onClick="SendParam()"><input type="button">商品情報確定</label>
+        <label class="my-file-input"><input type="button" id="sendbutton" onClick="SendParam()">商品情報確定</label>
     </div>
 
 </div>
