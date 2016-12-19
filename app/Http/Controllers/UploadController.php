@@ -44,10 +44,18 @@ class UploadController extends Controller
         // ジャンル番号を取得
         $genres = (int)Request::get('genreid');
 
-        // アップロード画像を取得
+        // tmpフォルダ内の画像パス
         $image = Session::get('path');
+        // 移動ファイル名
         $name = basename($image);
 
+        //tmpフォルダがない場合作成
+        if(!File::exists(public_path().'/tmp/'))
+        {
+            File::makeDirectory(public_path().'/tmp');
+        }
+
+        //ファイル移動
         if (!File::move($image ,'./media/'.$name)) {
             Response::make('NG', 500);
         }

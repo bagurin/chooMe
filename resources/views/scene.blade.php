@@ -234,7 +234,7 @@
                 </div>
                 <section>
                     <div class="modal-body">
-                        <form enctype="multipart/form-data" method="post" name="registform" action="{{url('/register-and-review/')}}" id="registform">
+                        <form method="post" name="registform" action="{{url('/register-and-review/')}}" id="registform">
                         {{--<div class="w3_login_module">--}}
                         <div class="col-md-8 col-sm-8 col-xs-8">
                         <div class="module form-module2">
@@ -466,7 +466,7 @@
                             </style>
                         </form>
                         <script type="text/javascript">
-                            $('form').submit(function(event) {
+                            $('#registform').submit(function(event) {
                                 // HTMLでの送信をキャンセル
                                 event.preventDefault();
                                 // 操作対象のフォーム要素を取得

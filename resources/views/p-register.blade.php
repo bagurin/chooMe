@@ -92,9 +92,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 parent.document.registform.productname.value = document.getElementById("name").value;
                 parent.document.registform.genreid.value = document.getElementById("genre").value;
                 parent.document.registform.genrename.value = genres[document.getElementById("genre").value - 1];
-                parent.document.registform.image.value = document.getElementById("image").value;
 
-                $("#name,#check,#genre,#image").attr("disabled","disabled");
+                $("#name,#check,#genre").attr("disabled","disabled");
 
             }
         }
@@ -119,14 +118,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     {{ csrf_field() }}
     <div class="form-group">
-        <div class="col-md-3">
-           <input type="text" id="name" name="name" value="" placeholder="商品名" required />
-        </div>
-        <div class="col-md-3">
-         <input type="submit" id="check" value="重複チェック">
-          <input type="text" placeholder="重複チェック結果" readonly="readonly">
-        </div>
+        <form id="check" method="post" action="{{url('/check/')}}">
+            {{ csrf_field() }}
+            <div class="col-md-3">
+                <input type="text" id="name" name="name" placeholder="商品名">
+            </div>
+            <div class="col-md-3">
+                <input type="submit" value="重複チェック">
+                <input type="text" id="checkResult" disabled="disabled" style=border:none>
+            </div>
+        </form>
     </div>
+
+    <script type="text/javascript">
+        $('#check').submit(function(event) {
+            // HTMLでの送信をキャンセル 
+            event.preventDefault();
+            // 操作対象のフォーム要素を取得 
+            var $form = $(this);
+            //テキストボックス取得
+            var result = document.getElementById('checkResult');
+            // 送信 
+            $.ajax({
+                url: $form.attr('action'),
+                type: $form.attr('method'),
+                data: $form.serialize(),
+                // 通信成功時の処理 
+                success: function() {
+                    //重複なし文表示 
+                    result.value = 'ＯＫ';
+                } ,
+                error: function(){
+                    //エラー文表示
+                    result.value = '既に登録されてます';
+                }
+            });
+        });
+    </script>
+
     {{--<input type="submit" id="check" name="check" value="重複チェック">--}}
     <div class="form-group">
         <div class="col-md-12">
@@ -195,7 +224,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             }
         </style>
 
-
+         <form id="imageTemp" name="imageTemp" method="post" target="upload_frame" enctype="multipart/form-data" action="{{url('/temp/')}}">
+         {{ csrf_field() }}
          <input type="file" name="image" id ="image" accept="image/*">
 
         {{--<img src="" id="sub" name="image" style="display:none;">--}}
@@ -217,7 +247,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 padding:4px; border:1px solid #999; vertical-align:middle; }
         </style>
         <br>
-        <label class="my-file-input"><input type="button" id="sendbutton" onClick="SendParam()">商品情報確定</label>
+        <label class="my-file-input" onclick="SendParam()"><input id="temp" name="temp" type="submit">商品情報確定</label>
+         <iframe name="upload_frame" style="display:none;"></iframe>
+         </form>
     </div>
 
 </div>
