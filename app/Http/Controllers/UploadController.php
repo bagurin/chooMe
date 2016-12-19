@@ -49,12 +49,6 @@ class UploadController extends Controller
         // 移動ファイル名
         $name = basename($image);
 
-        //tmpフォルダがない場合作成
-        if(!File::exists(public_path().'/tmp/'))
-        {
-            File::makeDirectory(public_path().'/tmp');
-        }
-
         //ファイル移動
         if (!File::move($image ,'./media/'.$name)) {
             Response::make('NG', 500);
@@ -153,6 +147,13 @@ class UploadController extends Controller
         if(isset($_POST)){
             $f = $_FILES['image'];
             if(isset($f) and $f['name']){
+
+                //tmpフォルダがない場合作成
+                if(!File::exists(public_path().'/tmp/'))
+                {
+                    File::makeDirectory(public_path().'/tmp');
+                }
+
                 $file = public_path().'/tmp/'.$f['name'];
                 if(move_uploaded_file($f['tmp_name'],$file)){
                     Session::put('path', $file);
