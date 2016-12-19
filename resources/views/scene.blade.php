@@ -209,16 +209,7 @@
 
 
 
-    <div class="general_social_icons">
-    <nav class="social">
-        <ul>
-            <li class="w3_twitter"><a href="#">Twitter <i class="fa fa-twitter"></i></a></li>
-            <li class="w3_facebook"><a href="#">Facebook <i class="fa fa-facebook"></i></a></li>
-            <li class="w3_dribbble"><a href="#">Dribbble <i class="fa fa-dribbble"></i></a></li>
-            <li class="w3_g_plus"><a href="#">Google+ <i class="fa fa-google-plus"></i></a></li>
-        </ul>
-    </nav>
-</div>
+
 <!-- /w3l-medile-movies-grids -->
     <div class="white-popup mfp-hide" id="test-popup"  data-backdrop="static">
         <div class="modal-lg2" role="document">
@@ -230,7 +221,7 @@
                     <div class="modal-body">
                         <form enctype="multipart/form-data" method="post" name="registform" action="{{url('/register-and-review/')}}" id="registform">
                         {{--<div class="w3_login_module">--}}
-                        <div class="col-md-8">
+                        <div class="col-md-8 col-sm-8 col-xs-8">
                         <div class="module form-module2">
                             <div class="toggle"><i class="fa fa-times fa-pencil"></i>
                                 <div class="tooltip">商品検索</div>
@@ -291,13 +282,13 @@
                             <!-- ジャンルid、画像情報はhiddenで外に-->
                             <input type="hidden" class="form-control" name="genreid" id="parentgenreid" value="" readonly="readonly"/>
                             <input type="hidden" class="form-control" name="image" id="parentimage" value="" readonly="readonly"/>
-                        <div class="col-md-4">
+                        <div class="col-md-2 col-sm-2 col-xs-2">
                             <style>
                             textarea{
                             margin:15px 0 10px 0;
                             }
                             </style>
-                            <textarea name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
+                            <textarea width="100px" name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
                         {{--</div>--}}
                         {{--<div class="col-md-6">--}}
                             <style>
@@ -319,7 +310,7 @@
                                     <option value="1">★☆☆☆☆</option>
                                 </select></p><br>
                         </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
                                 <style>
                                     input{
                                         margin: 5px;
@@ -334,7 +325,7 @@
 
 
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
                                 <style>
                                     select{
                                         margin:5px;
@@ -366,12 +357,12 @@
                                 {{--現在ユーザーログインされていません。<br>--}}
                                 {{--商品を登録するにはログインするか、ゲストユーザーとして以下のユーザー情報を入力してください。<br>--}}
                             {{--</div>--}}
-                            <div class="col-md-3">
+                            <div class="col-md-3 col-sm-3 col-xs-3">
                                 性別:
                                 <input type="radio" name="sex" value="男" checked>男
                                 <input type="radio" name="sex" value="女">女
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
                                 年齢:
                                 <select id="age" name="age">
                                     <option value="1">10歳未満</option>
@@ -388,7 +379,7 @@
                                     <option value="12">70歳以上</option>
                                 </select><br>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
                                 趣味:
                                 <select id="hobbies_id" name="hobbies_id">
                                     <option value="1">スポーツ</option>
@@ -411,7 +402,7 @@
                             </div>
 
                         @endif
-                        <div class="col-md-4">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
                             <style>
                                 label{
                                     margin:17px 0 0 0;
@@ -553,14 +544,14 @@
                                     <li>
                                         @foreach($ranking as $rank)
                                         @if($rank['ranking_no'] < 4)
-                                            <div class="col-md-6 agile_tv_series_grid_left">
+                                            <div class="col-md-6 col-sm-6 col-xs-6 agile_tv_series_grid_left">
 
                                                 <img src= {{$rank['image']}}  class="img-responsive" />
 
 
 
                                             </div>
-                                            <div class="col-md-6 agile_tv_series_grid_right">
+                                            <div class="col-md-6 col-sm-6 col-xs-6 agile_tv_series_grid_right">
                                                 <p class="fexi_header">{{$rank['ranking_no']}}位</p>
 
                                                 <p class="fexi_header_para"><span>商品名<label>:</label></span>{{$rank['name']}}</p>
@@ -603,7 +594,7 @@
 
 
 
-                                    <div class="col-md-4 w3l-movie-gride-agile">
+                                    <div class="col-md-4 col-sm-4 col-xs-4 w3l-movie-gride-agile">
                                         <a href="single.html" class="hvr-shutter-out-horizontal"><img src="/images/present1.jpg" title="album-name" class="img-responsive" alt=" " />
 
                                         </a>
@@ -643,7 +634,7 @@
                                 {{--*/$rank['ranking_no'] = 7; /*--}}
                             @elseif($rank['ranking_no'] < 15)
 
-                                <div class="col-md-3 w3l-movie-gride-agile">
+                                <div class="col-md-3 col-sm-3 col-xs-3 w3l-movie-gride-agile">
                                     <a href="single.html" class="hvr-shutter-out-horizontal"><img src="/images/present4.jpeg" title="album-name" class="img-responsive-rank" alt=" " />
                                      </a>
                                     <div class="mid-1 agileits_w3layouts_mid_1_home">
@@ -682,7 +673,7 @@
 
 
 
-                            <div class="col-md-2 w3l-movie-gride-agile">
+                            <div class="col-md-2 col-sm-2 col-xs-2 w3l-movie-gride-agile">
                                 <a href="single.html" class="hvr-shutter-out-horizontal"><img src="/images/present6.jpg" title="album-name" class="img-responsive-rank-low" alt=" " />
 
                                 </a>
