@@ -216,6 +216,7 @@
                         $("#p-register").contents().find("#image").removeAttr("disabled");
                         $("#p-register").contents().find("#image").val("");
                         $("#p-register").contents().find("#thumb").remove();
+                        search.location.href = '/search/';
                         document.getElementById("parenttext").value = "";
                         document.getElementById("parentgenrename").value = "";
                         document.getElementById("parentgenreid").value = "";
@@ -265,7 +266,7 @@
                                 <section>
 
 
-                                    <iframe height="100%" frameborder="0" src="/search/">
+                                    <iframe height="100%" frameborder="0" id="p-search" name="search" src="/search/">
 
                                     </iframe>
 
