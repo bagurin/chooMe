@@ -216,7 +216,12 @@
                         $("#p-register").contents().find("#image").removeAttr("disabled");
                         $("#p-register").contents().find("#image").val("");
                         $("#p-register").contents().find("#thumb").remove();
-
+                        document.getElementById("parenttext").value = "";
+                        document.getElementById("parentgenrename").value = "";
+                        document.getElementById("parentgenreid").value = "";
+                        document.getElementById("parentimage").value = "";
+                        document.getElementById("comment").value = "";
+                        document.getElementById("rate").value = "5";
                     });
         });
     </script>
