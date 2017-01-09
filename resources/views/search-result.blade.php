@@ -113,6 +113,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 //                $("#parenttext",parent.document).val();
 //            });
 //        });
+
+        $(function(){
+            tr_default("#result-table");
+
+            $("#result-table tr").click(function(){
+                tr_default("#result-table");
+                tr_click($(this));
+            });
+
+        });
+
+        function tr_default(tblID){
+            var vTR = tblID + " tr";
+            $(vTR).css("background-color","#ffffff");
+            $(vTR).mouseover(function(){
+                $(this).css("background-color","#CCFFCC") .css("cursor","pointer")
+            });
+            $(vTR).mouseout(function(){
+                $(this).css("background-color","#ffffff") .css("cursor","normal")
+            });
+            $("#thead th").css("background-color","#ffffff");
+        }
+
+        function tr_click(trID){
+            trID.css("background-color","#ff9393");
+            trID.mouseover(function(){
+                $(this).css("background-color","#CCFFCC") .css("cursor","pointer")
+            });
+            trID.mouseout(function(){
+                $(this).css("background-color","#ff9393") .css("cursor","normal")
+            });
+            $("#thead th").css("background-color","#ffffff");
+        }
     </script>
     <!-- start-smoth-scrolling -->
 
@@ -158,8 +191,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 }
 
             </script>
+
+            <div class="well">
+                選択したい商品の行をクリックしてください。
+            </div>
             <table class="table table-bordered" id="result-table">
-                <thead>
+                <thead id="thead">
                 <tr><th>商品名</th><th>ジャンル</th><th>商品画像</th></tr>
                 </thead>
                 <tbody>
@@ -169,6 +206,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </tbody>
             </table>
             {!! $list->render() !!}
+
+            <a href="/search/">検索ぺージに戻る</a>
 
 
     </div>
