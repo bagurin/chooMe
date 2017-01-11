@@ -197,9 +197,11 @@
                 $("#select option[value=0]").remove();
                 $("#select").removeAttr("hidden");
                 $("#ratelabel").removeAttr("hidden");
+                $("#scenes").removeAttr("hidden");
             } else if ($("input[name=wantgood]:checked").val() == 2) {
                 $("#select").attr("hidden", "hidden");
-                $("#ratelabel").attr("hidden","hidden")
+                $("#ratelabel").attr("hidden","hidden");
+                $("#scenes").attr("hidden", "hidden");
                 $("#select").val(4);
             }
         }
@@ -352,6 +354,7 @@
                                         margin:5px;
                                     }
                                 </style>
+                                <p id="scenes">
                                 シーン:
                                 <select id="scene" name="scene">
                                     <option value="1">誕生日</option>
@@ -369,6 +372,7 @@
                                     <option value="13">入学祝い</option>
 
                                 </select><br>
+                                </p>
                             </div>
                         @if(Auth::check() == false)
 
