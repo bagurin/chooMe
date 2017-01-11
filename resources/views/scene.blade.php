@@ -194,6 +194,7 @@
 
             if ($("input[name=wantgood]:checked").val() == 1) {
                 $("#select").val(5);
+                $("#scene-select").val(1);
                 $("#select option[value=0]").remove();
                 $("#select").removeAttr("hidden");
                 $("#ratelabel").removeAttr("hidden");
@@ -203,6 +204,7 @@
                 $("#ratelabel").attr("hidden","hidden");
                 $("#scenes").attr("hidden", "hidden");
                 $("#select").val(4);
+                $("#scene-select").val(0);
             }
         }
 
@@ -356,8 +358,9 @@
                                 </style>
                                 <p id="scenes">
                                 シーン:
-                                <select id="scene" name="scene">
-                                    <option value="1">誕生日</option>
+                                <select id="scene-select" name="scene">
+                                    <option value="0" hidden></option>
+                                    <option value="1" selected>誕生日</option>
                                     <option value="2">結婚記念日</option>
                                     <option value="3">クリスマス</option>
                                     <option value="4">出産祝い</option>

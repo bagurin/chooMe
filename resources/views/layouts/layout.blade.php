@@ -375,78 +375,78 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ul id="nav">
 				<li class="active"><a href="/">Home</a></li>
 				<li><a href="/about">About</a></li>
-				<li><a class="rank" href="/ranking/?pattern=31&getgoodstype=1">誕生日</a>
+				<li><a href="/ranking/?pattern=31&getgoodstype=1">誕生日</a>
 					<span id="s1"></span>
 					<ul class="subs">
-						<li><a class="rank" href="/ranking/?pattern=83&getgoodstype=1">誕生日【男性】</a>
+						<li><a href="/ranking/?pattern=83&getgoodstype=1">誕生日【男性】</a>
 							<ul>
-								<li><a class="rank" href="/ranking/?pattern=141&getgoodstype=1">10歳未満</a></li>
+								<li><a href="/ranking/?pattern=141&getgoodstype=1">10歳未満</a></li>
 
-								<li><a class="rank" href="/ranking/?pattern=142&getgoodstype=1">10代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=143&getgoodstype=1">10代後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=144&getgoodstype=1">20代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=145&getgoodstype=1">20代後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=146&getgoodstype=1">30代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=147&getgoodstype=1">30歳後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=148&getgoodstype=1">40代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=149&getgoodstype=1">40代後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=150&getgoodstype=1">50代</a></li>
-								<li><a class="rank" href="/ranking/?pattern=151&getgoodstype=1">60代</a></li>
-								<li><a class="rank" href="/ranking/?pattern=152&getgoodstype=1">70歳以上</a></li>
+								<li><a href="/ranking/?pattern=142&getgoodstype=1">10代前半</a></li>
+								<li><a href="/ranking/?pattern=143&getgoodstype=1">10代後半</a></li>
+								<li><a href="/ranking/?pattern=144&getgoodstype=1">20代前半</a></li>
+								<li><a href="/ranking/?pattern=145&getgoodstype=1">20代後半</a></li>
+								<li><a href="/ranking/?pattern=146&getgoodstype=1">30代前半</a></li>
+								<li><a href="/ranking/?pattern=147&getgoodstype=1">30歳後半</a></li>
+								<li><a href="/ranking/?pattern=148&getgoodstype=1">40代前半</a></li>
+								<li><a href="/ranking/?pattern=149&getgoodstype=1">40代後半</a></li>
+								<li><a href="/ranking/?pattern=150&getgoodstype=1">50代</a></li>
+								<li><a href="/ranking/?pattern=151&getgoodstype=1">60代</a></li>
+								<li><a href="/ranking/?pattern=152&getgoodstype=1">70歳以上</a></li>
 							</ul>
 						</li>
-						<li><a class="rank" href="/ranking/?pattern=85&getgoodstype=1">誕生日【女性】</a>
+						<li><a href="/ranking/?pattern=85&getgoodstype=1">誕生日【女性】</a>
 							<ul>
-								<li><a class="rank" href="/ranking/?pattern=153&getgoodstype=1">10歳未満</a></li>
-								<li><a class="rank" href="/ranking/?pattern=154&getgoodstype=1">10代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=155&getgoodstype=1">10代後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=156&getgoodstype=1">20代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=157&getgoodstype=1">20代後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=158&getgoodstype=1">30代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=159&getgoodstype=1">30歳後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=160&getgoodstype=1">40代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=161&getgoodstype=1">40代後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=162&getgoodstype=1">50代</a></li>
-								<li><a class="rank" href="/ranking/?pattern=163&getgoodstype=1">60代</a></li>
-								<li><a class="rank" href="/ranking/?pattern=164&getgoodstype=1">70歳以上</a></li>
+								<li><a href="/ranking/?pattern=153&getgoodstype=1">10歳未満</a></li>
+								<li><a href="/ranking/?pattern=154&getgoodstype=1">10代前半</a></li>
+								<li><a href="/ranking/?pattern=155&getgoodstype=1">10代後半</a></li>
+								<li><a href="/ranking/?pattern=156&getgoodstype=1">20代前半</a></li>
+								<li><a href="/ranking/?pattern=157&getgoodstype=1">20代後半</a></li>
+								<li><a href="/ranking/?pattern=158&getgoodstype=1">30代前半</a></li>
+								<li><a href="/ranking/?pattern=159&getgoodstype=1">30歳後半</a></li>
+								<li><a href="/ranking/?pattern=160&getgoodstype=1">40代前半</a></li>
+								<li><a href="/ranking/?pattern=161&getgoodstype=1">40代後半</a></li>
+								<li><a href="/ranking/?pattern=162&getgoodstype=1">50代</a></li>
+								<li><a href="/ranking/?pattern=163&getgoodstype=1">60代</a></li>
+								<li><a href="/ranking/?pattern=164&getgoodstype=1">70歳以上</a></li>
 							</ul>
 						</li>
 
 					</ul>
 				</li>
-				<li><a class="rank" href="/ranking/?pattern=33&getgoodstype=1">クリスマス</a>
+				<li><a href="/ranking/?pattern=33&getgoodstype=1">クリスマス</a>
 					<span id="s2"></span>
 					<ul class="subs">
-						<li><a class="rank" href="/ranking/?pattern=84&getgoodstype=1">クリスマス【男性】</a>
+						<li><a href="/ranking/?pattern=84&getgoodstype=1">クリスマス【男性】</a>
 							<ul>
-								<li><a class="rank" href="/ranking/?pattern=165&getgoodstype=1">10歳未満</a></li>
-								<li><a class="rank" href="/ranking/?pattern=166&getgoodstype=1">10代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=167&getgoodstype=1">10代後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=168&getgoodstype=1">20代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=169&getgoodstype=1">20代後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=170&getgoodstype=1">30代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=171&getgoodstype=1">30歳後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=172&getgoodstype=1">40代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=173&getgoodstype=1">40代後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=174&getgoodstype=1">50代</a></li>
-								<li><a class="rank" href="/ranking/?pattern=175&getgoodstype=1">60代</a></li>
-								<li><a class="rank" href="/ranking/?pattern=176&getgoodstype=1">70歳以上</a></li>
+								<li><a href="/ranking/?pattern=165&getgoodstype=1">10歳未満</a></li>
+								<li><a href="/ranking/?pattern=166&getgoodstype=1">10代前半</a></li>
+								<li><a href="/ranking/?pattern=167&getgoodstype=1">10代後半</a></li>
+								<li><a href="/ranking/?pattern=168&getgoodstype=1">20代前半</a></li>
+								<li><a href="/ranking/?pattern=169&getgoodstype=1">20代後半</a></li>
+								<li><a href="/ranking/?pattern=170&getgoodstype=1">30代前半</a></li>
+								<li><a href="/ranking/?pattern=171&getgoodstype=1">30歳後半</a></li>
+								<li><a href="/ranking/?pattern=172&getgoodstype=1">40代前半</a></li>
+								<li><a href="/ranking/?pattern=173&getgoodstype=1">40代後半</a></li>
+								<li><a href="/ranking/?pattern=174&getgoodstype=1">50代</a></li>
+								<li><a href="/ranking/?pattern=175&getgoodstype=1">60代</a></li>
+								<li><a href="/ranking/?pattern=176&getgoodstype=1">70歳以上</a></li>
 							</ul>
 						</li>
-						<li><a class="rank" href="/ranking/?pattern=34&getgoodstype=1">クリスマス【女性】</a>
+						<li><a href="/ranking/?pattern=34&getgoodstype=1">クリスマス【女性】</a>
 							<ul>
-								<li><a class="rank" href="/ranking/?pattern=177&getgoodstype=1">10歳未満</a></li>
-								<li><a class="rank" href="/ranking/?pattern=178&getgoodstype=1">10代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=179&getgoodstype=1">10代後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=180&getgoodstype=1">20代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=181&getgoodstype=1">20代後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=182&getgoodstype=1">30代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=183&getgoodstype=1">30歳後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=184&getgoodstype=1">40代前半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=185&getgoodstype=1">40代後半</a></li>
-								<li><a class="rank" href="/ranking/?pattern=186&getgoodstype=1">50代</a></li>
-								<li><a class="rank" href="/ranking/?pattern=187&getgoodstype=1">60代</a></li>
-								<li><a class="rank" href="/ranking/?pattern=188&getgoodstype=1">70歳以上</a></li>
+								<li><a href="/ranking/?pattern=177&getgoodstype=1">10歳未満</a></li>
+								<li><a href="/ranking/?pattern=178&getgoodstype=1">10代前半</a></li>
+								<li><a href="/ranking/?pattern=179&getgoodstype=1">10代後半</a></li>
+								<li><a href="/ranking/?pattern=180&getgoodstype=1">20代前半</a></li>
+								<li><a href="/ranking/?pattern=181&getgoodstype=1">20代後半</a></li>
+								<li><a href="/ranking/?pattern=182&getgoodstype=1">30代前半</a></li>
+								<li><a href="/ranking/?pattern=183&getgoodstype=1">30歳後半</a></li>
+								<li><a href="/ranking/?pattern=184&getgoodstype=1">40代前半</a></li>
+								<li><a href="/ranking/?pattern=185&getgoodstype=1">40代後半</a></li>
+								<li><a href="/ranking/?pattern=186&getgoodstype=1">50代</a></li>
+								<li><a href="/ranking/?pattern=187&getgoodstype=1">60代</a></li>
+								<li><a href="/ranking/?pattern=188&getgoodstype=1">70歳以上</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -1000,17 +1000,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a href="#s4">その他シーン別</a>
 					<span id="s4"></span>
 					<ul class="subs">
-						<li><a class="rank" href="/ranking/?pattern=32&getgoodstype=1">結婚記念日</a></li>
-						<li><a class="rank" href="/ranking/?pattern=34&getgoodstype=1">出産祝い</a></li>
-						<li><a class="rank" href="/ranking/?pattern=35&getgoodstype=1">結婚祝い</a></li>
-						<li><a class="rank" href="/ranking/?pattern=36&getgoodstype=1">手土産</a></li>
-						<li><a class="rank" href="/ranking/?pattern=37&getgoodstype=1">引っ越し</a></li>
-						<li><a class="rank" href="/ranking/?pattern=38&getgoodstype=1">お中元＆お歳暮</a></li>
-						<li><a class="rank" href="/ranking/?pattern=39&getgoodstype=1">父の日</a></li>
-						<li><a class="rank" href="/ranking/?pattern=40&getgoodstype=1">母の日</a></li>
-						<li><a class="rank" href="/ranking/?pattern=41&getgoodstype=1">敬老の日</a></li>
-						<li><a class="rank" href="/ranking/?pattern=42&getgoodstype=1">卒業＆就職祝い</a></li>
-						<li><a class="rank" href="/ranking/?pattern=43&getgoodstype=1">入学祝い</a></li>
+						<li><a href="/ranking/?pattern=32&getgoodstype=1">結婚記念日</a></li>
+						<li><a href="/ranking/?pattern=34&getgoodstype=1">出産祝い</a></li>
+						<li><a href="/ranking/?pattern=35&getgoodstype=1">結婚祝い</a></li>
+						<li><a href="/ranking/?pattern=36&getgoodstype=1">手土産</a></li>
+						<li><a href="/ranking/?pattern=37&getgoodstype=1">引っ越し</a></li>
+						<li><a href="/ranking/?pattern=38&getgoodstype=1">お中元＆お歳暮</a></li>
+						<li><a href="/ranking/?pattern=39&getgoodstype=1">父の日</a></li>
+						<li><a href="/ranking/?pattern=40&getgoodstype=1">母の日</a></li>
+						<li><a href="/ranking/?pattern=41&getgoodstype=1">敬老の日</a></li>
+						<li><a href="/ranking/?pattern=42&getgoodstype=1">卒業＆就職祝い</a></li>
+						<li><a href="/ranking/?pattern=43&getgoodstype=1">入学祝い</a></li>
 					</ul>
 				</li>
 				<li><a href="#s5">年代別</a>
