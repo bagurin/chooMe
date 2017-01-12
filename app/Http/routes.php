@@ -85,7 +85,8 @@ Route::post('/temp/', 'UploadController@imageTemp');
 Route::get('/p-register/', function(){
     return view('p-register');
 });
-
+Route::get('/mypage', 'UserInfoController@getProfile');
+Route::post('/mypage', 'UserInfoController@postProfile');
 //api
 Route::group(['prefix' => '/api/1.0/'], function () {
     Route::get('ranking/', 'ApiController@apiRanking');
