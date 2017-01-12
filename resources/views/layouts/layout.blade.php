@@ -130,13 +130,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			<div class="w3l_sign_in_register">
 				<ul>
-					<li>
+
+                        <a href="/mypage/">
 					<img width="30px" height="30px" src="/images/usericon.png">
 						<?php
 					$username = Auth::user()->name;
 					print $username;
 					?>
-					</li>
+                        </a>
+
 					<li><a href="/logout">Logout</a></li>
 				</ul>
 			</div>
@@ -170,7 +172,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                                         <div class="col-md-12">
-                                            <input id="email" type="email" class="form-control" name="email" placeholder="メールアドレス" value="{{ old('email') }}">
+                                            <input id="email" type="email" class="form-control" name="email" placeholder="メールアドレス" required value="{{ old('email') }}">
 
                                             @if ($errors->has('email'))
                                                 <span class="help-block">
@@ -183,7 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
                                         <div class="col-md-12">
-                                            <input id="password" type="password" class="form-control" name="password" placeholder="パスワード">
+                                            <input id="password" type="password" class="form-control" name="password" required placeholder="パスワード">
 
                                             @if ($errors->has('password'))
                                                 <span class="help-block">
@@ -225,7 +227,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 										<div class="col-md-12">
-											<input id="name" type="text" class="form-control" placeholder="ユーザー名	" name="name" value="{{ old('name') }}">
+											<input id="name" type="text" class="form-control" placeholder="ユーザー名	" required name="name" value="{{ old('name') }}">
 
 											@if ($errors->has('name'))
 												<span class="help-block">
@@ -239,7 +241,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 										<div class="col-md-12">
-											<input id="email" type="email" class="form-control" placeholder="メールアドレス" name="email" value="{{ old('email') }}">
+											<input id="email" type="email" class="form-control" placeholder="メールアドレス" required name="email" value="{{ old('email') }}">
 
 											@if ($errors->has('email'))
 												<span class="help-block">
@@ -253,7 +255,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 										<div class="col-md-12">
-											<input id="password" type="password" class="form-control" placeholder="パスワード" name="password">
+											<input id="password" type="password" class="form-control" placeholder="パスワード" required name="password">
 
 											@if ($errors->has('password'))
 												<span class="help-block">
@@ -267,7 +269,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 										<div class="col-md-12">
-											<input id="password-confirm" type="password" class="form-control" placeholder="パスワード(再確認)" name="password_confirmation">
+											<input id="password-confirm" type="password" class="form-control" placeholder="パスワード(再確認)" required name="password_confirmation">
 
 											@if ($errors->has('password_confirmation'))
 												<span class="help-block">
