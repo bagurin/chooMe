@@ -29,8 +29,8 @@ class Review extends Model
         return $query->where('reviews.getgoods_id', '=', $goods_id);
     }
 
-    public function scopeOrderBy_goodstype($query){
-        return $query->orderBy('reviews.goodstypes_id', 'asc');
+    public function scopeWhere_goodstype($query, $goodstype){
+        return $query->where('reviews.goodstypes_id', '=', $goodstype);
     }
 
     public function scopeOrderBy_rate($query){

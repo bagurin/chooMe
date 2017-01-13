@@ -22,12 +22,13 @@ class RankingViewController extends Controller
 
         $goods_data = Getgoods::join_genres()->select_goods()->where_goods($goods_id)->get()->toArray();
 
-        $reviews = Review::join_goodstyepes()->leftjoin_scene()->select_review()
-            ->where_goods($goods_id)->orderby_goodstype()->orderby_rate()->get()->toArray();
+        $getgoods = Review::join_goodstyepes()->leftjoin_scene()->select_review()
+            ->where_goods($goods_id)->where_goodstype(1)->orderby_rate()->get()->toArray();
 
-        dd($reviews);
+        $wantgoods = Review::join_goodstyepes()->leftjoin_scene()->select_review()
+            ->where_goods($goods_id)->where_goodstype(2)->orderby_rate()->get()->toArray();
 
-        return view('', compact('goods_data', 'reviews'));
+        return view('', compact('goods_data', 'getgoods', 'wantgoods'));
 
     }
 
