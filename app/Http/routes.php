@@ -81,7 +81,7 @@ Route::get('/search/', function(){
 Route::post('/check/', 'UploadController@nameCheck');
 Route::post('/temp/', 'UploadController@imageTemp');
 
-Route::get('/test/', 'RankingViewController@goodsView');
+Route::get('/single/', 'RankingViewController@goodsView');
 
 //おでん追加
 Route::get('/p-register/', function(){

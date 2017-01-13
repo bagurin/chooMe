@@ -28,7 +28,7 @@ class RankingViewController extends Controller
         $wantgoods = Review::join_goodstyepes()->leftjoin_scene()->select_review()
             ->where_goods($goods_id)->where_goodstype(2)->orderby_rate()->get()->toArray();
 
-        return view('', compact('goods_data', 'getgoods', 'wantgoods'));
+        return view('single', compact('goods_data', 'getgoods', 'wantgoods'));
 
     }
 
