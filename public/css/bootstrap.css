@@ -1127,27 +1127,36 @@ img {
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-  display: block;
+
+
+
+  object-fit: contain;
   width: 100%;
-  max-height: 258px;
+  height: 258px;
+  background-color: #ff9393;
+  border: 1px solid #ff9393;
 }
 .img-responsive-rank,
 .thumbnail > img,
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-  display: block;
+  object-fit: contain;
   width: 100%;
   max-height: 145px;
+  background-color: #ffbcbc;
+  border: 1px solid #ffbcbc;
 }
 .img-responsive-rank-low,
 .thumbnail > img,
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-  display: block;
+  object-fit: contain;
   width: 100%;
   max-height: 110px;
+  background-color: #ffd6d6;
+  border: 1px solid #ffd6d6;
 }
 .img-rounded {
   border-radius: 6px;

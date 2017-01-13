@@ -14,6 +14,7 @@
                     <div class="modal-body">
 
 
+
                                 <div class="form">
 
                                     <form action="{{ url('/mypage') }}" method="post">
@@ -84,7 +85,42 @@
                                         <div class="form-group">
                                             {{ csrf_field() }}
 
-                                            <input type="submit" value="登録">
+
+                                            <style>
+                                                label {
+                                                    margin-left: 0em;
+                                                }
+                                                .my-file-input {
+                                                    display: inline-block;
+                                                    padding: 5px;
+                                                    width: 200px;
+                                                    text-align: center;
+                                                    white-space: nowrap;
+                                                    overflow: hidden;
+                                                    font-size: 14px;
+                                                    text-overflow: ellipsis;
+                                                    background-color: #ff9393;
+                                                    color: white;
+                                                    box-shadow: #888 2px 2px 1px;
+                                                    cursor: pointer;
+                                                }
+                                                .my-file-input:hover {
+                                                    background-color: #fc6c6c;
+                                                }
+                                                .my-file-input:hover {
+                                                    background-color: #fc6c6c;
+                                                }
+                                                .my-file-input:active {
+                                                    box-shadow: #f75454 1px 1px 1px;
+                                                    position: relative;
+                                                    top: 1px; left: 1px;
+                                                }
+                                                .my-file-input input {
+                                                    display: none;
+                                                }
+                                                </style>
+                                            <label class="my-file-input"><input type="submit">更新</label>
+
 
 
                                         </div>
@@ -94,8 +130,8 @@
 
                                 </div>
 
-                                </div>
-
+                                
+                    </div>
                 </section>
             </div>
         </div>
