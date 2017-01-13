@@ -81,6 +81,8 @@ Route::get('/search/', function(){
 Route::post('/check/', 'UploadController@nameCheck');
 Route::post('/temp/', 'UploadController@imageTemp');
 
+Route::get('/test/', 'RankingViewController@goodsView');
+
 //おでん追加
 Route::get('/p-register/', function(){
     return view('p-register');
@@ -88,6 +90,7 @@ Route::get('/p-register/', function(){
 
 //api
 Route::group(['prefix' => '/api/1.0/'], function () {
+    //ランキング
     Route::get('ranking/', 'ApiController@apiRanking');
     //ユーザーログインによるトークン発行処理
     Route::post('/gettoken','CipherController@gettoken');
@@ -97,5 +100,10 @@ Route::group(['prefix' => '/api/1.0/'], function () {
     Route::post('/profile','CipherController@token_profile');
     //トークンとユーザー情報でプロフィールを変更する
     Route::post('/changeprof','CipherController@token_changeprof');
-
+    //商品レビュー
+    Route::get('goodsdata/', 'ApiController@goodsData');
+    //予測検索
+    Route::get('preserch/', 'ApiController@preSerch');
+    //検索結果
+    Route::get('serchresult/', 'ApiController@serchResult');
 });

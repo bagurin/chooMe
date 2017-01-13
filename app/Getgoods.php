@@ -13,4 +13,20 @@ class Getgoods extends Model
         'id', 'name', 'genres_id', 'image', 'url'
     ];
 
+    //getgoodsテーブルとgenresテーブルをgenres_idをキーに
+    public function scopeJoin_genres($query){
+        return $query->join('genres', 'genres.id', '=', 'getgoods.genres_id');
+    }
+
+    //商品情報をまとめる
+    public function scopeSelect_goods($query){
+        return $query->select('getgoods.id',
+            'getgoods.name', 'getgoods.image', 'genres.name as genres');
+    }
+
+    //goodsidで条件検索
+    public function scopeWhere_goods($query, $goods_id){
+        return $query->where('getgoods.id', '=', $goods_id);
+    }
+
 }
