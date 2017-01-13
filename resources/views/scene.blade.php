@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+{{--@section('title')--}}
+    {{--ChooMe | {{$pattern_name}}ランキング--}}
+{{--@stop--}}
+
 @section('content')
 
 
@@ -313,7 +317,7 @@
                             margin:15px 0 10px 0;
                             }
                             </style>
-                            <textarea width="auto" name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
+                            <textarea width="auto" name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" required maxlength="100"></textarea>
                         {{--</div>--}}
                         {{--<div class="col-md-6">--}}
                             <style>
