@@ -7,9 +7,30 @@ use App\Rank;
 use Auth;
 use Session;
 use App\Pattern;
+use App\Review;
 
 class RankingViewController extends Controller
 {
+
+    //商品ページ表示
+    public function goodsView(){
+
+        if(!isset($_GET['goodsid'])){
+            return '商品IDが存在しません。';
+        }
+        $goods_id = (int)$_GET['goodsid'];
+
+        $goods_data = Getgoods::join_genres()->select_goods()->where_goods($goods_id)->get()->toArray();
+
+        $getgoods = Review::join_goodstyepes()->leftjoin_scene()->select_review()
+            ->where_goods($goods_id)->where_goodstype(1)->orderby_rate()->get()->toArray();
+
+        $wantgoods = Review::join_goodstyepes()->leftjoin_scene()->select_review()
+            ->where_goods($goods_id)->where_goodstype(2)->orderby_rate()->get()->toArray();
+
+        return view('', compact('goods_data', 'getgoods', 'wantgoods'));
+
+    }
 
     //ランキング表示
     public function rankView(){
