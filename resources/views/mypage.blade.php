@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 
+@section('title')
+    ChooMe | マイページ
+@stop
 @section('content')
 
 
@@ -130,7 +133,7 @@
 
                                 </div>
 
-                                
+
                     </div>
                 </section>
             </div>
