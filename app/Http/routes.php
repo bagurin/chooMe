@@ -109,4 +109,5 @@ Route::group(['prefix' => '/api/1.0/'], function () {
     Route::get('serchresult/', 'ApiController@serchResult');
     //商品レビュー投稿
     Route::get('review/', 'ApiController@apiReview');
+    
 });

@@ -223,12 +223,6 @@ class ApiController extends Controller
             $scenes = (int)$_POST['scenes'];
 
 //--------------------------------------------商品登録------------------------------------------------------
-//            // 画像をユニークな名前に変更しファイルへ移動
-//            $name = md5(sha1(uniqid(mt_rand(), true))) . '.' . $image->getClientOriginalExtension();
-//            $image->move('media', $name);
-//            // 画像保存先pathとファイル名を連結
-//            $path = public_path() . 'media/' . $name;
-//
             //url生成
             $url = 'https://www.amazon.co.jp/gp/search/ref=nb_sb_noss_1?__mk_ja_JP=%E3%82%AB%E3%
                82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=' . $goods_name;
