@@ -32,6 +32,18 @@ class ReviewController extends Controller
         return redirect('/search-result/');
     }
 
+    // 入力された商品名を元に似た名前の商品があるかを検索し連想配列で返す
+    public function searchWord()
+    {
+        if(isset($_GET['word'])) {
+
+            Session::put('goods_name', $_GET['word']);
+
+            //$list = Getgoods::where('name', 'LIKE', "%{$name}%")->paginate(1);
+            return redirect('/search-result/');
+        }
+    }
+
     public function viewData(){
 
         $name = Session::get('goods_name');

@@ -72,6 +72,7 @@ Route::post('/review/', 'ReviewController@review');
 Route::get('/review/{name}', 'ReviewController@viewReview');
 
 Route::post('/register-or-review/', 'ReviewController@getData');
+Route::get('/presearch/', 'ReviewController@searchWord');
 //Route::post('/search-result/', 'ReviewController@getData');
 Route::get('/search-result/', 'ReviewController@viewData');
 Route::get('/search/', function(){
@@ -109,5 +110,5 @@ Route::group(['prefix' => '/api/1.0/'], function () {
     Route::get('serchresult/', 'ApiController@serchResult');
     //商品レビュー投稿
     Route::get('review/', 'ApiController@apiReview');
-    
+
 });

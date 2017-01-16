@@ -125,7 +125,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="col-md-3">
                 <input type="submit" value="重複チェック">
-                <input type="text" id="checkResult" disabled="disabled" style=border:none>
+                <label id="checkResult"></label>
+                {{--<input type="text" id="checkResult" disabled="disabled" style=border:none>--}}
             </div>
         </form>
     </div>
@@ -137,23 +138,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             // 操作対象のフォーム要素を取得 
             var $form = $(this);
             //テキストボックス取得
-            var result = document.getElementById('checkResult');
+            var message = document.getElementById('checkResult');
             // 送信 
             $.ajax({
                 url: $form.attr('action'),
                 type: $form.attr('method'),
                 data: $form.serialize(),
                 // 通信成功時の処理 
-                success: function() {
+                success: function(result) {
                     //重複なし文表示 
-                    result.value = 'ＯＫ';
+                    message.innerHTML = "OK!";
                 } ,
-                error: function(){
+                error: function(result){
                     //エラー文表示
-                    result.value = '既に登録されてます';
+                    message.innerHTML = "<a href='/presearch/?word=" + result.responseText + "' onclick='OnLinkClick();'>" + result.responseText + "</a>で検索する。";
                 }
             });
         });
+
+        function OnLinkClick() {
+            parent.document.registform.action = "{{url('/review/')}}";
+        }
+
     </script>
 
     {{--<input type="submit" id="check" name="check" value="重複チェック">--}}
@@ -226,7 +232,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
          <form id="imageTemp" name="imageTemp" method="post" target="upload_frame" enctype="multipart/form-data" action="{{url('/temp/')}}">
          {{ csrf_field() }}
-         <input type="file" name="image" id ="image" accept="image/*">
+         <input type="file" name="image" id ="image" accept="image/*" readonly="readonly">
 
         {{--<img src="" id="sub" name="image" style="display:none;">--}}
         <script>
