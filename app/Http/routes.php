@@ -72,6 +72,7 @@ Route::post('/review/', 'ReviewController@review');
 Route::get('/review/{name}', 'ReviewController@viewReview');
 
 Route::post('/register-or-review/', 'ReviewController@getData');
+Route::get('/presearch/', 'ReviewController@searchWord');
 //Route::post('/search-result/', 'ReviewController@getData');
 Route::get('/search-result/', 'ReviewController@viewData');
 Route::get('/search/', function(){
@@ -101,10 +102,13 @@ Route::group(['prefix' => '/api/1.0/'], function () {
     Route::post('/profile','CipherController@token_profile');
     //トークンとユーザー情報でプロフィールを変更する
     Route::post('/changeprof','CipherController@token_changeprof');
-    //商品レビュー
+    //商品レビュー取得
     Route::get('goodsdata/', 'ApiController@goodsData');
     //予測検索
     Route::get('preserch/', 'ApiController@preSerch');
     //検索結果
     Route::get('serchresult/', 'ApiController@serchResult');
+    //商品レビュー投稿
+    Route::get('review/', 'ApiController@apiReview');
+
 });

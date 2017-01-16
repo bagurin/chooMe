@@ -18,23 +18,6 @@ class UploadController extends Controller
     public function postIndex(\Illuminate\Http\Request $request)
     {
 
-//-----------------------------------バリデート-------------------------------------------
-
-//        $rules = [
-//            'name' => 'required',
-//            'image' => 'required',
-//            'comment' => 'required',
-//        ];
-//
-//        $messages = [
-//            'name.required' => '商品名を入力してください',
-//            'image.required' => '画像を添付してください',
-//            'comment.repuired' => 'レビューを入力してください'
-//        ];
-//
-//        $this->validate($request, $rules, $messages);
-
-//-----------------------------------バリデート-------------------------------------------
 
 //--------------------------------------商品登録--------------------------------------------
 
@@ -136,10 +119,11 @@ class UploadController extends Controller
         foreach ($getgoods_table as $getgoods) {
             // 同じ商品があったら
             if ($syohin == $getgoods['name']) {
-                return Response::make("NG", 500);
+                return Response::make($syohin, 500);
             }
         }
-        return Response::make("OK", 200);
+
+        return Response::make($syohin, 200);
     }
 
     public function imageTemp(){
