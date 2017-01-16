@@ -87,7 +87,8 @@ Route::get('/single/', 'RankingViewController@goodsView');
 Route::get('/p-register/', function(){
     return view('p-register');
 });
-
+Route::get('/mypage', 'UserInfoController@getProfile');
+Route::post('/mypage', 'UserInfoController@postProfile');
 //api
 Route::group(['prefix' => '/api/1.0/'], function () {
     //ランキング

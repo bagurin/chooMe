@@ -23,7 +23,7 @@ class UserInfoController extends Controller
     public function getProfile()
     {
         //変更して下さい
-        return view('welcome')->with(['user' => $this->user]);
+        return view('mypage')->with(['user' => $this->user]);
     }
 
     public function postProfile(Request $request)
@@ -50,6 +50,6 @@ class UserInfoController extends Controller
         ]);
 
         //変更してください
-        return redirect('/profile');
+        return redirect('/mypage');
     }
 }

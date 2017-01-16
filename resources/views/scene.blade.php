@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+{{--@section('title')--}}
+    {{--ChooMe | {{$pattern_name}}ランキング--}}
+{{--@stop--}}
+
 @section('content')
 
 
@@ -194,13 +198,17 @@
 
             if ($("input[name=wantgood]:checked").val() == 1) {
                 $("#select").val(5);
+                $("#scene-select").val(1);
                 $("#select option[value=0]").remove();
                 $("#select").removeAttr("hidden");
                 $("#ratelabel").removeAttr("hidden");
+                $("#scenes").removeAttr("hidden");
             } else if ($("input[name=wantgood]:checked").val() == 2) {
                 $("#select").attr("hidden", "hidden");
-                $("#ratelabel").attr("hidden","hidden")
+                $("#ratelabel").attr("hidden","hidden");
+                $("#scenes").attr("hidden", "hidden");
                 $("#select").val(4);
+                $("#scene-select").val(0);
             }
         }
 
@@ -309,7 +317,7 @@
                             margin:15px 0 10px 0;
                             }
                             </style>
-                            <textarea width="auto" name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" maxlength="100"></textarea>
+                            <textarea width="auto" name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" required maxlength="100"></textarea>
                         {{--</div>--}}
                         {{--<div class="col-md-6">--}}
                             <style>
@@ -352,9 +360,11 @@
                                         margin:5px;
                                     }
                                 </style>
+                                <p id="scenes">
                                 シーン:
-                                <select id="scene" name="scene">
-                                    <option value="1">誕生日</option>
+                                <select id="scene-select" name="scene">
+                                    <option value="0" hidden></option>
+                                    <option value="1" selected>誕生日</option>
                                     <option value="2">結婚記念日</option>
                                     <option value="3">クリスマス</option>
                                     <option value="4">出産祝い</option>
@@ -369,6 +379,7 @@
                                     <option value="13">入学祝い</option>
 
                                 </select><br>
+                                </p>
                             </div>
                         @if(Auth::check() == false)
 
@@ -620,21 +631,17 @@
 
 
                                     <div class="col-md-4 col-sm-4 col-xs-4 w3l-movie-gride-agile">
-                                        <a href="single.html" class="hvr-shutter-out-horizontal"><img src="/images/present1.jpg" title="album-name" class="img-responsive" alt=" " />
+                                        <a href="single.html" class="hvr-shutter-out-horizontal"><img src={{$rank['image']}} title="album-name" class="img-responsive" alt=" " />
 
                                         </a>
                                         <div class="mid-1 agileits_w3layouts_mid_1_home">
                                             <div class="w3l-movie-text">
-                                                <h6><a href="single.html">Test {{$rank['ranking_no']}}位プレゼント</a></h6>
+                                                <h6><a href="single.html">{{$rank['name']}}</a></h6>
                                             </div>
                                             <div class="mid-2 agile_mid_2_home">
                                                 <div class="block-stars">
                                                     <ul class="w3l-ratings">
-                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                    {{rateToStar($rank['average_rate'])}}
                                                     </ul>
                                                 </div>
                                                 <div class="clearfix"></div>
@@ -660,20 +667,16 @@
                             @elseif($rank['ranking_no'] < 15)
 
                                 <div class="col-md-3 col-sm-3 col-xs-3 w3l-movie-gride-agile">
-                                    <a href="single.html" class="hvr-shutter-out-horizontal"><img src="/images/present4.jpeg" title="album-name" class="img-responsive-rank" alt=" " />
+                                    <a href="single.html" class="hvr-shutter-out-horizontal"><img src={{$rank['image']}} title="album-name" class="img-responsive-rank" alt=" " />
                                      </a>
                                     <div class="mid-1 agileits_w3layouts_mid_1_home">
                                         <div class="w3l-movie-text">
-                                            <h6><a href="single.html">Test {{$rank['ranking_no']}}位プレゼント</a></h6>
+                                            <h6><a href="single.html">{{$rank['name']}}</a></h6>
                                         </div>
                                         <div class="mid-2 agile_mid_2_home">
                                             <div class="block-stars">
                                                 <ul class="w3l-ratings">
-                                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                    {{rateToStar($rank['average_rate'])}}
                                                 </ul>
                                             </div>
                                             <div class="clearfix"></div>
@@ -699,22 +702,18 @@
 
 
                             <div class="col-md-2 col-sm-2 col-xs-2 w3l-movie-gride-agile">
-                                <a href="single.html" class="hvr-shutter-out-horizontal"><img src="/images/present6.jpg" title="album-name" class="img-responsive-rank-low" alt=" " />
+                                <a href="single.html" class="hvr-shutter-out-horizontal"><img src={{$rank['image']}} title="album-name" class="img-responsive-rank-low" alt=" " />
 
                                 </a>
                                 <div class="mid-1 agileits_w3layouts_mid_1_home">
                                     <div class="w3l-movie-text">
-                                        <h6><a href="single.html">Test {{$rank['ranking_no']}}位プレゼント</a></h6>
+                                        <h6><a href="single.html">{{$rank['name']}}</a></h6>
                                     </div>
                                     <div class="mid-2 agile_mid_2_home">
 
                                         <div class="block-stars">
                                             <ul class="w3l-ratings">
-                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                                {{rateToStar($rank['average_rate'])}}
                                             </ul>
                                         </div>
                                         <div class="clearfix"></div>
