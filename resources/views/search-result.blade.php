@@ -105,6 +105,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+            parent.document.registform.productname.isDisabled = false;
+            parent.document.registform.productname.style.backgroundColor = "#fff";
+            parent.document.registform.genrename.isDisabled = false;
+            parent.document.registform.genrename.style.backgroundColor = "#fff";
+            parent.document.registform.comment.readOnly = false;
+            parent.document.registform.comment.style.backgroundColor = "#fff";
+            parent.document.registform.rate.removeAttribute('disabled');
+            parent.document.registform.rate.style.backgroundColor = "#fff";
+            parent.document.registform.good.removeAttribute('disabled');
+            parent.document.registform.want.removeAttribute('disabled');
+            parent.document.registform.scene.removeAttribute('disabled');
+            parent.document.registform.scene.style.backgroundColor = "#fff";
+            parent.document.registform.man.removeAttribute('disabled');
+            parent.document.registform.women.removeAttribute('disabled');
+            parent.document.registform.age.removeAttribute('disabled');
+            parent.document.registform.age.style.backgroundColor = "#fff";
+            parent.document.registform.hobbies_id.removeAttribute('disabled');
+            parent.document.registform.hobbies_id.style.backgroundColor = "#fff";
+            parent.document.registform.send.style.backgroundColor = "#ff9393";
+            parent.document.registform.send.removeAttribute('disabled');
+            parent.document.registform.cancel.style.backgroundColor = "#ff9393";
+            parent.document.registform.cancel.removeAttribute('disabled');
+
+
+
 
 
         }

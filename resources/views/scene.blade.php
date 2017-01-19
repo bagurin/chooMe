@@ -198,7 +198,7 @@
 
             if ($("input[name=wantgood]:checked").val() == 1) {
                 $("#select").val(5);
-                $("#scene-select").val(1);
+                $("#scene").val(1);
                 $("#select option[value=0]").remove();
                 $("#select").removeAttr("hidden");
                 $("#ratelabel").removeAttr("hidden");
@@ -208,7 +208,7 @@
                 $("#ratelabel").attr("hidden","hidden");
                 $("#scenes").attr("hidden", "hidden");
                 $("#select").val(4);
-                $("#scene-select").val(0);
+                $("#scene").val(0);
             }
         }
 
@@ -217,20 +217,48 @@
             $("#cancel")
                     .click(function(){
                         $("#p-register").contents().find("#name").removeAttr("disabled");
-                        $("#p-register").contents().find("#name").val("");
-                        $("#p-register").contents().find("#check").removeAttr("disabled");
-                        $("#p-register").contents().find("#genre").removeAttr("disabled");
-                        $("#p-register").contents().find("#genre").val("1");
-                        $("#p-register").contents().find("#image").removeAttr("disabled");
-                        $("#p-register").contents().find("#image").val("");
-                        $("#p-register").contents().find("#thumb").remove();
+                        $("#p-register").contents().find("#image").attr("disabled");
+
                         search.location.href = '/search/';
-                        document.getElementById("parenttext").value = "";
-                        document.getElementById("parentgenrename").value = "";
+                        document.getElementById("parenttext").style.backgroundColor = "#ccc";
+                        document.getElementById("parenttext").isDisabled = true;
+                        document.getElementById("parentgenrename").style.backgroundColor = "#ccc";
+//                        document.getElementById("parentgenrename").value = "";
+                        document.getElementById("parentgenrename").isDisabled = true;
                         document.getElementById("parentgenreid").value = "";
+                        document.getElementById("parentgenreid").isDisabled = true;
                         document.getElementById("parentimage").value = "";
-                        document.getElementById("comment").value = "";
-                        document.getElementById("rate").value = "5";
+                        document.getElementById("comment").readOnly = true;
+                        document.getElementById("comment").style.backgroundColor = "#ccc";
+//                        document.getElementById("comment").value = "";
+//                        document.getElementById("rate").selected = "5";
+                        document.getElementById("rate").style.backgroundColor = "#ccc";
+                        $("#rate").attr("disabled","disabled");
+                        $("#want").attr("disabled","disabled");
+                        $("#good").attr("disabled","disabled");
+                        $("#man").attr("disabled","disabled");
+                        $("#women").attr("disabled","disabled");
+                        document.getElementById("scene").style.backgroundColor = "#ccc";
+                        $("#scene").attr("disabled","disabled");
+                        document.getElementById("age").style.backgroundColor = "#ccc";
+                        $("#age").attr("disabled","disabled");
+                        document.getElementById("hobbies_id").style.backgroundColor = "#ccc";
+                        $("#hobbies_id").attr("disabled","disabled");
+                        document.getElementById("send").style.backgroundColor = "#ccc";
+                        $("#send").attr("disabled","disabled");
+                        document.getElementById("cancel").style.backgroundColor = "#ccc";
+                        $("#cancel").attr("disabled","disabled");
+                        $("#p-register").contents().find("#checks").removeAttr("disabled");
+                        $("#p-register").contents().find("#checks").removeAttr("style");
+                        $("#p-register").contents().find("#genre").attr("style","background-color: #ccc");
+                        $("#p-register").contents().find("#checkResult").innerText = '';
+
+
+
+                        $.ajax({
+                            url: '/imageDel/',
+                            type: 'get'
+                        })
                     });
         });
     </script>
@@ -306,8 +334,8 @@
                                     margin: 10px;
                                 }
                             </style>
-                            <input type="text" class="form-control" name="productname" id="parenttext" value="" placeholder="商品名"  readonly="readonly"/>
-                            <input type="text" class="form-control" name="genrename" id="parentgenrename" placeholder="ジャンル" readonly="readonly"/>
+                            <input type="text" class="form-control-ro" name="productname" id="parenttext" value="" placeholder="商品名"  readonly="readonly"/>
+                            <input type="text" class="form-control-ro" name="genrename" id="parentgenrename" placeholder="ジャンル" readonly="readonly"/>
                             <!-- ジャンルid、画像情報はhiddenで外に-->
                             <input type="hidden" class="form-control" name="genreid" id="parentgenreid" value="" readonly="readonly"/>
                             <input type="hidden" class="form-control" name="image" id="parentimage" value="" readonly="readonly"/>
@@ -315,9 +343,16 @@
                             <style>
                             textarea{
                             margin:15px 0 10px 0;
+                                background-color: #ccc;
+                            }
+                            select{
+                                background-color: #ccc;
+                            }
+                            input{
+                                background-color: #ccc;
                             }
                             </style>
-                            <textarea width="auto" name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" required maxlength="100"></textarea>
+                            <textarea width="auto" name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" required maxlength="100" readonly></textarea>
                         {{--</div>--}}
                         {{--<div class="col-md-6">--}}
                             <style>
@@ -329,9 +364,7 @@
                                 }
                             </style>
                             <p id="ratelabel">評価
-                                <select id="select">
-                                </select>
-                                <select id="rate" name="rate" class="nodisp" size="1">
+                                <select id="rate" name="rate" disabled size="1">
                                     <option value="5">★★★★★</option>
                                     <option value="4">★★★★☆</option>
                                     <option value="3">★★★☆☆</option>
@@ -349,8 +382,8 @@
 
 
 
-                                <input type="radio" name="wantgood" value="1" id="good" onclick="reviewch()" checked>もらったもの
-                                <input type="radio" name="wantgood" value="2" id="want" onclick="wantch()">欲しいもの
+                                <input type="radio" name="wantgood" value="1" id="good" onclick="reviewch()" checked disabled>もらったもの
+                                <input type="radio" name="wantgood" value="2" id="want" onclick="wantch()" disabled>欲しいもの
 
 
                             </div>
@@ -362,7 +395,7 @@
                                 </style>
                                 <p id="scenes">
                                 シーン:
-                                <select id="scene-select" name="scene">
+                                <select id="scene" name="scene" disabled>
                                     <option value="0" hidden></option>
                                     <option value="1" selected>誕生日</option>
                                     <option value="2">結婚記念日</option>
@@ -391,12 +424,12 @@
                             {{--</div>--}}
                             <div class="col-md-3 col-sm-3 col-xs-3">
                                 性別:
-                                <input type="radio" name="sex" value="男" checked>男
-                                <input type="radio" name="sex" value="女">女
+                                <input type="radio" id="man" name="sex" value="男" checked disabled>男
+                                <input type="radio" id="women" name="sex" value="女" disabled>女
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-4">
                                 年齢:
-                                <select id="age" name="age">
+                                <select id="age" name="age" disabled>
                                     <option value="1">10歳未満</option>
                                     <option value="2">10代前半</option>
                                     <option value="3">10代後半</option>
@@ -413,7 +446,7 @@
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-4">
                                 趣味:
-                                <select id="hobbies_id" name="hobbies_id">
+                                <select id="hobbies_id" name="hobbies_id" disabled>
                                     <option value="1">スポーツ</option>
                                     <option value="2">読書</option>
                                     <option value="3">PC</option>
@@ -435,18 +468,11 @@
 
                         @endif
                         <div class="col-md-4 col-sm-4 col-xs-4">
-                            <style>
-                                label{
-                                    margin:17px 0 0 0;
-                                }
-                            </style>
-                            <label class="my-file-input">
-                                <input type="submit" class="send" name="send" id="send" >
-                                登録する</label>
-                            <label class="my-file-input">
-                                <input type="button" id="cancel" name="cancel">
-                                商品を選び直す
-                            </label>
+
+                                <input type="submit" class="send" name="send" id="send" disabled value="登録する" >
+
+                                <input type="button" class="cancel" id="cancel" name="cancel" disabled value="修正する">
+
                         </div>
                             <style>
                                 label {
