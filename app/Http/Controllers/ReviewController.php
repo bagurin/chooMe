@@ -60,7 +60,7 @@ class ReviewController extends Controller
     }
 
     // レビューをデータベースに格納
-    public function review(){
+    public function reviewRank(){
 
         //id用変数
         $user_id = -1;
@@ -97,6 +97,45 @@ class ReviewController extends Controller
         //登録成功
         return Response::make("OK！", 200);
 
+    }
+
+    // レビューをデータベースに格納
+    public function review(){
+
+        //id用変数
+        $user_id = -1;
+
+        //ログインしているかで取得するidを変更
+        if(Auth::check()) {
+            // ログインユーザーID取得し、connectをtrueに
+            $user_id = Auth::user()->id;
+            UserInfo::where('id', $user_id)->update(['connect'=>true]);
+        }else{
+            //ゲストユーザーid取得用データ取得
+            $sex = Request::get('sex');
+            $age = (int)Request::get('age');
+            $hobbies = (int)Request::get('hobbies_id');
+            //ゲストユーザーid取得
+            $id = UserInfo::where('sex', $sex)->where('age', $age)->where('hobbies_id', $hobbies)->get(['id'])->toArray();
+            $user_id = $id[0]['id'];
+        }
+
+        // 名前・コメント・評価点数・商品タイプ取得
+        $syohin = Request::get('productname');
+        $comment = Request::get('comment');
+        $rate = Request::get('rate');
+        $goods_type = (int)Request::input('wantgood');
+        $scene = Request::get('scene');
+
+        //商品名からidを取得
+        $getgoods_id = Getgoods::where('name', $syohin)->get(['id'])->toArray();
+
+        $review = array('getgoods_id' => $getgoods_id[0]['id'], 'users_id' => $user_id, 'scenes_id' => $scene,
+            'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
+        Review::create($review);
+
+        //登録成功
+        return redirect()->back();
 
     }
 

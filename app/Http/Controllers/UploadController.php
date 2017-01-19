@@ -36,13 +36,6 @@ class UploadController extends Controller
             return Response::make('NG', 500);
         }
 
-//        //ファイル名を生成し画像をアップロード
-//        $name = md5(sha1(uniqid(mt_rand(), true))) . '.' . $image->getClientOriginalExtension();
-//        $image->move('media', $name);
-//
-//        // 画像保存先pathとファイル名を連結
-//        $path = '/media/' . $name;
-
         $path = '/media/' . $name;
 
         //url生成
@@ -54,14 +47,11 @@ class UploadController extends Controller
         // 配列にまとめてデータベースに追加
         $getgoods = array('name' => $syohin, 'genres_id' => (int)$genres, 'image' => $path, 'url' => $url);
         Getgoods::create($getgoods);
-        //return redirect('/');
 
 //--------------------------------------商品登録--------------------------------------------
 
 
 //--------------------------------------レビュー--------------------------------------------
-
-        // レビューをデータベースに格納
 
         //id用変数
         $user_id = -1;
@@ -123,13 +113,6 @@ class UploadController extends Controller
             return Response::make('NG', 500);
         }
 
-//        //ファイル名を生成し画像をアップロード
-//        $name = md5(sha1(uniqid(mt_rand(), true))) . '.' . $image->getClientOriginalExtension();
-//        $image->move('media', $name);
-//
-//        // 画像保存先pathとファイル名を連結
-//        $path = '/media/' . $name;
-
         $path = '/media/' . $name;
 
         //url生成
@@ -141,7 +124,6 @@ class UploadController extends Controller
         // 配列にまとめてデータベースに追加
         $getgoods = array('name' => $syohin, 'genres_id' => (int)$genres, 'image' => $path, 'url' => $url);
         Getgoods::create($getgoods);
-        //return redirect('/');
 
 //--------------------------------------商品登録--------------------------------------------
 
@@ -184,7 +166,7 @@ class UploadController extends Controller
 
 //--------------------------------------レビュー--------------------------------------------
 
-        return Response::make("OK", 200);
+        return redirect('/single/?goods=' . $getgoods_id[0]['id']);
 
     }
 
@@ -215,10 +197,10 @@ class UploadController extends Controller
                 //tmpフォルダがない場合作成
                 if(!File::exists(public_path().'/tmp/'))
                 {
-                    File::makeDirectory(public_path().'/tmp');
+                    File::makeDirectory(public_path().'/tmp/');
                 }
 
-                $file = public_path().'/tmp/'.$f['name'];
+                $file = public_path().'/tmp/' . md5(sha1(uniqid(mt_rand(), true))) . $ext = substr($f['name'], strrpos($f['name'], '.'));;
                 if(move_uploaded_file($f['tmp_name'],$file)){
                     Session::put('path', $file);
                 }
