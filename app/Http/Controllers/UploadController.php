@@ -200,7 +200,7 @@ class UploadController extends Controller
                     File::makeDirectory(public_path().'/tmp/');
                 }
 
-                $file = public_path().'/tmp/' . md5(sha1(uniqid(mt_rand(), true))) . $ext = substr($f['name'], strrpos($f['name'], '.'));;
+                $file = public_path().'/tmp/' . md5(sha1(uniqid(mt_rand(), true))) . substr($f['name'], strrpos($f['name'], '.'));
                 if(move_uploaded_file($f['tmp_name'],$file)){
                     Session::put('path', $file);
                 }

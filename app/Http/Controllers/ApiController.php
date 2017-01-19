@@ -180,13 +180,6 @@ class ApiController extends Controller
             }
             $goods_name = $_POST['name'];
 
-            // 画像
-            if(!isset($_POST['image'])){
-                $error = '画像が選択されていません。';
-                return json_encode($error, JSON_UNESCAPED_UNICODE);
-            }
-            $image = $_POST['image'];
-
             // ジャンル
             if(!isset($_POST['genres'])){
                 $error = 'ジャンルが入力されていません。';
@@ -227,10 +220,23 @@ class ApiController extends Controller
             $url = 'https://www.amazon.co.jp/gp/search/ref=nb_sb_noss_1?__mk_ja_JP=%E3%82%AB%E3%
                82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=' . $goods_name;
 
+            $f = $_FILES['upfile'];
+            if(isset($f) and $f['name']) {
+                $image = md5(sha1(uniqid(mt_rand(), true))) . substr($f['name'], strrpos($f['name'], '.'));
+                $file = public_path() . '/media/' . $image;
+                if (!move_uploaded_file($f['tmp_name'], $file)) {
+                    $error = '画像アップロードに失敗しました。';
+                    return json_encode($error, JSON_UNESCAPED_UNICODE);
+                }
+            }else{
+                $error = '画像がアップロードされていません。';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
+
+            $path = '/media/' . $image;
+
             // 配列にまとめてデータベースに追加
-            $getgoods = array('name' => $goods_name, 'genres_id' => (int)$genres,
-                //'image' => $path,
-                'url' => $url);
+            $getgoods = array('name' => $goods_name, 'genres_id' => (int)$genres, 'image' => $path, 'url' => $url);
             Getgoods::create($getgoods);
 
 //--------------------------------------------レビュー------------------------------------------------------
