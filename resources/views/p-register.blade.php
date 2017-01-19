@@ -72,12 +72,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
 
-                jQuery(document).ready(function($) {
-                    $(".scroll").click(function(event){
-                        event.preventDefault();
-                        $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-                    });
-                });
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
 
         <!-- フォームモジュールの外に値を出す関数 SendParam() -->
         function SendParam() {
@@ -86,14 +86,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             if(document.getElementById("name").value === ""){
                 alert('商品名を入力してください。')
             }
+            else if(document.getElementById("image").value === "") {
+                alert('商品画像が選択されていません。')
+            }
             else {
 
                 //parent.document.registform（親フォーム名).コントロールのnameの値.value = document.getElementById(送りたい子フォーム内のコントロールのidの値).value;
                 parent.document.registform.productname.value = document.getElementById("name").value;
+                parent.document.registform.productname.isDisabled = false;
+                parent.document.registform.productname.style.backgroundColor = "#fff";
                 parent.document.registform.genreid.value = document.getElementById("genre").value;
                 parent.document.registform.genrename.value = genres[document.getElementById("genre").value - 1];
+                parent.document.registform.genrename.isDisabled = false;
+                parent.document.registform.genrename.style.backgroundColor = "#fff";
+                parent.document.registform.comment.readOnly = false;
+                parent.document.registform.comment.style.backgroundColor = "#fff";
+                parent.document.registform.rate.removeAttribute('disabled');
+                parent.document.registform.rate.style.backgroundColor = "#fff";
+                parent.document.registform.good.removeAttribute('disabled');
+                parent.document.registform.want.removeAttribute('disabled');
+                parent.document.registform.scene.removeAttribute('disabled');
+                parent.document.registform.scene.style.backgroundColor = "#fff";
+                parent.document.registform.man.removeAttribute('disabled');
+                parent.document.registform.women.removeAttribute('disabled');
+                parent.document.registform.age.removeAttribute('disabled');
+                parent.document.registform.age.style.backgroundColor = "#fff";
+                parent.document.registform.hobbies_id.removeAttribute('disabled');
+                parent.document.registform.hobbies_id.style.backgroundColor = "#fff";
+                parent.document.registform.send.style.backgroundColor = "#ff9393";
+                parent.document.registform.send.removeAttribute('disabled');
+                parent.document.registform.cancel.style.backgroundColor = "#ff9393";
+                parent.document.registform.cancel.removeAttribute('disabled');
+                $("#name,#check,#genre,#image,#temp,#checks").attr("disabled","disabled");
+                document.getElementById("checks").style.backgroundColor = "#ccc";
+                document.getElementById("temp").style.backgroundColor = "#ccc";
+                document.getElementById("genre").style.backgroundColor ="#ccc";
 
-                $("#name,#check,#genre").attr("disabled","disabled");
 
             }
         }
@@ -121,10 +149,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <form id="check" method="post" action="{{url('/check/')}}">
             {{ csrf_field() }}
             <div class="col-md-3">
-                <input type="text" id="name" name="name" placeholder="商品名">
+                <input type="text" id="name" name="name" class="form-control" required placeholder="商品名">
             </div>
             <div class="col-md-3">
-                <input type="submit" value="重複チェック">
+                <input type="submit" class="buttons" id="checks" name="checks" value="重複チェック">
                 <label id="checkResult"></label>
                 {{--<input type="text" id="checkResult" disabled="disabled" style=border:none>--}}
             </div>
@@ -148,6 +176,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 success: function(result) {
                     //重複なし文表示 
                     message.innerHTML = "OK!";
+                    document.getElementById('temp').style.backgroundColor = "#ff9393";
+                    $("#temp").removeAttr("disabled");
+                    $("#genre").removeAttr("style");
+                    $("#genre").removeAttr("disabled");
+                    $("#image").removeAttr("disabled");
+
+
                 } ,
                 error: function(result){
                     //エラー文表示
@@ -165,100 +200,101 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     {{--<input type="submit" id="check" name="check" value="重複チェック">--}}
     <div class="form-group">
         <div class="col-md-12">
-          ジャンル:
-         <select id="genre" name="genres">
-            <option value="1">本</option>
-            <option value="2">DVD・音楽</option>
-            <option value="3">TVゲーム</option>
-            <option value="4">家電・カメラ・AV機器</option>
-            <option value="5">パソコン・オフィス用品</option>
-            <option value="6">ホーム&キッチン・DIY</option>
-            <option value="7">食品・飲料・お酒</option>
-            <option value="8">ドラッグ・ビューティ</option>
-            <option value="9">ベビー・おもちゃ</option>
-            <option value="10">服</option>
-            <option value="11">シューズ</option>
-            <option value="12">バッグ</option>
-            <option value="13">腕時計</option>
-            <option value="14">スポーツ&アウトドア</option>
-            <option value="15">車&バイク</option>
-        </select><br>
+            ジャンル:
+            <select id="genre" name="genres" class="form-control" disabled style="background-color: #ccc">
+                <option value="1">本</option>
+                <option value="2">DVD・音楽</option>
+                <option value="3">TVゲーム</option>
+                <option value="4">家電・カメラ・AV機器</option>
+                <option value="5">パソコン・オフィス用品</option>
+                <option value="6">ホーム&キッチン・DIY</option>
+                <option value="7">食品・飲料・お酒</option>
+                <option value="8">ドラッグ・ビューティ</option>
+                <option value="9">ベビー・おもちゃ</option>
+                <option value="10">服</option>
+                <option value="11">シューズ</option>
+                <option value="12">バッグ</option>
+                <option value="13">腕時計</option>
+                <option value="14">スポーツ&アウトドア</option>
+                <option value="15">車&バイク</option>
+            </select><br>
         </div>
     </div>
 
     <div class="form-group">
-     <div class="col-md-12">
-        <style>
-            label {
-                margin-left: 0em;
-            }
-            .my-file-input {
-                display: inline-block;
-                padding: 5px;
-                width: 200px;
-                text-align: center;
-                white-space: nowrap;
-                overflow: hidden;
-                font-size: 14px;
-                text-overflow: ellipsis;
-                background-color: #ff9393;
-                color: white;
-                box-shadow: #888 2px 2px 1px;
-                cursor: pointer;
-            }
-            .my-file-input:hover {
-                background-color: #fc6c6c;
-            }
-            .my-file-input:hover {
-                background-color: #fc6c6c;
-            }
-            .my-file-input:active {
-                box-shadow: #f75454 1px 1px 1px;
-                position: relative;
-                top: 1px; left: 1px;
-            }
-            .my-file-input input {
-                display: none;
-            }
-            span {
-                display: block;
-            }
-            span img{
-                max-width: 300px;
-                max-height: 70px;
-                vertical-align: bottom;
-            }
-        </style>
+        <div class="col-md-12">
+            <style>
+                label {
+                    margin-left: 0em;
+                }
+                .my-file-input {
+                    display: inline-block;
+                    padding: 5px;
+                    width: 200px;
+                    text-align: center;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    font-size: 14px;
+                    text-overflow: ellipsis;
+                    background-color: #ff9393;
+                    color: white;
+                    box-shadow: #888 2px 2px 1px;
+                    cursor: pointer;
+                }
+                .my-file-input:hover {
+                    background-color: #fc6c6c;
+                }
+                .my-file-input:hover {
+                    background-color: #fc6c6c;
+                }
+                .my-file-input:active {
+                    box-shadow: #f75454 1px 1px 1px;
+                    position: relative;
+                    top: 1px; left: 1px;
+                }
+                .my-file-input input {
+                    display: none;
+                }
+                span {
+                    display: block;
+                }
+                span img{
+                    max-width: 300px;
+                    max-height: 70px;
+                    vertical-align: bottom;
+                }
+            </style>
 
-         <form id="imageTemp" name="imageTemp" method="post" target="upload_frame" enctype="multipart/form-data" action="{{url('/temp/')}}">
-         {{ csrf_field() }}
-         <input type="file" name="image" id ="image" accept="image/*" readonly="readonly">
+            <form id="imageTemp" name="imageTemp" method="post" target="upload_frame" enctype="multipart/form-data" action="{{url('/temp/')}}">
+                {{ csrf_field() }}
 
-        {{--<img src="" id="sub" name="image" style="display:none;">--}}
-        <script>
-            document.getElementById("image").addEventListener("change", function(e){
-                e.target.nextSibling.nodeValue = e.target.files.length ? e.target.files[0].name : "商品画像を選択";
-            });
+                <input type="file" name="image" disabled id="image" accept="image/*" required readonly="readonly">
 
-        </script>
-        <style>
-            form .upload label {
-                display:inline-block; position:relative;
-                overflow:hidden; vertical-align:middle; }
-            form .upload label input[type="file"] {
-                position:absolute; top:0; right:0; cursor:pointer;
-                font-size:100px; opacity:0.01; -ms-filter:"alpha(opacity=1)"; }
-            form .upload label input[type="file"]:hover + .button {}
-            form .upload .alt  {
-                padding:4px; border:1px solid #999; vertical-align:middle; }
-        </style>
-        <br>
-        <label class="my-file-input" onclick="SendParam()"><input id="temp" name="temp" type="submit">商品情報確定</label>
-         <iframe name="upload_frame" style="display:none;"></iframe>
-         </form>
+                {{--<img src="" id="sub" name="image" style="display:none;">--}}
+                <script>
+                    document.getElementById("image").addEventListener("change", function(e){
+                        e.target.nextSibling.nodeValue = e.target.files.length ? e.target.files[0].name : "商品画像を選択";
+                    });
+
+                </script>
+                <style>
+                    form .upload label {
+                        display:inline-block; position:relative;
+                        overflow:hidden; vertical-align:middle; }
+                    form .upload label input[type="file"] {
+                        position:absolute; top:0; right:0; cursor:pointer;
+                        font-size:100px; opacity:0.01; -ms-filter:"alpha(opacity=1)"; }
+                    form .upload label input[type="file"]:hover + .button {}
+                    form .upload .alt  {
+                        padding:4px; border:1px solid #999; vertical-align:middle; }
+                </style>
+                <br>
+                <input id="temp" name="temp" type="submit" class="send" disabled onclick="SendParam()" value="商品情報確定">
+                <iframe name="upload_frame" style="display:none;"></iframe>
+            </form>
+        </div>
+
     </div>
-
-</div>
 
 
     {{--<div class="well">--}}
@@ -270,7 +306,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     {{ csrf_field() }}
 
-    {{--<input type="text" name="name" id="name" readonly="readonly" value="{{ $name }}"><br>--}}
+
 
 
 </div>
