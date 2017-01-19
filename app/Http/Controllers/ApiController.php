@@ -63,11 +63,11 @@ class ApiController extends Controller
         if($cipher->keycheck($key,$osid)){
 
             // 商品ID
-            if(!isset($_POST['word'])){
+            if(!isset($_GET['word'])){
                 $error = 'キーワードがありません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
-            $word = $_POST['word'];
+            $word = $_GET['word'];
 
             $result = Getgoods::where('name', 'LIKE', "%".$word."%")->get(['id','name','image'])->toArray();
 
@@ -109,11 +109,11 @@ class ApiController extends Controller
         if($cipher->keycheck($key,$osid)){
 
             // 商品ID
-            if(!isset($_POST['goodsid'])){
+            if(!isset($_GET['goods_id'])){
                 $error = '商品IDがありません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
-            $goods_id = (int)$_POST['goodsid'];
+            $goods_id = (int)$_GET['goods_id'];
 
             $goods_data = Getgoods::join_genres()->select_goods()->where_goods($goods_id)->get()->toArray();
 
@@ -279,11 +279,11 @@ class ApiController extends Controller
             }
 
             // 商品ID
-            if(!isset($_POST['goodsid'])){
+            if(!isset($_POST['goods_id'])){
                 $error = '商品IDが送られていません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
-            $getgoods_id = (int)$_POST['goodsid'];
+            $getgoods_id = (int)$_POST['goods_id'];
 
             // レビュー
             if(!isset($_POST['comment'])){

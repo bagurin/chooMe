@@ -56,33 +56,28 @@ Route::group(['middleware' => 'auth'], function() {
 
 Route::get('/home', 'HomeController@index');
 
-
 // まーしー追加
 Route::get('/register-and-review/', function(){
     return view('register-and-review');
 });
-
 Route::get('/register-or-review/', function(){
     return view('register-or-review');
 });
-
 Route::post('/register-and-review/', 'UploadController@postIndex');
-
-Route::post('/review/', 'ReviewController@review');
+//Route::post('/register/', 'UploadController@postGoods');
+//Route::post('//', 'ReviewController@review');
+Route::post('/review/', 'ReviewController@reviewRank');
 Route::get('/review/{name}', 'ReviewController@viewReview');
-
 Route::post('/register-or-review/', 'ReviewController@getData');
 Route::get('/presearch/', 'ReviewController@searchWord');
-//Route::post('/search-result/', 'ReviewController@getData');
 Route::get('/search-result/', 'ReviewController@viewData');
 Route::get('/search/', function(){
     return view('search');
 });
-
 Route::post('/check/', 'UploadController@nameCheck');
 Route::post('/temp/', 'UploadController@imageTemp');
-
 Route::get('/single/', 'RankingViewController@goodsView');
+Route::get('/imageDel/', 'UploadController@imageDel');
 
 //おでん追加
 Route::get('/p-register/', function(){
