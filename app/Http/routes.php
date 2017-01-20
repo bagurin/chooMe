@@ -64,8 +64,7 @@ Route::get('/register-or-review/', function(){
     return view('register-or-review');
 });
 Route::post('/register-and-review/', 'UploadController@postIndex');
-//Route::post('/register/', 'UploadController@postGoods');
-//Route::post('//', 'ReviewController@review');
+Route::post('/register/', 'UploadController@postGoods');
 Route::post('/review/', 'ReviewController@reviewRank');
 Route::get('/review/{name}', 'ReviewController@viewReview');
 Route::post('/register-or-review/', 'ReviewController@getData');

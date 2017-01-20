@@ -94,25 +94,18 @@ class UploadController extends Controller
     public function postGoods()
     {
 
-
 //--------------------------------------商品登録--------------------------------------------
-
         // 商品名取得
         $syohin = Request::get('productname');
 
         // ジャンル番号を取得
         $genres = (int)Request::get('genreid');
 
-        // tmpフォルダ内の画像パス
-        $image = Session::get('path');
-        // 移動ファイル名
-        $name = basename($image);
+        $image = Request::file('image');
 
-        //ファイル移動
-        if (!File::move($image ,'./media/'.$name)) {
-            return Response::make('NG', 500);
-        }
-
+        // ファイル名を生成し画像をアップロード
+        $name = md5(sha1(uniqid(mt_rand(), true))).'.'.$image->getClientOriginalExtension();
+        $upload = $image->move('media', $name);
         $path = '/media/' . $name;
 
         //url生成
@@ -166,7 +159,7 @@ class UploadController extends Controller
 
 //--------------------------------------レビュー--------------------------------------------
 
-        return redirect('/single/?goods=' . $getgoods_id[0]['id']);
+        return redirect('/single/?goodsid=' . $getgoods_id[0]['id']);
 
     }
 
