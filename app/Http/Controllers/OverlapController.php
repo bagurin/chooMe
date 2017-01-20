@@ -9,6 +9,7 @@ use App\Http\Controllers\KanaController as kana;
 use DB;
 use App\Getgoods;
 use App\Genres;
+use App\Review;
 
 class OverlapController extends Controller
 {
@@ -80,6 +81,7 @@ class OverlapController extends Controller
 
         //返却する重複リストの配列
         $return_array = array();
+        $error_c = '';
 
         foreach($all as $val){
 
@@ -116,7 +118,7 @@ class OverlapController extends Controller
             }
 
             if(empty($checkarray)){
-                //空
+                $error_c = '重複している商品はありません';
             }else{
                 $checkarray = self::getUniqueArray($checkarray,'id');
 
@@ -126,7 +128,7 @@ class OverlapController extends Controller
             }
         }
 
-        return view('welcome',compact('return_array'));
+        return view('check',compact('return_array','error_c'));
     }
 
     public function goods_combine(){
@@ -142,9 +144,13 @@ class OverlapController extends Controller
         }
         $subid = intval($_POST['subid']);
 
+        Review::where('getgoods_id',$subid)
+            ->update(['getgoods_id'=>$mainid]);
+
+        Getgoods::where('id','=',$subid)->delete();
 
 
-        return 'a';
+        return redirect('/test');
     }
 
 }
