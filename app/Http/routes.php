@@ -78,6 +78,8 @@ Route::post('/check/', 'UploadController@nameCheck');
 Route::post('/temp/', 'UploadController@imageTemp');
 Route::get('/single/', 'RankingViewController@goodsView');
 Route::get('/imageDel/', 'UploadController@imageDel');
+Route::get('/getgenres/', 'RankingViewController@getGenre');
+Route::get('/bygenres/', 'RankingViewController@genreGoods');
 
 //おでん追加
 Route::get('/p-register/', function(){
@@ -105,5 +107,7 @@ Route::group(['prefix' => '/api/1.0/'], function () {
     Route::get('serchresult/', 'ApiController@serchResult');
     //商品レビュー投稿
     Route::get('review/', 'ApiController@apiReview');
+    //ジャンル別商品
+    Route::get('/bygenres/', 'apiController@byGenre');
 
 });

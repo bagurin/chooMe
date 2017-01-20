@@ -12,6 +12,29 @@ use App\Review;
 class RankingViewController extends Controller
 {
 
+    //ジャンル格納
+    public function getGenre(){
+
+        if(!isset($_GET['genre'])){
+            return 'ジャンルIDが存在しません。';
+        }
+        Session::put('genres_id',(int)$_GET['genre']);
+
+        return redirect('/bygenres/');
+
+    }
+
+    //ジャンル別商品データ
+    public function genreGoods(){
+
+        $genres_id = Session::get('genres_id');
+
+        $goods_data = Getgoods::join_genres()->select_goods()->where_genres($genres_id)->paginate(10);
+
+        return $goods_data;
+
+    }
+
     //商品ページ表示
     public function goodsView(){
 

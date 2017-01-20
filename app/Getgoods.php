@@ -29,4 +29,8 @@ class Getgoods extends Model
         return $query->where('getgoods.id', '=', $goods_id);
     }
 
+    public function scopeWhere_genres($query, $genres_id){
+        return $query->where('getgoods.genres_id', '=', $genres_id);
+    }
+
 }
