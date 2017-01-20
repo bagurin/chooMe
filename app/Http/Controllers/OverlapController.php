@@ -10,7 +10,7 @@ use DB;
 use App\Getgoods;
 use App\Genres;
 use App\Review;
-
+use File;
 class OverlapController extends Controller
 {
 
@@ -146,8 +146,14 @@ class OverlapController extends Controller
         Review::where('getgoods_id',$subid)
             ->update(['getgoods_id'=>$mainid]);
 
-        Getgoods::where('id','=',$subid)->delete();
+        $image = Getgoods::select('image')
+            ->where('id','=',$subid)
+            ->get()->toArray();
+        $image = $image[0]['image'];
+        $image = public_path().$image;
 
+        File::delete($image);
+        Getgoods::where('id','=',$subid)->delete();
 
         return redirect('/test');
     }
