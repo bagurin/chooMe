@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Genres;
 use App\Getgoods;
 use App\Pattern;
 use App\Rank;
@@ -13,6 +14,47 @@ use App\Http\Controllers\PatternController as Patternc;
 
 class ApiController extends Controller
 {
+
+    //apiジャンル別商品
+    public function byGenre()
+    {
+
+        $cipher = new Cipher();
+        $osid = 1;
+
+        // キー
+        if (!isset($_GET['key'])) {
+            $error = 'キーがありません。';
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
+        }
+        $key = $_GET['key'];
+
+        if ($cipher->keycheck($key, $osid)) {
+
+            // ジャンルid
+            if (!isset($_GET['genres'])) {
+                $error = 'ジャンルIDがありません。';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
+            $genres_id = (int)$_GET['genres'];
+            $gname = Genres::where('id', $genres_id)->get()->toArray();
+            $goods_data = Getgoods::where('genres_id', $genres_id)->get(['id','name','image'])->toArray();
+            $return_array = array("Type"=>"Ranking","Pattern"=>$gname[0]['name']);
+            $items_array = array();
+
+            foreach ($goods_data as $val) {
+                //imageを型変換
+                $url = Request::root() . $val['image'];
+                $val['image'] = $url;
+                $item_array = array("Item"=>$val);
+                $items_array = array_merge($items_array,array($item_array));
+            }
+            $return_array = array_merge($return_array,array("Items"=>$items_array));
+            return json_encode($return_array, 256);
+        }
+        $error = 'キーが正しくありません。';
+        return json_encode($error, JSON_UNESCAPED_UNICODE);
+    }
 
     //api予測検索
     public function preSerch(){
