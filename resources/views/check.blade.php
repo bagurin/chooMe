@@ -8,7 +8,8 @@
                     <div class="panel-heading"></div>
 
                     <div class="panel-body">
-                        @if($error_c == '')
+
+                        @if(!empty($return_array))
 
                             <table cellspacing="10">
                                 <tr align="center"><th>商品名</th><th align="center">ジャンルID</th><th align="center">商品画像</th><th>重複商品一覧</th></tr>
@@ -125,9 +126,8 @@
                                     @endforeach
                                 @endforeach
                             </table>
-
                         @else
-                            <p>{{$error_c}}</p>
+                            <p>重複している商品はありません</p>
                         @endif
 
                     </div>

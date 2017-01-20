@@ -81,7 +81,6 @@ class OverlapController extends Controller
 
         //返却する重複リストの配列
         $return_array = array();
-        $error_c = '';
 
         foreach($all as $val){
 
@@ -118,7 +117,7 @@ class OverlapController extends Controller
             }
 
             if(empty($checkarray)){
-                $error_c = '重複している商品はありません';
+                //空
             }else{
                 $checkarray = self::getUniqueArray($checkarray,'id');
 
@@ -128,7 +127,7 @@ class OverlapController extends Controller
             }
         }
 
-        return view('check',compact('return_array','error_c'));
+        return view('check',compact('return_array'));
     }
 
     public function goods_combine(){
