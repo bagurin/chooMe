@@ -234,7 +234,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </table>
             {!! $list->render() !!}
 
-            <a href="/search/">検索ぺージに戻る</a>
+            <a href="javascript:history.back();">前のぺージに戻る</a>
 
 
     </div>
