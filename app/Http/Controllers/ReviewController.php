@@ -39,7 +39,6 @@ class ReviewController extends Controller
 
             Session::put('goods_name', $_GET['word']);
 
-            //$list = Getgoods::where('name', 'LIKE', "%{$name}%")->paginate(1);
             return redirect('/search-result/');
         }
     }
@@ -81,16 +80,13 @@ class ReviewController extends Controller
         }
 
         // 名前・コメント・評価点数・商品タイプ取得
-        $syohin = Request::get('productname');
+        $getgoods_id = Request::get('goodsid');
         $comment = Request::get('comment');
         $rate = Request::get('rate');
         $goods_type = (int)Request::input('wantgood');
         $scene = Request::get('scene');
 
-        //商品名からidを取得
-        $getgoods_id = Getgoods::where('name', $syohin)->get(['id'])->toArray();
-
-        $review = array('getgoods_id' => $getgoods_id[0]['id'], 'users_id' => $user_id, 'scenes_id' => $scene,
+        $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scene,
             'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
         Review::create($review);
 
@@ -121,16 +117,13 @@ class ReviewController extends Controller
         }
 
         // 名前・コメント・評価点数・商品タイプ取得
-        $syohin = Request::get('productname');
+        $getgoods_id = Request::get('goodsid');
         $comment = Request::get('comment');
         $rate = Request::get('rate');
         $goods_type = (int)Request::input('wantgood');
         $scene = Request::get('scene');
 
-        //商品名からidを取得
-        $getgoods_id = Getgoods::where('name', $syohin)->get(['id'])->toArray();
-
-        $review = array('getgoods_id' => $getgoods_id[0]['id'], 'users_id' => $user_id, 'scenes_id' => $scene,
+        $review = array('getgoods_id' => (int)$getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scene,
             'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
         Review::create($review);
 

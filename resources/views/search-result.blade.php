@@ -98,10 +98,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $text = obj.childNodes;
             $name = $text[0].innerText;
             $genre = $text[1].innerText;
+            $id = $text[3].innerText;
             console.log($text);
 
             $("#parenttext",parent.document).val($name);
             $("#parentgenrename",parent.document).val($genre);
+            $("#parentgoodsid",parent.document).val($id);
 
 
 
@@ -196,7 +198,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <?php
     function printTable($list){
         foreach($list as $item){
-            echo '<tr onclick="Click_Sub(this)" data-href="#" id="link" class="clickable"><td id="pname">'.$item->name.'</td><td>'.$item->genres_id.'</td><td><img src="'.$item->image.'" class="contain"></td></a></tr>' . PHP_EOL;
+            echo '<tr onclick="Click_Sub(this)" data-href="#" id="link" class="clickable"><td id="pname">'.$item->name.'</td><td>'.$item->genres_id.'</td><td><img src="'.$item->image.'" class="contain"></td><td hidden>'.$item->id.'</td></a></tr>' . PHP_EOL;
         }
     }
 
