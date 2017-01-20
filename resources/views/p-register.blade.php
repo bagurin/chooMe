@@ -93,11 +93,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 //parent.document.registform（親フォーム名).コントロールのnameの値.value = document.getElementById(送りたい子フォーム内のコントロールのidの値).value;
                 parent.document.registform.productname.value = document.getElementById("name").value;
-                parent.document.registform.productname.isDisabled = false;
+//                parent.document.registform.productname.isDisabled = false;
                 parent.document.registform.productname.style.backgroundColor = "#fff";
                 parent.document.registform.genreid.value = document.getElementById("genre").value;
                 parent.document.registform.genrename.value = genres[document.getElementById("genre").value - 1];
-                parent.document.registform.genrename.isDisabled = false;
+//                parent.document.registform.genrename.isDisabled = false;
                 parent.document.registform.genrename.style.backgroundColor = "#fff";
                 parent.document.registform.comment.readOnly = false;
                 parent.document.registform.comment.style.backgroundColor = "#fff";
@@ -117,10 +117,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 parent.document.registform.send.removeAttribute('disabled');
                 parent.document.registform.cancel.style.backgroundColor = "#ff9393";
                 parent.document.registform.cancel.removeAttribute('disabled');
-                $("#name,#check,#genre,#image,#temp,#checks").attr("disabled","disabled");
                 document.getElementById("checks").style.backgroundColor = "#ccc";
                 document.getElementById("temp").style.backgroundColor = "#ccc";
                 document.getElementById("genre").style.backgroundColor ="#ccc";
+//                $("#name,#genre,#image,#temp,#checks").attr("disabled","disabled");
+                $("#name").attr("disabled","disabled");
+                $("#genre").attr("disabled","disabled");
+//                $("#image").attr("hidden","hidden");
+                $("#temp").attr("disabled","disabled");
+                $("#checks").attr("disabled","disabled");
+
 
 
             }
@@ -265,10 +271,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 }
             </style>
 
-            <form id="imageTemp" name="imageTemp" method="post" target="upload_frame" enctype="multipart/form-data" action="{{url('/temp/')}}">
+            <form id="imageTemp" name="imageTemp" method="post" target="upload_frame" enctype="multipart/form-data"  onsubmit="SendParam()" action="{{url('/temp/')}}">
                 {{ csrf_field() }}
 
-                <input type="file" name="image" disabled id="image" accept="image/*" required readonly="readonly">
+                <input type="file" name="image"  id="image" accept="image/*" disabled required readonly="readonly">
 
                 {{--<img src="" id="sub" name="image" style="display:none;">--}}
                 <script>
@@ -289,7 +295,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         padding:4px; border:1px solid #999; vertical-align:middle; }
                 </style>
                 <br>
-                <input id="temp" name="temp" type="submit" class="send" disabled onclick="SendParam()" value="商品情報確定">
+                <input id="temp" name="temp" type="submit" class="send" disabled value="商品情報確定">
                 <iframe name="upload_frame" style="display:none;"></iframe>
             </form>
         </div>

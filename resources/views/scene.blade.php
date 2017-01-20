@@ -217,7 +217,7 @@
             $("#cancel")
                     .click(function(){
                         $("#p-register").contents().find("#name").removeAttr("disabled");
-                        $("#p-register").contents().find("#image").attr("disabled");
+//                        $("#p-register").contents().find("#image").attr("disabled");
 
                         search.location.href = '/search/';
                         document.getElementById("parenttext").style.backgroundColor = "#ccc";
@@ -235,6 +235,7 @@
                         document.getElementById("rate").style.backgroundColor = "#ccc";
                         $("#rate").attr("disabled","disabled");
                         $("#want").attr("disabled","disabled");
+                        $("#good").attr("disabled","disabled");
                         $("#good").attr("disabled","disabled");
                         $("#man").attr("disabled","disabled");
                         $("#women").attr("disabled","disabled");
