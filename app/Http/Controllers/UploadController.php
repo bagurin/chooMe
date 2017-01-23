@@ -101,13 +101,16 @@ class UploadController extends Controller
         // ジャンル番号を取得
         $genres = (int)Request::get('genreid');
 
-        //画像取得
-        $image = Request::file('image');
+        // tmpフォルダ内の画像パス
+        $image = Session::get('path');
+        // 移動ファイル名
+        $name = basename($image);
 
-        // ファイル名を生成
-        $name = md5(sha1(uniqid(mt_rand(), true))).'.'.$image->getClientOriginalExtension();
         //ファイル移動
-        $upload = $image->move('media', $name);
+        if (!File::move($image ,'./media/'.$name)) {
+            return Response::make('NG', 500);
+        }
+
         $path = '/media/' . $name;
 
         //url生成
