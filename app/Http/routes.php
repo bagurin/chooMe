@@ -88,6 +88,9 @@ Route::get('/bygenres/', 'RankingViewController@genreGoods');
 Route::get('/p-register/', function(){
     return view('p-register');
 });
+Route::get('/p-register2/', function(){
+    return view('p-register2');
+});
 Route::get('/mypage', 'UserInfoController@getProfile');
 Route::post('/mypage', 'UserInfoController@postProfile');
 //api
