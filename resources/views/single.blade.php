@@ -157,7 +157,22 @@
 
 
 <!-- single -->
-
+<script>
+	function wantch(){
+		document.forms.reviewform.comment.placeholder = "欲しい理由(100文字以内)";
+		$("#ratelabel").attr("hidden","hidden");
+		$("#rate").attr("hidden","hidden");
+		$("#scenelabel").attr("hidden", "hidden");
+		$("#scene").attr("hidden", "hidden");
+	}
+	function reviewch() {
+		document.forms.reviewform.comment.placeholder = "レビュー(100文字以内)";
+		$("#ratelabel").removeAttr("hidden");
+		$("#rate").removeAttr("hidden");
+		$("#scenelabel").removeAttr("hidden", "hidden");
+		$("#scene").removeAttr("hidden", "hidden");
+	}
+</script>
 
 <div class="single-page-agile-main">
 <div class="container">
@@ -167,6 +182,7 @@
                    <!-- /movie-browse-agile -->
                            <div class="show-top-grids-w3lagile">
 				<div class="col-sm-8 single-left">
+					<div class="all-comments">
 					<div class="song">
 						<div class="song-info">
 							<h2>{{$data['name']}}</h2>
@@ -174,14 +190,126 @@
 						<div class="video-grid-single-page-agileits">
 							<img src={{$data['image']}} alt="" class="img-responsive-single" /> </div>
 						</div>
+						<br>
+						<p>商品名：{{$data['name']}}</p>
+						<p>ジャンル：{{$data['genres']}}</p>
+						<p></p>
 					</div>
-					<div class="song-grid-right">
 
-							</ul>
-						</div>
+
+
 						</div>
 					</div>
 					<div class="clearfix"> </div>
+			</div>
+                    <div class="all-comments">
+                        <div class="all-comments-info">
+                            <a href="#">レビュー投稿</a>
+                            <div class="agile-info-wthree-box">
+                                <form method="post" name="reviewform" action="{{url('/single/')}}">
+
+                                    {{ csrf_field() }}
+                                    {{--<div class="col-md-12">--}}
+                                        {{--<input type="text" name="name" id="name" readonly="readonly" value="{{ $name }}"><br>--}}
+                                    {{--</div>--}}
+                                    <input type="hidden" name="goodsid" value={{$data['id']}}><br>
+
+                                        <textarea name="comment" id="comment" rows="4" cols="40" placeholder="レビュー(100文字以内)" maxlength="100"></textarea>
+
+
+                                        <p id="scenelabel">シーン:
+                                        <select id="scene" name="scene">
+                                            <option value="1">誕生日</option>
+                                            <option value="2">結婚記念日</option>
+                                            <option value="3">クリスマス</option>
+                                            <option value="4">出産祝い</option>
+                                            <option value="5">結婚祝い</option>
+                                            <option value="6">手土産</option>
+                                            <option value="7">引っ越し</option>
+                                            <option value="8">お中元＆お歳暮</option>
+                                            <option value="9">父の日</option>
+                                            <option value="10">母の日</option>
+                                            <option value="11">敬老の日</option>
+                                            <option value="12">卒業＆就職祝い</option>
+                                            <option value="13">入学祝い</option>
+
+                                        </select></p><br>
+
+
+									<input type="radio" name="wantgood" value="1" id="good" onclick="reviewch()" checked>もらったもの
+									<input type="radio" name="wantgood" value="2" id="want" onclick="wantch()">欲しいもの
+
+
+									<p id="ratelabel">評価
+                                            <select id="rate" name="rate" size="1">
+                                                <option value="5">★★★★★</option>
+                                                <option value="4">★★★★☆</option>
+                                                <option value="3">★★★☆☆</option>
+                                                <option value="2">★★☆☆☆</option>
+                                                <option value="1">★☆☆☆☆</option>
+                                            </select></p><br>
+
+
+                                    @if(Auth::check() == false)
+
+                                        {{--ログインしていない場合（ゲストユーザー）--}}
+
+									<div class="well">
+                                            現在ユーザーログインされていません。<br>
+                                            商品を登録するにはログインするか、ゲストユーザーとして以下のユーザー情報を入力してください。<br>
+									</div>
+                                            性別:
+                                            <input type="radio" name="sex" value="1" checked>男
+                                            <input type="radio" name="sex" value="2">女
+									<br>
+
+                                            年齢:
+                                            <select id="age" name="age">
+                                                <option value="1">10歳未満</option>
+                                                <option value="2">10代前半</option>
+                                                <option value="3">10代後半</option>
+                                                <option value="4">20代前半</option>
+                                                <option value="5">20代後半</option>
+                                                <option value="6">30代前半</option>
+                                                <option value="7">30代後半</option>
+                                                <option value="8">40代前半</option>
+                                                <option value="9">40代後半</option>
+                                                <option value="10">50代</option>
+                                                <option value="11">60代</option>
+                                                <option value="12">70歳以上</option>
+
+                                            </select><br>
+
+
+                                            趣味:
+                                            <select id="hobbies_id" name="hobbies_id">
+                                                <option value="1">スポーツ</option>
+                                                <option value="2">読書</option>
+                                                <option value="3">PC</option>
+                                                <option value="4">旅行</option>
+                                                <option value="5">音楽</option>
+                                                <option value="6">映画鑑賞</option>
+                                                <option value="7">車＆バイク</option>
+                                                <option value="8">ゲーム</option>
+                                                <option value="9">料理</option>
+                                                <option value="10">お酒</option>
+                                                <option value="11">ショッピング</option>
+                                                <option value="12">手芸＆裁縫</option>
+                                                <option value="13">グルメ</option>
+                                                <option value="14">ガーデニング</option>
+                                                <option value="15">アイドル</option>
+                                                <option value="16">その他</option>
+                                            </select><br>
+
+                                    @endif
+
+                                        <label class="pink-button"><input type="submit"></label>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
 
 					<div class="all-comments">
 						<h3>貰ったプレゼントのレビュー</h3>
