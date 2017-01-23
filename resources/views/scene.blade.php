@@ -217,7 +217,7 @@
             $("#cancel")
                     .click(function(){
                         $("#p-register").contents().find("#name").removeAttr("disabled");
-                        $("#p-register").contents().find("#image").attr("disabled");
+//                        $("#p-register").contents().find("#image").attr("disabled");
 
                         search.location.href = '/search/';
                         document.getElementById("parenttext").style.backgroundColor = "#ccc";
@@ -235,6 +235,7 @@
                         document.getElementById("rate").style.backgroundColor = "#ccc";
                         $("#rate").attr("disabled","disabled");
                         $("#want").attr("disabled","disabled");
+                        $("#good").attr("disabled","disabled");
                         $("#good").attr("disabled","disabled");
                         $("#man").attr("disabled","disabled");
                         $("#women").attr("disabled","disabled");
@@ -338,7 +339,7 @@
                             <input type="text" class="form-control-ro" name="genrename" id="parentgenrename" placeholder="ジャンル" readonly="readonly"/>
                             <!-- ジャンルid、画像情報はhiddenで外に-->
                             <input type="hidden" class="form-control" name="genreid" id="parentgenreid" value="" readonly="readonly"/>
-                            <input type="hidden" class="form-control" name="image" id="parentimage" value="" readonly="readonly"/>
+                            <input type="hidden" class="form-control" name="goodsid" id="parentimage" value="" readonly="readonly"/>
                         <div class="col-md-2 col-sm-2 col-xs-2">
                             <style>
                             textarea{

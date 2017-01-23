@@ -36,6 +36,9 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
     Route::post('/admin/register','AdminHomeController@register');
     Route::get('/admin/profile', 'AdminInfoController@getProfile');
     Route::post('/admin/profile', 'AdminInfoController@postProfile');
+    //未実装（管理者ログインが実装され次第実装）
+    Route::get('/admin/lapcheck','OverlapController@lapcheck');
+    Route::post('/admin/lapcheck','OverlapController@goods_combine');
 });
 Route::get('/admin/logout','AdminAuthController@logout');
 
@@ -76,6 +79,7 @@ Route::get('/search/', function(){
 Route::post('/check/', 'UploadController@nameCheck');
 Route::post('/temp/', 'UploadController@imageTemp');
 Route::get('/single/', 'RankingViewController@goodsView');
+Route::post('/single', 'ReviewController@review');
 Route::get('/imageDel/', 'UploadController@imageDel');
 Route::get('/getgenres/', 'RankingViewController@getGenre');
 Route::get('/bygenres/', 'RankingViewController@genreGoods');
