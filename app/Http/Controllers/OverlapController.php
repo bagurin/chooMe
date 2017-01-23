@@ -167,60 +167,60 @@ class OverlapController extends Controller
         }
         $mainid = intval($_POST['mainid']);
 
-        if(!isset($_POST['subid'])){
-            $error = 'subidがありません';
+        if(!isset($_POST['lap'])){
+            $error = 'lapがありません';
             return json_encode($error, JSON_UNESCAPED_UNICODE);
         }
-        $subid = intval($_POST['subid']);
+        $lap = ($_POST['lap']);
 
-        Review::where('getgoods_id',$subid)
-            ->update(['getgoods_id'=>$mainid]);
+        $not = array();
+        foreach($lap as $val){
+            foreach ($val as $key => $val2){
+                $subid = $key;
+                if($val2 == 'on'){
+                    Review::where('getgoods_id',$subid)
+                        ->update(['getgoods_id'=>$mainid]);
 
-        //商品画像を削除する
-        $image = Getgoods::select('image')
-            ->where('id','=',$subid)
-            ->get()->toArray();
-        $image = $image[0]['image'];
-        $image = public_path().$image;
-        File::delete($image);
+                    //商品画像を削除する
+                    $image = Getgoods::select('image')
+                        ->where('id','=',$subid)
+                        ->get()->toArray();
+                    $image = $image[0]['image'];
+                    $image = public_path().$image;
+                    File::delete($image);
 
-        //商品情報を削除する
-        Getgoods::where('id','=',$subid)->delete();
+                    //商品情報を削除する
+                    Getgoods::where('id','=',$subid)->delete();
 
-        //重複リストから消す
-        Overlap::where('goods_id','=',$subid)->delete();
-
-        return redirect('/test');
-    }
-
-    public function notoverlap(){
-        if(!isset($_POST['checkid'])){
-            $error = 'checkidがありません';
-            return json_encode($error, JSON_UNESCAPED_UNICODE);
+                    //重複リストから消す
+                    Overlap::where('goods_id','=',$subid)->delete();
+                }else{
+                    $not[] = $key;
+                }
+            }
         }
-        //base変換された配列が送られてくるので、配列に戻す
-        $array = explode(",", base64_decode($_POST['checkid']));
-        //配列の0番目がメインの商品なのでmainidに格納する
-        $mainid = intval($array[0]);
+        if(!empty($not)){
+            if(count($not) > 1){
+                $str1 = explode(",", $not);
+            }else{
+                $str1 = $not[0];
+            }
 
-        //0番目の商品情報を削除する
-        array_splice($array, 0, 1);
-        $str1 = implode($array, ",");
 
-        $str2 = Overlap::select('not_overlap')
-            ->where('goods_id','=',$mainid)->get()->toArray();
+            $str2 = Overlap::select('not_overlap')
+                ->where('goods_id','=',$mainid)->get()->toArray();
 
-        if(!empty($str2)){
-            $str2 = $str2[0]['not_overlap'];
-            $re_str = $str2 . ',' .$str1;
+            if(!empty($str2)){
+                $str2 = $str2[0]['not_overlap'];
+                $re_str = $str2 . ',' .$str1;
+            }else{
+                $re_str = $str1;
+            }
+            Overlap::updateOrCreate(['goods_id' => $mainid],['not_overlap'=>$re_str]);
         }else{
-            $re_str = $str1;
+            //空なら
         }
 
-
-        Overlap::updateOrCreate(['goods_id' => $mainid],['not_overlap'=>$re_str]);
-
-        return redirect('/test');
+        return redirect('/lapcheck');
     }
-
 }
