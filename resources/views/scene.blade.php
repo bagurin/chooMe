@@ -365,7 +365,10 @@
                                 }
                             </style>
                             <p id="ratelabel">評価
-                                <select id="rate" name="rate" disabled size="1">
+                                <select id="select">
+                                </select>
+                                <select id="rate" name="rate" class="nodisp" disabled size="1">
+
                                     <option value="5">★★★★★</option>
                                     <option value="4">★★★★☆</option>
                                     <option value="3">★★★☆☆</option>
