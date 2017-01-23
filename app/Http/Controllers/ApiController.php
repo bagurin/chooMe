@@ -8,6 +8,7 @@ use App\Pattern;
 use App\Rank;
 use App\Http\Controllers\CipherController as Cipher;
 use App\Review;
+use App\UserInfo;
 use Request;
 use App\Http\Controllers\PatternController as Patternc;
 
@@ -209,7 +210,7 @@ class ApiController extends Controller
             $token = $_POST['token'];
 
             // トークンが一致するユーザーid取得
-            $user_id = $this->token_getid($token);
+            $user_id = $cipher->token_getid($token);
             if($user_id == false){
                 $error = 'ユーザーが存在しません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
@@ -286,6 +287,8 @@ class ApiController extends Controller
             $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scenes,
                 'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
             Review::create($review);
+
+            UserInfo::where('id', $user_id)->update(['connect'=>true]);
 
             $message = '商品及びレビューを登録しました。';
             return json_encode($message, JSON_UNESCAPED_UNICODE);
@@ -364,6 +367,8 @@ class ApiController extends Controller
             $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scenes,
                 'goodstypes_id' => $goods_type, 'comment' => $comment, 'rate' => (int)$rate);
             Review::create($review);
+
+            UserInfo::where('id', $user_id)->update(['connect'=>true]);
 
             $message = 'レビューを登録しました。';
             return json_encode($message, JSON_UNESCAPED_UNICODE);
