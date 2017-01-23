@@ -101,10 +101,12 @@ class UploadController extends Controller
         // ジャンル番号を取得
         $genres = (int)Request::get('genreid');
 
+        //画像取得
         $image = Request::file('image');
 
-        // ファイル名を生成し画像をアップロード
+        // ファイル名を生成
         $name = md5(sha1(uniqid(mt_rand(), true))).'.'.$image->getClientOriginalExtension();
+        //ファイル移動
         $upload = $image->move('media', $name);
         $path = '/media/' . $name;
 
@@ -112,7 +114,7 @@ class UploadController extends Controller
         $url = 'https://www.amazon.co.jp/gp/search/ref=nb_sb_noss_1?__mk_ja_JP=%E3%82%AB%E3%
                82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=' . $syohin;
 
-        Session::pull('path');
+        Session::forget('path');
 
         // 配列にまとめてデータベースに追加
         $getgoods = array('name' => $syohin, 'genres_id' => (int)$genres, 'image' => $path, 'url' => $url);
@@ -163,6 +165,7 @@ class UploadController extends Controller
 
     }
 
+    //重複チェック
     public function nameCheck(){
 
         // 商品名取得
@@ -181,6 +184,7 @@ class UploadController extends Controller
         return Response::make($syohin, 200);
     }
 
+    //画像一時保存
     public function imageTemp(){
 
         if(isset($_POST)){
@@ -202,6 +206,7 @@ class UploadController extends Controller
 
     }
 
+    //一時保存画像削除
     public function imageDel(){
 
         // tmpフォルダ内の画像パス
