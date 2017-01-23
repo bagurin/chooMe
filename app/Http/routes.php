@@ -99,6 +99,8 @@ Route::group(['prefix' => '/api/1.0/'], function () {
     Route::get('ranking/', 'ApiController@apiRanking');
     //ユーザーログインによるトークン発行処理
     Route::post('/gettoken','CipherController@gettoken');
+    //トークンからコネクトを返す
+    Route::post('/getconnect','CipherController@token_connect');
     //ユーザー情報とトークンを登録し、トークンを返す
     Route::post('/apiregister','CipherController@apiregister');
     //トークンからユーザー情報を取得する

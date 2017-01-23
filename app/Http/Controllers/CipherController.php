@@ -17,7 +17,51 @@ class CipherController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     public function show(){
+        return view('welcome');
+    }
 
+    public function token_connect(){
+        if(!isset($_POST['key'])){
+            $error = 'キーがありません';
+            return json_encode($error, JSON_UNESCAPED_UNICODE);
+        }
+        $key = $_POST['key'];
+
+        //キーが正しければ処理をする
+        if($this->keycheck($key,1)){
+            if(!isset($_POST['token'])){
+                $error = 'トークンがありません';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
+            $token = $_POST['token'];
+
+            //トークンが存在すれば処理を続ける
+            if($this->token_check($token)){
+                $userinfo = DB::table('users')->select('connect')
+                    ->where([['access_token','=',$token]])
+                    ->get();
+                $userinfo = (array)$userinfo[0];
+
+                //JSON
+                $return_array = array("Type"=>"Connect",);
+                $items_array = array();
+
+                $item_array = array("Item"=>$userinfo);
+
+                $items_array = array_merge($items_array,array($item_array));
+
+                $return_array = array_merge($return_array,array("Items"=>$items_array));
+
+                //返却
+                return json_encode($return_array,256);
+            }else{
+                $error = 'トークンが正しくありません';
+                return json_encode($error,JSON_UNESCAPED_UNICODE);
+            }
+        }else{
+            $error = 'キーが正しくありません';
+            return json_encode($error,JSON_UNESCAPED_UNICODE);
+        }
     }
 
     public function token_changeprof(){

@@ -5,7 +5,12 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading"></div>
+                    <div class="panel-heading">
+                        ※重複チェックボックスについて※<br>
+                        重複対象商品：ON<br>
+                        重複対象外商品：OFF
+                        <br>重複がない場合も同期ボタンを押して下さい。次回以降表示されなくなります。
+                    </div>
 
                     <div class="panel-body">
 
