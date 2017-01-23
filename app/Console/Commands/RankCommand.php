@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 
 use DateTime;
 use DB;
+use App\Review;
 
 class RankCommand extends Command
 {
@@ -61,12 +62,13 @@ class RankCommand extends Command
 
             $interval = $review_time->diff($now_time);
 
-            return 0.012 * (int)$interval->format('%a');
+            $nissu = (int)$interval->format('%a');
+            return 0.004 * $nissu;
         }
 
         //$this->info('テキスト');
         //取得してきたランキング情報を分解して返す
-        function getiac($ans,$goodstypes)
+        function getiac($ans)
         {
 
             //オブジェクトで返却されるので配列に変換する。([0]なのは１件しか格納されていない為)
@@ -82,12 +84,6 @@ class RankCommand extends Command
 
             //スコアメソッドでスコアを算出して格納する
             $result = score($average, $count);
-            if($goodstypes == 2){
-                $result= $result - dateminus($id);
-                if($result < 0){
-                    $result = 0.000;
-                }
-            }
 
             $info = array('id' => $id, 'score' => $result, 'ave' => $average);
 
@@ -126,6 +122,17 @@ class RankCommand extends Command
             //少数第四位を四捨五入する
             return round($ans, 3);
         }
+        function wantscore($id,$count){
+
+            $ave = 4;
+            $ans = 0.0;
+
+            $ans = (($ave - 3) ** 2) * log($count);
+
+            $ans = $ans - dateminus($id);
+
+            return $ans;
+        }
 
         //配列→連想配列→値の降順 でソートする
         function sortArrayByKey(&$array, $sortKey, $sortType = SORT_DESC)
@@ -153,19 +160,32 @@ class RankCommand extends Command
             //20件以上のデータを削除する。(ランキング20以内のみ残す)
             $sendarray = array_slice($sendarray, 0, 20, true);
 
-            foreach ($sendarray as $value) {
+            if($goodstypes == 1){
+                foreach ($sendarray as $value) {
 
-                DB::table('ranks')
-                    ->where([
-                        ['ranking_no', '=', $rank],
-                        ['patterns_id', '=', $pattern],
-                        ['goodstypes_id','=',$goodstypes],
-                    ])
-                    ->update(['getgoods_id' => $value['id'], 'score' => $value['score'], 'average_rate' => $value['ave'], 'updated_at' => date("Y-m-d H:i:s")]);
+                    DB::table('ranks')
+                        ->where([
+                            ['ranking_no', '=', $rank],
+                            ['patterns_id', '=', $pattern],
+                            ['goodstypes_id','=',1],
+                        ])
+                        ->update(['getgoods_id' => $value['id'], 'score' => $value['score'], 'average_rate' => $value['ave'], 'updated_at' => date("Y-m-d H:i:s")]);
 
-                $rank += 1;
+                    $rank += 1;
+                }
+            }else{
+                foreach ($sendarray as $value) {
+                    DB::table('ranks')
+                        ->where([
+                            ['ranking_no', '=', $rank],
+                            ['patterns_id', '=', $pattern],
+                            ['goodstypes_id','=',2],
+                        ])
+                        ->update(['getgoods_id' => $value['id'], 'score' => $value['score'],'updated_at' => date("Y-m-d H:i:s")]);
+
+                    $rank += 1;
+                }
             }
-
         }
 
         //ユーザー情報ランキング（change = 性別:1 年代:2 趣味:3）
@@ -203,24 +223,51 @@ class RankCommand extends Command
                 $val = gettid($pattern);
             }
 
-            foreach ($allid as $value) {
+            if($goodstypes == 1){
 
-                $ans = DB::table('reviews')
-                    ->join('users', 'users.id', '=', 'reviews.users_id')
-                    ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
-                    ->where([
-                        [$com, '=', $val],
-                        ['reviews.getgoods_id', '=', $value],
-                        ['reviews.goodstypes_id', '=', $goodstypes],
-                    ])
-                    ->get();
+                foreach ($allid as $value) {
 
-                //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans,$goodstypes);
+                    $ans = DB::table('reviews')
+                        ->join('users', 'users.id', '=', 'reviews.users_id')
+                        ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
+                        ->where([
+                            [$com, '=', $val],
+                            ['reviews.getgoods_id', '=', $value],
+                            ['reviews.goodstypes_id', '=', 1],
+                        ])
+                        ->get();
 
-                if ($info != false) {
-                    //配列へ情報を格納する
-                    $array = array_merge($array, array($info));
+                    //取得した情報を分解するgetiacメソッドを実行する
+                    $info = getiac($ans);
+
+                    if ($info != false) {
+                        //配列へ情報を格納する
+                        $array = array_merge($array, array($info));
+                    }
+                }
+
+            }else{
+                foreach($allid as $value){
+                    $ans = Review::select(DB::raw('reviews.getgoods_id ,COUNT(reviews.id) as count'))
+                        ->join('users', 'users.id', '=', 'reviews.users_id')
+                        ->where([
+                            [$com, '=', $val],
+                            ['reviews.getgoods_id', '=', $value],
+                            ['reviews.goodstypes_id', '=', 2],
+                        ])
+                        ->get()->toArray();
+
+                    if($ans[0]['count'] != 0){
+//                        dd($value,$com,$val,$ans[0]['count']);
+                        $score = wantscore($value,$ans[0]['count']);
+
+                        $info = array('id'=>$ans[0]['getgoods_id'],'score'=>$score);
+
+                        if ($info != false) {
+                            //配列へ情報を格納する
+                            $array = array_merge($array, array($info));
+                        }
+                    }
                 }
             }
 
@@ -239,23 +286,47 @@ class RankCommand extends Command
 
             $genre = gettid($pattern);
 
-            foreach ($allid as $value) {
+            if($goodstypes == 1){
+                foreach ($allid as $value) {
 
-                $ans = DB::table('reviews')
-                    ->join('getgoods', 'getgoods.id', '=', 'reviews.getgoods_id')
-                    ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
-                    ->where([
-                        ['getgoods.genres_id', '=', $genre],
-                        ['reviews.getgoods_id', '=', $value],
-                        ['reviews.goodstypes_id', '=', $goodstypes],
-                    ])
-                    ->get();
+                    $ans = DB::table('reviews')
+                        ->join('getgoods', 'getgoods.id', '=', 'reviews.getgoods_id')
+                        ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
+                        ->where([
+                            ['getgoods.genres_id', '=', $genre],
+                            ['reviews.getgoods_id', '=', $value],
+                            ['reviews.goodstypes_id', '=', 1],
+                        ])
+                        ->get();
 
-                $info = getiac($ans,$goodstypes);
+                    $info = getiac($ans);
 
-                if ($info != false) {
-                    //配列へ情報を格納する
-                    $array = array_merge($array, array($info));
+                    if ($info != false) {
+                        //配列へ情報を格納する
+                        $array = array_merge($array, array($info));
+                    }
+                }
+            }else{
+                foreach($allid as $value){
+                    $ans = Review::select(DB::raw('reviews.getgoods_id ,COUNT(reviews.id) as count'))
+                        ->join('getgoods', 'getgoods.id', '=', 'reviews.getgoods_id')
+                        ->where([
+                            ['getgoods.genres_id', '=', $genre],
+                            ['reviews.getgoods_id', '=', $value],
+                            ['reviews.goodstypes_id', '=', 2],
+                        ])
+                        ->get()->toArray();
+
+                    if($ans[0]['count'] != 0){
+                        $score = wantscore($value,$ans[0]['count']);
+
+                        $info = array('id'=>$ans[0]['getgoods_id'],'score'=>$score);
+
+                        if ($info != false) {
+                            //配列へ情報を格納する
+                            $array = array_merge($array, array($info));
+                        }
+                    }
                 }
             }
 
@@ -286,7 +357,7 @@ class RankCommand extends Command
                     ])
                     ->get();
 
-                $info = getiac($ans,$goodstypes);
+                $info = getiac($ans);
 
                 if ($info != false) {
                     //配列へ情報を格納する
@@ -343,26 +414,51 @@ class RankCommand extends Command
             $com2 = 'users.age';
             $val2 = $oinfo;
 
-            foreach ($allid as $value) {
+            if($goodstypes == 1){
+                foreach ($allid as $value) {
 
-                $ans = DB::table('reviews')
-                    ->join('users', 'users.id', '=', 'reviews.users_id')
-                    ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
-                    ->where([
-                        [$com, '=', $val],
-                        [$com2, '=', $val2],
-                        ['reviews.getgoods_id', '=', $value],
-                        ['reviews.goodstypes_id', '=', $goodstypes],
-                    ])
-                    ->get();
+                    $ans = DB::table('reviews')
+                        ->join('users', 'users.id', '=', 'reviews.users_id')
+                        ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
+                        ->where([
+                            [$com, '=', $val],
+                            [$com2, '=', $val2],
+                            ['reviews.getgoods_id', '=', $value],
+                            ['reviews.goodstypes_id', '=', $goodstypes],
+                        ])
+                        ->get();
 
-                //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans,$goodstypes);
+                    //取得した情報を分解するgetiacメソッドを実行する
+                    $info = getiac($ans);
 
-                //配列へ情報を格納する
-                if ($info != false) {
                     //配列へ情報を格納する
-                    $array = array_merge($array, array($info));
+                    if ($info != false) {
+                        //配列へ情報を格納する
+                        $array = array_merge($array, array($info));
+                    }
+                }
+            }else{
+                foreach($allid as $value){
+                    $ans = Review::select(DB::raw('reviews.getgoods_id ,COUNT(reviews.id) as count'))
+                        ->join('users', 'users.id', '=', 'reviews.users_id')
+                        ->where([
+                            [$com, '=', $val],
+                            [$com2, '=', $val2],
+                            ['reviews.getgoods_id', '=', $value],
+                            ['reviews.goodstypes_id', '=', $goodstypes],
+                        ])
+                        ->get()->toArray();
+
+                    if($ans[0]['count'] != 0){
+                        $score = wantscore($value,$ans[0]['count']);
+
+                        $info = array('id'=>$ans[0]['getgoods_id'],'score'=>$score);
+
+                        if ($info != false) {
+                            //配列へ情報を格納する
+                            $array = array_merge($array, array($info));
+                        }
+                    }
                 }
             }
 
@@ -394,29 +490,57 @@ class RankCommand extends Command
             $com2 = 'getgoods.genres_id';
             $val2 = $oinfo;
 
-            foreach ($allid as $value) {
+            if($goodstypes == 1){
+                foreach ($allid as $value) {
 
-                $ans = DB::table('reviews')
-                    ->join('users', 'users.id', '=', 'reviews.users_id')
-                    ->join('getgoods', 'getgoods.id', '=', 'reviews.getgoods_id')
-                    ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
-                    ->where([
-                        [$com, '=', $val],
-                        [$com2, '=', $val2],
-                        ['reviews.getgoods_id', '=', $value],
-                        ['reviews.goodstypes_id', '=', $goodstypes],
-                    ])
-                    ->get();
+                    $ans = DB::table('reviews')
+                        ->join('users', 'users.id', '=', 'reviews.users_id')
+                        ->join('getgoods', 'getgoods.id', '=', 'reviews.getgoods_id')
+                        ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
+                        ->where([
+                            [$com, '=', $val],
+                            [$com2, '=', $val2],
+                            ['reviews.getgoods_id', '=', $value],
+                            ['reviews.goodstypes_id', '=', $goodstypes],
+                        ])
+                        ->get();
 
-                //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans,$goodstypes);
+                    //取得した情報を分解するgetiacメソッドを実行する
+                    $info = getiac($ans);
 
-                //配列へ情報を格納する
-                if ($info != false) {
                     //配列へ情報を格納する
-                    $array = array_merge($array, array($info));
+                    if ($info != false) {
+                        //配列へ情報を格納する
+                        $array = array_merge($array, array($info));
+                    }
+                }
+            }else{
+                foreach($allid as $value){
+                    $ans = Review::select(DB::raw('reviews.getgoods_id ,COUNT(reviews.id) as count'))
+                        ->join('users', 'users.id', '=', 'reviews.users_id')
+                        ->join('getgoods', 'getgoods.id', '=', 'reviews.getgoods_id')
+                        ->where([
+                            [$com, '=', $val],
+                            [$com2, '=', $val2],
+                            ['reviews.getgoods_id', '=', $value],
+                            ['reviews.goodstypes_id', '=', $goodstypes],
+                        ])
+                        ->get()->toArray();
+
+                    if($ans[0]['count'] != 0){
+                        $score = wantscore($value,$ans[0]['count']);
+
+                        $info = array('id'=>$ans[0]['getgoods_id'],'score'=>$score);
+
+                        if ($info != false) {
+                            //配列へ情報を格納する
+                            $array = array_merge($array, array($info));
+                        }
+                    }
                 }
             }
+
+
 
             if(count($array) != 0){
                 //ランキングを格納するメソッドを実行する
@@ -461,7 +585,7 @@ class RankCommand extends Command
                     ->get();
 
                 //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans,$goodstypes);
+                $info = getiac($ans);
 
                 //配列へ情報を格納する
                 if ($info != false) {
@@ -509,7 +633,7 @@ class RankCommand extends Command
                     ->get();
 
                 //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans,$goodstypes);
+                $info = getiac($ans);
 
                 //配列へ情報を格納する
                 if ($info != false) {
@@ -620,7 +744,7 @@ class RankCommand extends Command
                     ->get();
 
                 //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans,$goodstypes);
+                $info = getiac($ans);
 
                 //配列へ情報を格納する
                 if ($info != false) {
@@ -667,28 +791,55 @@ class RankCommand extends Command
             $com3 = 'getgoods.genres_id';
             $val3 = $ginfo;
 
-            foreach ($allid as $value) {
+            if($goodstypes == 1){
+                foreach ($allid as $value) {
 
-                $ans = DB::table('reviews')
-                    ->join('users', 'users.id', '=', 'reviews.users_id')
-                    ->join('getgoods', 'getgoods.id', '=', 'reviews.getgoods_id')
-                    ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
-                    ->where([
-                        [$com, '=', $val],
-                        [$com2, '=', $val2],
-                        [$com3, '=', $val3],
-                        ['reviews.getgoods_id', '=', $value],
-                        ['reviews.goodstypes_id', '=', $goodstypes],
-                    ])
-                    ->get();
+                    $ans = DB::table('reviews')
+                        ->join('users', 'users.id', '=', 'reviews.users_id')
+                        ->join('getgoods', 'getgoods.id', '=', 'reviews.getgoods_id')
+                        ->select(DB::raw('reviews.getgoods_id as "getgoods_id",ROUND(AVG(reviews.rate),3) as "ave",COUNT(reviews.rate) as "count"'))
+                        ->where([
+                            [$com, '=', $val],
+                            [$com2, '=', $val2],
+                            [$com3, '=', $val3],
+                            ['reviews.getgoods_id', '=', $value],
+                            ['reviews.goodstypes_id', '=', $goodstypes],
+                        ])
+                        ->get();
 
-                //取得した情報を分解するgetiacメソッドを実行する
-                $info = getiac($ans,$goodstypes);
+                    //取得した情報を分解するgetiacメソッドを実行する
+                    $info = getiac($ans);
 
-                //配列へ情報を格納する
-                if ($info != false) {
                     //配列へ情報を格納する
-                    $array = array_merge($array, array($info));
+                    if ($info != false) {
+                        //配列へ情報を格納する
+                        $array = array_merge($array, array($info));
+                    }
+                }
+            }else{
+                foreach($allid as $value){
+                    $ans = Review::select(DB::raw('reviews.getgoods_id ,COUNT(reviews.id) as count'))
+                        ->join('users', 'users.id', '=', 'reviews.users_id')
+                        ->join('getgoods', 'getgoods.id', '=', 'reviews.getgoods_id')
+                        ->where([
+                            [$com, '=', $val],
+                            [$com2, '=', $val2],
+                            [$com3, '=', $val3],
+                            ['reviews.getgoods_id', '=', $value],
+                            ['reviews.goodstypes_id', '=', $goodstypes],
+                        ])
+                        ->get()->toArray();
+
+                    if($ans[0]['count'] != 0){
+                        $score = wantscore($value,$ans[0]['count']);
+
+                        $info = array('id'=>$ans[0]['getgoods_id'],'score'=>$score);
+
+                        if ($info != false) {
+                            //配列へ情報を格納する
+                            $array = array_merge($array, array($info));
+                        }
+                    }
                 }
             }
 
@@ -796,11 +947,6 @@ class RankCommand extends Command
                 if($i == 30){
                     $this->info('趣味のみ(want) : Completed!!');
                 }
-            } elseif ($i >= 31 and $i <= 43) {
-                scenesrank($allid, $i, 2);
-                if($i == 43){
-                    $this->info('シーンのみ(want) : Completed!!');
-                }
             } elseif ($i >= 44 and $i <= 58) {
                 genresrank($allid, $i, 2);
                 if($i == 58){
@@ -811,27 +957,12 @@ class RankCommand extends Command
                 if($i == 82){
                     $this->info('性別×年代(want) : Completed!!');
                 }
-            } elseif ($i >= 83 and $i <= 86) {
-                sex_scene_rank($allid, $i, 2);
-                if($i == 86){
-                    $this->info('性別×誕生日･Xmas(want) : Completed!!');
-                }
-            } elseif ($i >= 87 and $i <= 110) {
-                age_scene_rank($allid, $i, 2);
-                if($i == 110){
-                    $this->info('年代×誕生日･Xmas(want) : Completed!!');
-                }
-            } elseif ($i >= 111 and $i <= 140) {
+            }elseif ($i >= 111 and $i <= 140) {
                 sex_genres_rank($allid, $i, 2);
                 if($i == 140){
                     $this->info('性別×ジャンル(want) : Completed!!');
                 }
-            } elseif ($i >= 141 and $i <= 188) {
-                sex_age_scene_rank($allid, $i, 2);
-                if($i == 188){
-                    $this->info('性別×年代×誕生日･Xmas(want) : Completed!!');
-                }
-            } elseif ($i >= 189 and $i <= 548) {
+            }elseif ($i >= 189 and $i <= 548) {
                 sex_age_genre_rank($allid, $i, 2);
                 if($i == 548){
                     $this->info('性別×年代×ジャンル(want) : Completed!!');
