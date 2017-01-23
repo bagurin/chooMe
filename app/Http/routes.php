@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
     //未実装（管理者ログインが実装され次第実装）
     Route::get('/admin/lapcheck','OverlapController@lapcheck');
     Route::post('/admin/lapcheck','OverlapController@goods_combine');
+    Route::post('/admin/notoverlap','OverlapController@notoverlap');
 });
 Route::get('/admin/logout','AdminAuthController@logout');
 
