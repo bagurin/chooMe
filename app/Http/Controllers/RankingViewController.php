@@ -44,7 +44,6 @@ class RankingViewController extends Controller
         $goods_id = (int)$_GET['goodsid'];
 
         $goods_data = Getgoods::join_genres()->select_goodssingle()->where_goods($goods_id)->get()->toArray();
-        dd($goods_data);
 
         $getgoods = Review::join_goodstyepes()->leftjoin_scene()->select_review()
             ->where_goods($goods_id)->where_goodstype(1)->orderby_rate()->get()->toArray();
