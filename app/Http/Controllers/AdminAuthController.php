@@ -17,9 +17,9 @@ class AdminAuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     protected $guard = 'admin';
-    protected $redirectTo = '/admin/home';
-    protected $loginView = 'admin.login';
-    protected $redirectAfterLogout = '/admin/login';
+    protected $redirectTo = '/admin/lapcheck';
+    protected $loginView = 'adminlogin';
+    protected $redirectAfterLogout = '/adminlogin';
 
     public function __construct()
     {
@@ -41,7 +41,7 @@ class AdminAuthController extends Controller
         if (view()->exists('admin.authenticate')) {
             return view('admin.authenticate');
         }
-        return view('admin.login');
+        return view('adminlogin');
     }
     public function showRegistrationForm(){
         return view('admin.register');

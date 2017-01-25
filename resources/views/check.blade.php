@@ -135,8 +135,12 @@
                             <p>重複している商品はありません</p>
                         @endif
 
+
+
                     </div>
+
                 </div>
+                <a href="/admin/logout/"><input type="button" class="buttons" value="管理者ログアウト"> </a>
             </div>
         </div>
     </div>

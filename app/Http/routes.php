@@ -86,6 +86,10 @@ Route::get('/getgenres/', 'RankingViewController@getGenre');
 Route::get('/bygenres/', 'RankingViewController@genreGoods');
 
 //おでん追加
+Route::get('/adminlogin/',function(){
+    return view('adminlogin');
+});
+
 Route::get('/p-register/', function(){
     return view('p-register');
 });
