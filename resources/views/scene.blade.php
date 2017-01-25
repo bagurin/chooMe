@@ -340,7 +340,22 @@
                             <!-- ジャンルid、画像情報はhiddenで外に-->
                             <input type="hidden" class="form-control" name="genreid" id="parentgenreid" value="" readonly="readonly"/>
                             <input type="hidden" class="form-control" name="goodsid" id="parentgoodsid" value="" readonly="readonly"/>
-                        <div class="col-md-2 col-sm-2 col-xs-2">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <style>
+                                    input{
+                                        margin: 5px;
+                                    }
+
+                                </style>
+
+
+
+                                <input type="radio" name="wantgood" value="1" id="good" onclick="reviewch()" checked disabled>もらったもの
+                                <input type="radio" name="wantgood" value="2" id="want" onclick="wantch()" disabled>欲しいもの
+
+
+                            </div>
+                            <div class="col-md-2 col-sm-2 col-xs-2">
                             <style>
                             textarea{
                             margin:15px 0 10px 0;
@@ -376,21 +391,7 @@
                                     <option value="1">★☆☆☆☆</option>
                                 </select></p><br>
                         </div>
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <style>
-                                    input{
-                                        margin: 5px;
-                                    }
 
-                                </style>
-
-
-
-                                <input type="radio" name="wantgood" value="1" id="good" onclick="reviewch()" checked disabled>もらったもの
-                                <input type="radio" name="wantgood" value="2" id="want" onclick="wantch()" disabled>欲しいもの
-
-
-                            </div>
                             <div class="col-md-4 col-sm-4 col-xs-4">
                                 <style>
                                     select{

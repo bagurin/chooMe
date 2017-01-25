@@ -81,7 +81,16 @@
                         })
                     });
         });
+        function wantch(){
+            document.forms.registform.comment.placeholder = "欲しい理由(100文字以内)";
+
+
+        }
+        function reviewch(){
+            document.forms.registform.comment.placeholder = "レビュー(100文字以内)";
+        }
     </script>
+
     <div class="faq">
         <div class="general_agileits_genres">
             <h4 class="latest-text w3_latest_text">商品登録</h4>
@@ -94,7 +103,7 @@
 
 
                     <section>
-                        <iframe height="400px" width="100%" frameborder="0" id="p-register" name="p-register" src="/p-register2/">
+                        <iframe height="320px" width="100%" frameborder="0" id="p-register" name="p-register" src="/p-register2/">
 
                         </iframe>
                         {{ csrf_field() }}
@@ -137,6 +146,10 @@
                                         background-color: #ccc;
                                     }
                                 </style>
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                                <input type="radio" name="wantgood" value="1" id="good" onclick="reviewch()" checked disabled>もらったもの
+                                <input type="radio" name="wantgood" value="2" id="want" onclick="wantch()" disabled>欲しいもの
+                            </div>
 
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <textarea width="auto" name="comment" id="comment" rows="4" cols="40" placeholder="レビュー（最大100字)" required maxlength="100" readonly></textarea>
@@ -152,10 +165,7 @@
                                 </style>
                             </div>
 
-                            <div class="col-md-4 col-sm-4 col-xs-4">
-                                <input type="radio" name="wantgood" value="1" id="good" onclick="reviewch()" checked disabled>もらったもの
-                                <input type="radio" name="wantgood" value="2" id="want" onclick="wantch()" disabled>欲しいもの
-                            </div>
+
                             <div class="col-md-4 col-sm-4 col-xs-4">
                                 <p id="ratelabel">評価
                                     <select id="select">

@@ -266,7 +266,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 }
                 span img{
                     max-width: 300px;
-                    max-height: 70px;
+                    max-height: 60px;
                     vertical-align: bottom;
                 }
             </style>

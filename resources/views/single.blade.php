@@ -213,9 +213,13 @@
                                         {{--<input type="text" name="name" id="name" readonly="readonly" value="{{ $name }}"><br>--}}
                                     {{--</div>--}}
                                     <input type="hidden" name="goodsid" value={{$data['id']}}><br>
-
+									<div class="col-md-12">
+									<input type="radio" name="wantgood" value="1" id="good" onclick="reviewch()" checked>もらったもの
+									<input type="radio" name="wantgood" value="2" id="want" onclick="wantch()">欲しいもの
+									</div>
+									<div class="col-md-12">
                                         <textarea name="comment" id="comment" rows="4" cols="40" placeholder="レビュー(100文字以内)" maxlength="100"></textarea>
-
+									</div>
 
                                         <p id="scenelabel">シーン:
                                         <select id="scene" name="scene">
@@ -236,8 +240,7 @@
                                         </select></p><br>
 
 
-									<input type="radio" name="wantgood" value="1" id="good" onclick="reviewch()" checked>もらったもの
-									<input type="radio" name="wantgood" value="2" id="want" onclick="wantch()">欲しいもの
+
 
 
 									<p id="ratelabel">評価
@@ -253,10 +256,11 @@
                                     @if(Auth::check() == false)
 
                                         {{--ログインしていない場合（ゲストユーザー）--}}
-
+									<div class="col-md-12">
 									<div class="well">
                                             現在ユーザーログインされていません。<br>
-                                            商品を登録するにはログインするか、ゲストユーザーとして以下のユーザー情報を入力してください。<br>
+                                            レビューを登録するにはログインするか、ゲストユーザーとして以下のユーザー情報を入力してください。<br>
+									</div>
 									</div>
                                             性別:
                                             <input type="radio" name="sex" value="1" checked>男
