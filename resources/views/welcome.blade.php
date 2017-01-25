@@ -8,7 +8,15 @@
                 <div class="panel-heading">Welcome</div>
 
                 <div class="panel-body">
-                    Your Application's Landing Page.
+
+                    <form action="{{url('/test')}}" method="post">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="key" value="pcdEhBroxNohtmKoek8iE34hQ6FZYbp">
+                        <input type="hidden" name="token" value="GVnRbhHAi4N7IqZTh0DHKUrMU0Zq5lTi">
+                        <button type='submit' name='submit'>送信</button>
+                    </form>
+
+
                 </div>
             </div>
         </div>
