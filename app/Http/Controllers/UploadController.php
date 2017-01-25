@@ -83,7 +83,7 @@ class UploadController extends Controller
         // 商品タイプ取得
         $goods_type = (int)Request::input('wantgood');
 
-        $review = array('getgoods_id' => $getgoods_id[0]['id'], 'users_id' => $user_id, 'scenes_id' => $scene,
+        $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scene,
             'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
         Review::create($review);
 
@@ -162,13 +162,13 @@ class UploadController extends Controller
         // 商品タイプ取得
         $goods_type = (int)Request::input('wantgood');
 
-        $review = array('getgoods_id' => $getgoods_id[0]['id'], 'users_id' => $user_id, 'scenes_id' => $scene,
+        $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scene,
             'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
         Review::create($review);
 
 //--------------------------------------レビュー--------------------------------------------
 
-        return redirect('/single/?goodsid=' . $getgoods_id[0]['id']);
+        return redirect('/single/?goodsid=' . $getgoods_id);
 
     }
 
