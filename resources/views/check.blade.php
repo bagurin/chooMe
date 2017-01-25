@@ -9,7 +9,7 @@
                         ※重複チェックボックスについて※<br>
                         重複対象商品：ON<br>
                         重複対象外商品：OFF
-                        <br>重複がない場合も同期ボタンを押して下さい。次回以降表示されなくなります。
+                        <br><br><p>重複がない場合も同期ボタンを押して下さい。次回以降表示されなくなります</p>
                     </div>
 
                     <div class="panel-body">
@@ -29,7 +29,7 @@
                                             <?php $mainid = $val2['id'] ?>
                                             <tr><td height="120">{{$val2['name']}}</td>
                                                 <td align="center">{{$val2['genres']}}</td>
-                                                <td align="center" valign="middle"><img src={{$val2['image']}} alt="" height="100px"/></td>
+                                                <td align="center" valign="middle"><a href="/single/?goodsid={{$val2['id']}}"><img  src={{$val2['image']}} alt="" height="100px"/></a></td>
                                                 @else
                                                     @if($count == 2)
                                                         <?php $o += 1; ?>
@@ -52,7 +52,7 @@
                                                                     <tr>
                                                                         <td>{{$val2['name']}}</td>
                                                                         <td align="center">{{$val2['genres']}}</td>
-                                                                        <td><img src={{$val2['image']}} alt="" height="100px"/></td>
+                                                                        <td><a href="/single/?goodsid={{$val2['id']}}"><img src={{$val2['image']}} alt="" height="100px"/></a></td>
                                                                         <td align="center" width="30">
                                                                                 <input type="hidden" name="lap[0][<?php echo($val2['id']); ?>]" value=<?php echo('off'); ?>>
                                                                                 <input type="checkbox" style="-webkit-transform: scale(1.8); transform: scale(1.8);"
@@ -88,7 +88,7 @@
                                                             <tr>
                                                                 <td>{{$val2['name']}}</td>
                                                                 <td align="center">{{$val2['genres']}}</td>
-                                                                <td><img src={{$val2['image']}} alt="" height="100px"/></td>
+                                                                <td><a href="/single/?goodsid={{$val2['id']}}"><img src={{$val2['image']}} alt="" height="100px"/></a></td>
                                                                 <td width="30" align="center">
                                                                     <input type="hidden" name="lap[0][<?php echo($val2['id']); ?>]" value=<?php echo('off'); ?>>
                                                                     <input type="checkbox" style="-webkit-transform: scale(1.8); transform: scale(1.8);"
@@ -101,7 +101,7 @@
                                                                 <tr>
                                                                     <td>{{$val2['name']}}</td>
                                                                     <td align="center">{{$val2['genres']}}</td>
-                                                                    <td><img src={{$val2['image']}} alt="" height="100px"/></td>
+                                                                    <td><a href="/single/?goodsid={{$val2['id']}}"><img src={{$val2['image']}} alt="" height="100px"/></a></td>
                                                                     <td width="30" align="center">
                                                                         <input type="hidden" name="lap[<?php echo($no); ?>][<?php echo($val2['id']); ?>]" value=<?php echo('off'); ?>>
                                                                         <input type="checkbox" style="-webkit-transform: scale(1.8); transform: scale(1.8);"
