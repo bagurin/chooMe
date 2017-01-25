@@ -46,7 +46,9 @@ class UploadController extends Controller
 
         // 配列にまとめてデータベースに追加
         $getgoods = array('name' => $syohin, 'genres_id' => (int)$genres, 'image' => $path, 'url' => $url);
-        Getgoods::create($getgoods);
+        $goods = Getgoods::create($getgoods);
+        $data = $goods->toArray();
+        $getgoods_id = $data['id'];
 
 //--------------------------------------商品登録--------------------------------------------
 
@@ -76,7 +78,7 @@ class UploadController extends Controller
         $scene = Request::get('scene');
 
         //商品名からidを取得
-        $getgoods_id = Getgoods::where('name', $syohin)->get(['id'])->toArray();
+        //$getgoods_id = Getgoods::where('name', $syohin)->get(['id'])->toArray();
 
         // 商品タイプ取得
         $goods_type = (int)Request::input('wantgood');
@@ -121,7 +123,9 @@ class UploadController extends Controller
 
         // 配列にまとめてデータベースに追加
         $getgoods = array('name' => $syohin, 'genres_id' => (int)$genres, 'image' => $path, 'url' => $url);
-        Getgoods::create($getgoods);
+        $goods = Getgoods::create($getgoods);
+        $data = $goods->toArray();
+        $getgoods_id = $data['id'];
 
 //--------------------------------------商品登録--------------------------------------------
 
@@ -153,7 +157,7 @@ class UploadController extends Controller
         $scene = Request::get('scene');
 
         //商品名からidを取得
-        $getgoods_id = Getgoods::where('name', $syohin)->get(['id'])->toArray();
+        //$getgoods_id = Getgoods::where('name', $syohin)->get(['id'])->toArray();
 
         // 商品タイプ取得
         $goods_type = (int)Request::input('wantgood');
