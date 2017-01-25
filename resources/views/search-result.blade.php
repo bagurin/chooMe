@@ -209,8 +209,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="bs-docs-example">
             <script type="text/javascript">
 
-
-
                 with (tablecolorchanger){
                     setColColor("result-table","white,black",0,1);
                     setColColor("result-table","grey,black",1,1);
@@ -219,20 +217,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             </script>
 
-            <div class="well">
-                選択したい商品の行をクリックしてください。
-            </div>
-            <table class="table table-bordered" id="result-table">
-                <thead id="thead">
-                <tr><th>商品名</th><th>ジャンル</th><th>商品画像</th></tr>
-                </thead>
-                <tbody>
-            <?php
-                printTable($list);
-            ?>
-                </tbody>
-            </table>
-            {!! $list->render() !!}
+            @if(count($list) == 0)
+
+                <div class="well">
+                    検索ワードに該当する商品がありませんでした。
+                </div>
+
+            @else
+                
+                <div class="well">
+                    選択したい商品の行をクリックしてください。
+                </div>
+                <table class="table table-bordered" id="result-table">
+                    <thead id="thead">
+                    <tr><th>商品名</th><th>ジャンル</th><th>商品画像</th></tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    printTable($list);
+                    ?>
+                    </tbody>
+                </table>
+                {!! $list->render() !!}
+            @endif
 
             <a href="javascript:history.back();">前のぺージに戻る</a>
 
