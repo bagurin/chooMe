@@ -24,6 +24,12 @@ class Getgoods extends Model
             'getgoods.name', 'getgoods.image', 'genres.name as genres');
     }
 
+    //商品情報をまとめる
+    public function scopeSelect_goodssingle($query){
+        return $query->select('getgoods.id',
+            'getgoods.name', 'getgoods.image','getgoods.url' , 'genres.name as genres');
+    }
+
     //goodsidで条件検索
     public function scopeWhere_goods($query, $goods_id){
         return $query->where('getgoods.id', '=', $goods_id);
