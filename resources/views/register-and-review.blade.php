@@ -132,7 +132,7 @@
                             <input type="hidden" class="form-control-ro" name="genrename" id="parentgenrename" placeholder="ジャンル" readonly="readonly"/>
                             <!-- ジャンルid、画像情報はhiddenで外に-->
                             <input type="hidden" class="form-control" name="genreid" id="parentgenreid" value="" readonly="readonly"/>
-                            <input type="hidden" class="form-control" name="goodsid" id="parentimage" value="" readonly="readonly"/>
+                            <input type="hidden" class="form-control" name="goodsid" id="parentgoodsid" value="" readonly="readonly"/>
 
                                 <style>
                                     textarea{

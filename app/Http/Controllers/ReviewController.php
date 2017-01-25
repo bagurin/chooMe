@@ -128,7 +128,7 @@ class ReviewController extends Controller
         Review::create($review);
 
         //登録成功
-        return redirect()->back();
+        return redirect('/single/?goodsid=' . $getgoods_id);
 
     }
 

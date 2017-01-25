@@ -79,7 +79,8 @@ Route::get('/search/', function(){
 Route::post('/check/', 'UploadController@nameCheck');
 Route::post('/temp/', 'UploadController@imageTemp');
 Route::get('/single/', 'RankingViewController@goodsView');
-Route::post('/single', 'ReviewController@review');
+Route::post('/single/', 'ReviewController@review');
+Route::post('/p-review/', 'ReviewController@review');
 Route::get('/imageDel/', 'UploadController@imageDel');
 Route::get('/getgenres/', 'RankingViewController@getGenre');
 Route::get('/bygenres/', 'RankingViewController@genreGoods');
