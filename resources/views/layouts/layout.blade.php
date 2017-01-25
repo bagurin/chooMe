@@ -380,6 +380,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<ul id="nav">
 				<li class="active"><a href="/">Home</a></li>
 				<li><a href="/about">About</a></li>
+				<li><a href="/register-and-review">商品登録</a></li>
 				<li><a href="/ranking/?pattern=31&getgoodstype=1">誕生日</a>
 					<span id="s1"></span>
 					<ul class="subs">
