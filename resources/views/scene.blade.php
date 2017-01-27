@@ -216,9 +216,9 @@
         $(function(){
             $("#cancel")
                     .click(function(){
+
                         $("#p-register").contents().find("#name").removeAttr("disabled");
 //                        $("#p-register").contents().find("#image").attr("disabled");
-
                         search.location.href = '/search/';
                         document.getElementById("parenttext").style.backgroundColor = "#ccc";
                         document.getElementById("parenttext").isDisabled = true;
@@ -227,15 +227,13 @@
                         document.getElementById("parentgenrename").isDisabled = true;
                         document.getElementById("parentgenreid").value = "";
                         document.getElementById("parentgenreid").isDisabled = true;
-                        document.getElementById("parentimage").value = "";
                         document.getElementById("comment").readOnly = true;
                         document.getElementById("comment").style.backgroundColor = "#ccc";
 //                        document.getElementById("comment").value = "";
 //                        document.getElementById("rate").selected = "5";
-                        document.getElementById("rate").style.backgroundColor = "#ccc";
-                        $("#rate").attr("disabled","disabled");
+                        document.getElementById("select").style.backgroundColor = "#ccc";
+                        $("#select").attr("disabled","disabled");
                         $("#want").attr("disabled","disabled");
-                        $("#good").attr("disabled","disabled");
                         $("#good").attr("disabled","disabled");
                         $("#man").attr("disabled","disabled");
                         $("#women").attr("disabled","disabled");
@@ -251,8 +249,9 @@
                         $("#cancel").attr("disabled","disabled");
                         $("#p-register").contents().find("#checks").removeAttr("disabled");
                         $("#p-register").contents().find("#checks").removeAttr("style");
-                        $("#p-register").contents().find("#genre").attr("style","background-color: #ccc");
-                        $("#p-register").contents().find("#checkResult").innerText = '';
+                        $('#p-register').contents().find('#checkResult').textContent = "";
+
+
 
 
 
@@ -380,7 +379,7 @@
                                 }
                             </style>
                             <p id="ratelabel">評価
-                                <select id="select">
+                                <select id="select" name="select">
                                 </select>
                                 <select id="rate" name="rate" class="nodisp" disabled size="1">
 
