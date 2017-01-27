@@ -74,7 +74,7 @@ class UploadController extends Controller
 
         //コメント・評価点数・シーン取得
         $comment = Request::get('comment');
-        $rate = Request::get('rate');
+        $rate = Request::get('select');
         $scene = Request::get('scene');
 
         //商品名からidを取得
@@ -84,7 +84,7 @@ class UploadController extends Controller
         $goods_type = (int)Request::input('wantgood');
 
         $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scene,
-            'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
+            'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => $rate);
         Review::create($review);
 
 //--------------------------------------レビュー--------------------------------------------
@@ -153,17 +153,14 @@ class UploadController extends Controller
 
         //コメント・評価点数・シーン取得
         $comment = Request::get('comment');
-        $rate = Request::get('rate');
+        $rate = Request::get('select');
         $scene = Request::get('scene');
-
-        //商品名からidを取得
-        //$getgoods_id = Getgoods::where('name', $syohin)->get(['id'])->toArray();
 
         // 商品タイプ取得
         $goods_type = (int)Request::input('wantgood');
 
         $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scene,
-            'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
+            'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => $rate);
         Review::create($review);
 
 //--------------------------------------レビュー--------------------------------------------
