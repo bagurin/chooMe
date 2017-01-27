@@ -188,7 +188,7 @@
 							<h2>{{$data['name']}}</h2>
 					</div>
 						<div class="video-grid-single-page-agileits">
-							<img src={{$data['image']}} alt="" class="img-responsive-single" /> </div>
+							<a href="{{$data['url']}}"><img src={{$data['image']}} alt="" class="img-responsive-single" /></a> </div>
 						</div>
 						<br>
 						<p>商品名：{{$data['name']}}</p>

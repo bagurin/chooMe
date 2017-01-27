@@ -113,7 +113,7 @@
 
 
 
-                        <form enctype="multipart/form-data" method="post" name="registform" action="{{url('/register/')}}">
+                        <form enctype="multipart/form-data" method="post" name="registform" action="{{url('/new-register/')}}">
 
                     {{--<div class="well">--}}
                         {{--商品のレビューと評価（5段階）を登録します。--}}
