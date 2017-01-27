@@ -82,16 +82,16 @@ class ReviewController extends Controller
         // 名前・コメント・評価点数・商品タイプ取得
         $getgoods_id = Request::get('goodsid');
         $comment = Request::get('comment');
-        $rate = Request::get('rate');
+        $rate = Request::get('select');
         $goods_type = (int)Request::input('wantgood');
         $scene = Request::get('scene');
 
         $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scene,
-            'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
+            'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => $rate);
         Review::create($review);
 
         //登録成功
-        return Response::make("OK！", 200);
+        return Response::make($rate, 200);
 
     }
 
@@ -119,12 +119,12 @@ class ReviewController extends Controller
         // 名前・コメント・評価点数・商品タイプ取得
         $getgoods_id = Request::get('goodsid');
         $comment = Request::get('comment');
-        $rate = Request::get('rate');
+        $rate = Request::get('select');
         $goods_type = (int)Request::input('wantgood');
         $scene = Request::get('scene');
 
         $review = array('getgoods_id' => (int)$getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scene,
-            'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
+            'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => $rate);
         Review::create($review);
 
         //登録成功
