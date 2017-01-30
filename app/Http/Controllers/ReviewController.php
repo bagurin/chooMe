@@ -58,6 +58,44 @@ class ReviewController extends Controller
 
     }
 
+    //おでん追加
+
+    public function getData2()
+    {
+
+        Session::put('goods_name', Request::get('Search'));
+
+        //$list = Getgoods::where('name', 'LIKE', "%{$name}%")->paginate(1);
+        return redirect('/p-search-res/');
+    }
+
+    // 入力された商品名を元に似た名前の商品があるかを検索し連想配列で返す
+    public function searchWord2()
+    {
+        if(isset($_GET['word'])) {
+
+            Session::put('goods_name', $_GET['word']);
+
+            return redirect('/p-search-res/');
+        }
+    }
+
+    public function viewData2(){
+
+        $name = Session::get('goods_name');
+
+        $list = Getgoods::where('name', 'LIKE', "%".$name."%")->paginate(10);
+
+        //ジャンルidをジャンル名に置き換え
+        foreach ($list as $item) {
+            $genres = Genres::where('id', $item['genres_id'])->get(['name'])->toArray();
+            $item['genres_id'] = $genres[0]['name'];
+        }
+        return view('p-search-res', compact('list'));
+
+    }
+
+
     // レビューをデータベースに格納
     public function reviewRank(){
 
