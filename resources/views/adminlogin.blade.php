@@ -1,5 +1,7 @@
 @extends('layouts.layout')
-
+@section('title')
+    ChooMe |　管理者ログイン
+@stop
 @section('content')
 
     <div class="form">

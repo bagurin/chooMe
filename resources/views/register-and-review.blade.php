@@ -1,5 +1,8 @@
 @extends('layouts.layout')
 
+@section('title')
+    ChooMe |　商品登録
+@stop
 @section('content')
 
     <script>
@@ -168,7 +171,7 @@
 
                             <div class="col-md-4 col-sm-4 col-xs-4">
                                 <p id="ratelabel">評価
-                                    <select id="select">
+                                    <select id="select" name="select">
                                     </select>
                                     <select id="rate" name="rate" class="nodisp" disabled size="1">
 

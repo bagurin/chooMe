@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ChooMe | Home </title>
+    <title>ChooMe</title>
     <!-- for-mobile-apps -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -101,7 +101,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 parent.document.registform.genrename.style.backgroundColor = "#fff";
                 parent.document.registform.comment.readOnly = false;
                 parent.document.registform.comment.style.backgroundColor = "#fff";
-                parent.document.registform.rate.removeAttribute('disabled');
+                parent.document.registform.select.removeAttribute('disabled');
                 parent.document.registform.select.style.backgroundColor = "#fff";
                 parent.document.registform.good.removeAttribute('disabled');
                 parent.document.registform.want.removeAttribute('disabled');
@@ -266,7 +266,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 }
                 span img{
                     max-width: 300px;
-                    max-height: 60px;
+                    max-height: 70px;
                     vertical-align: bottom;
                 }
             </style>

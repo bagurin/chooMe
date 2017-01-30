@@ -96,6 +96,15 @@ Route::get('/p-register/', function(){
 Route::get('/p-register2/', function(){
     return view('p-register2');
 });
+Route::post('/p-search/', 'ReviewController@getData2');
+Route::get('/p-search/',function(){
+    return view('p-search');
+});
+Route::get('/search-if/',function(){
+    return view('search-if');
+});
+Route::get('/p-search-res/','ReviewController@viewData2');
+
 Route::get('/mypage', 'UserInfoController@getProfile');
 Route::post('/mypage', 'UserInfoController@postProfile');
 //api

@@ -249,7 +249,7 @@
                         $("#cancel").attr("disabled","disabled");
                         $("#p-register").contents().find("#checks").removeAttr("disabled");
                         $("#p-register").contents().find("#checks").removeAttr("style");
-                        $('#p-register').contents().find('#checkResult').textContent = "";
+                        $('#p-register').contents().find("#checkResult").text("");
 
 
 

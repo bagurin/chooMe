@@ -161,17 +161,44 @@
 	function wantch(){
 		document.forms.reviewform.comment.placeholder = "欲しい理由(100文字以内)";
 		$("#ratelabel").attr("hidden","hidden");
-		$("#rate").attr("hidden","hidden");
+		$("#select").attr("hidden","hidden");
 		$("#scenelabel").attr("hidden", "hidden");
 		$("#scene").attr("hidden", "hidden");
 	}
 	function reviewch() {
 		document.forms.reviewform.comment.placeholder = "レビュー(100文字以内)";
 		$("#ratelabel").removeAttr("hidden");
-		$("#rate").removeAttr("hidden");
+		$("#select").removeAttr("hidden");
 		$("#scenelabel").removeAttr("hidden", "hidden");
 		$("#scene").removeAttr("hidden", "hidden");
 	}
+	$(function() {
+		changeSelect();
+
+		$("input[name=wantgood]").on('change', function() {
+			changeSelect();
+		});
+	});
+	function changeSelect() {
+		$("#select").empty();
+		$("#select").append($("#rate option").clone());
+
+		if ($("input[name=wantgood]:checked").val() == 1) {
+			$("#select").val(5);
+			$("#scene").val(1);
+			$("#select option[value=0]").remove();
+			$("#select").removeAttr("hidden");
+			$("#ratelabel").removeAttr("hidden");
+			$("#scenes").removeAttr("hidden");
+		} else if ($("input[name=wantgood]:checked").val() == 2) {
+			$("#select").attr("hidden", "hidden");
+			$("#ratelabel").attr("hidden","hidden");
+			$("#scenes").attr("hidden", "hidden");
+			$("#select").val(4);
+			$("#scene").val(0);
+		}
+	}
+
 </script>
 
 <div class="single-page-agile-main">
@@ -242,15 +269,27 @@
 
 
 
+									<style>
+										select{
+											margin:5px;
+										}
+										.nodisp{
+											display: none;
+										}
+									</style>
+
 
 									<p id="ratelabel">評価
-                                            <select id="rate" name="rate" size="1">
-                                                <option value="5">★★★★★</option>
-                                                <option value="4">★★★★☆</option>
-                                                <option value="3">★★★☆☆</option>
-                                                <option value="2">★★☆☆☆</option>
-                                                <option value="1">★☆☆☆☆</option>
-                                            </select></p><br>
+										<select id="select" name="select">
+										</select>
+										<select id="rate" name="single" class="nodisp" disabled size="1">
+
+											<option value="5">★★★★★</option>
+											<option value="4">★★★★☆</option>
+											<option value="3">★★★☆☆</option>
+											<option value="2">★★☆☆☆</option>
+											<option value="1">★☆☆☆☆</option>
+										</select></p><br>
 
 
                                     @if(Auth::check() == false)
@@ -263,8 +302,8 @@
 									</div>
 									</div>
                                             性別:
-                                            <input type="radio" name="sex" value="1" checked>男
-                                            <input type="radio" name="sex" value="2">女
+                                            <input type="radio" name="sex" value="男" checked>男
+                                            <input type="radio" name="sex" value="女">女
 									<br>
 
                                             年齢:
