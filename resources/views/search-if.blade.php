@@ -106,6 +106,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     }
 
 </style>
+<div class="well">
+    登録されている商品を検索して一覧で見ることができます。
+    検索したい商品名を入力してください。
+</div>
 <div class="searchbar">
     <form method="post" action="/p-search/">
         {{ csrf_field() }}

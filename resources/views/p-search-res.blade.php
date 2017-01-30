@@ -247,7 +247,7 @@ function printTable($list){
         @else
 
             <div class="well">
-                選択したい商品の行をクリックしてください。
+                見たい商品をクリックすると、商品個別ページに移動します。
             </div>
             <table class="table table-bordered" id="result-table">
                 <thead id="thead">
