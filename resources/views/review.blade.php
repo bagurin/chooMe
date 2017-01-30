@@ -81,7 +81,7 @@
                     </div>
                     <div class="col-md-6">
                     <p>評価
-                    <select id="rate" name="rate" size="1">
+                    <select id="rate" name="select" size="1">
                         <option value="5">★★★★★</option>
                         <option value="4">★★★★☆</option>
                         <option value="3">★★★☆☆</option>
