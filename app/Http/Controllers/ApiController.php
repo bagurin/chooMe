@@ -166,13 +166,21 @@ class ApiController extends Controller
 
             $return_array = $goods_data[0];
 
-            $reviews = Review::join_goodstyepes()->leftjoin_scene()->select_review()
-                ->where_goods($goods_id)->orderby_goodstype()->orderby_rate()->get()->toArray();
+            $getgoods = Review::join_goodstyepes()->leftjoin_scene()->select_review()
+                ->where_goods($goods_id)->where_goodstype(1)->orderby_rate()->get()->toArray();
+
+            $wantgoods = Review::join_goodstyepes()->leftjoin_scene()->select_review()
+                ->where_goods($goods_id)->where_goodstype(2)->orderby_rate()->get()->toArray();
 
             $items_array = array();
 
-            foreach ($reviews as $val) {
-                $item_array = array("Review"=>$val);
+            foreach ($getgoods as $val) {
+                $item_array = array("getgoodsReview"=>$val);
+                $items_array = array_merge($items_array,array($item_array));
+            }
+
+            foreach ($wantgoods as $val) {
+                $item_array = array("wantgoodsReview"=>$val);
                 $items_array = array_merge($items_array,array($item_array));
             }
 
