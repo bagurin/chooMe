@@ -107,12 +107,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 parent.document.registform.want.removeAttribute('disabled');
                 parent.document.registform.scene.removeAttribute('disabled');
                 parent.document.registform.scene.style.backgroundColor = "#fff";
-                parent.document.registform.man.removeAttribute('disabled');
-                parent.document.registform.women.removeAttribute('disabled');
-                parent.document.registform.age.removeAttribute('disabled');
-                parent.document.registform.age.style.backgroundColor = "#fff";
-                parent.document.registform.hobbies_id.removeAttribute('disabled');
-                parent.document.registform.hobbies_id.style.backgroundColor = "#fff";
                 parent.document.registform.send.style.backgroundColor = "#ff9393";
                 parent.document.registform.send.removeAttribute('disabled');
                 parent.document.registform.cancel.style.backgroundColor = "#ff9393";
@@ -126,6 +120,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 //                $("#image").attr("hidden","hidden");
                 $("#temp").attr("disabled","disabled");
                 $("#checks").attr("disabled","disabled");
+                parent.document.registform.man.removeAttribute('disabled');
+                parent.document.registform.women.removeAttribute('disabled');
+                parent.document.registform.age.removeAttribute('disabled');
+                parent.document.registform.age.style.backgroundColor = "#fff";
+                parent.document.registform.hobbies_id.removeAttribute('disabled');
+                parent.document.registform.hobbies_id.style.backgroundColor = "#fff";
+
 
 
 
