@@ -128,8 +128,10 @@ Route::group(['prefix' => '/api/1.0/'], function () {
     //検索結果
     Route::get('serchresult/', 'ApiController@serchResult');
     //商品レビュー投稿
-    Route::get('review/', 'ApiController@apiReview');
+    Route::post('review/', 'ApiController@apiReview');
     //ジャンル別商品
     Route::get('/bygenres/', 'apiController@byGenre');
+    //商品登録
+    Route::post('register-and-review/', 'ApiController@goodsEntry');
 
 });
