@@ -457,8 +457,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 					</ul>
 				</li>
-				<li><a href="#s3">商品ジャンル別</a>
+				<li><a href="#s3">その他シーン別</a>
 					<span id="s3"></span>
+					<ul class="subs">
+						<li><a href="/ranking/?pattern=32&getgoodstype=1">結婚記念日</a></li>
+						<li><a href="/ranking/?pattern=34&getgoodstype=1">出産祝い</a></li>
+						<li><a href="/ranking/?pattern=35&getgoodstype=1">結婚祝い</a></li>
+						<li><a href="/ranking/?pattern=36&getgoodstype=1">手土産</a></li>
+						<li><a href="/ranking/?pattern=37&getgoodstype=1">引っ越し</a></li>
+						<li><a href="/ranking/?pattern=38&getgoodstype=1">お中元＆お歳暮</a></li>
+						<li><a href="/ranking/?pattern=39&getgoodstype=1">父の日</a></li>
+						<li><a href="/ranking/?pattern=40&getgoodstype=1">母の日</a></li>
+						<li><a href="/ranking/?pattern=41&getgoodstype=1">敬老の日</a></li>
+						<li><a href="/ranking/?pattern=42&getgoodstype=1">卒業＆就職祝い</a></li>
+						<li><a href="/ranking/?pattern=43&getgoodstype=1">入学祝い</a></li>
+					</ul>
+				</li>
+				<li><a href="#s4">商品ジャンル別</a>
+					<span id="s4"></span>
 					<ul class="subs">
 						<li><a class="rank" href="/ranking/?pattern=44&getgoodstype=1">本</a>
 							<ul class="subs">
@@ -1002,22 +1018,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</li>
 					</ul>
 
-				</li>
-				<li><a href="#s4">その他シーン別</a>
-					<span id="s4"></span>
-					<ul class="subs">
-						<li><a href="/ranking/?pattern=32&getgoodstype=1">結婚記念日</a></li>
-						<li><a href="/ranking/?pattern=34&getgoodstype=1">出産祝い</a></li>
-						<li><a href="/ranking/?pattern=35&getgoodstype=1">結婚祝い</a></li>
-						<li><a href="/ranking/?pattern=36&getgoodstype=1">手土産</a></li>
-						<li><a href="/ranking/?pattern=37&getgoodstype=1">引っ越し</a></li>
-						<li><a href="/ranking/?pattern=38&getgoodstype=1">お中元＆お歳暮</a></li>
-						<li><a href="/ranking/?pattern=39&getgoodstype=1">父の日</a></li>
-						<li><a href="/ranking/?pattern=40&getgoodstype=1">母の日</a></li>
-						<li><a href="/ranking/?pattern=41&getgoodstype=1">敬老の日</a></li>
-						<li><a href="/ranking/?pattern=42&getgoodstype=1">卒業＆就職祝い</a></li>
-						<li><a href="/ranking/?pattern=43&getgoodstype=1">入学祝い</a></li>
-					</ul>
 				</li>
 				<li><a href="#s5">年代別</a>
 					<span id="s5"></span>
