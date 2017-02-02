@@ -278,6 +278,13 @@ p.fexi_header_para{
 	color:#fff;
 	line-height:1.5em;
 	position:relative;
+    white-space: nowrap;
+    width: 450px;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    display: inline-block;
 }
 p.fexi_header_para label{
 	position: absolute;
