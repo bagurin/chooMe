@@ -113,7 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             parent.document.registform.genrename.style.backgroundColor = "#fff";
             parent.document.registform.comment.readOnly = false;
             parent.document.registform.comment.style.backgroundColor = "#fff";
-            parent.document.registform.rate.removeAttribute('disabled');
+            parent.document.registform.select.removeAttribute('disabled');
             parent.document.registform.select.style.backgroundColor = "#fff";
             parent.document.registform.good.removeAttribute('disabled');
             parent.document.registform.want.removeAttribute('disabled');
