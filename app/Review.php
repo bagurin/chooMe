@@ -25,6 +25,10 @@ class Review extends Model
         return $query->select('reviews.comment', 'reviews.rate', 'scenes.name as scene', 'goodstypes.name as goodstype');
     }
 
+    public function scopeSelect_wreview($query){
+        return $query->select('reviews.comment', 'reviews.rate', 'goodstypes.name as goodstype');
+    }
+
     public function scopeWhere_goods($query, $goods_id){
         return $query->where('reviews.getgoods_id', '=', $goods_id);
     }
