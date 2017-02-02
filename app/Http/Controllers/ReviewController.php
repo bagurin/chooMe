@@ -157,7 +157,7 @@ class ReviewController extends Controller
         // 名前・コメント・評価点数・商品タイプ取得
         $getgoods_id = Request::get('goodsid');
         $comment = Request::get('comment');
-        $rate = Request::get('rate');
+        $rate = Request::get('select');
         $goods_type = (int)Request::input('wantgood');
         $scene = Request::get('scene');
 
