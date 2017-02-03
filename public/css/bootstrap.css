@@ -1163,6 +1163,16 @@ img {
   height: 258px;
   background-color: #ff9393;
   border: 1px solid #ff9393;
+  z-index: 1;
+}
+
+.img-responsive-ranking{
+  object-fit: contain;
+  width: 122px;
+  height: 110px;
+
+  z-index: 2;
+  position: absolute;
 }
 .img-responsive-rank,
 .thumbnail > img,
