@@ -169,8 +169,9 @@ class ApiController extends Controller
             $getgoods = Review::join_goodstyepes()->leftjoin_scene()->select_review()
                 ->where_goods($goods_id)->where_goodstype(1)->orderby_rate()->get()->toArray();
 
-            $wantgoods = Review::join_goodstyepes()->select_wreview()
-                ->where_goods($goods_id)->where_goodstype(2)->orderby_rate()->get()->toArray();
+            $wantgoods = Review::join_goodstyepes()->leftjoin_scene()->select_review()
+                ->where_goods($goods_id)
+                ->orderby_rate()->get()->toArray();
 
             $items_array = array();
 
@@ -180,7 +181,7 @@ class ApiController extends Controller
             }
 
             foreach ($wantgoods as $val) {
-                $item_array = array("wantgoodsReview"=>$val);
+                $item_array = array("getgoodsReview"=>$val);
                 $items_array = array_merge($items_array,array($item_array));
             }
 
@@ -271,18 +272,34 @@ class ApiController extends Controller
             $url = 'https://www.amazon.co.jp/gp/search/ref=nb_sb_noss_1?__mk_ja_JP=%E3%82%AB%E3%
                82%BF%E3%82%AB%E3%83%8A&url=search-alias%3Daps&field-keywords=' . $goods_name;
 
-            $f = $_FILES['upfile'];
-            if(isset($f) and $f['name']) {
-                $image = md5(sha1(uniqid(mt_rand(), true))) . substr($f['name'], strrpos($f['name'], '.'));
-                $file = public_path() . '/media/' . $image;
-                if (!move_uploaded_file($f['tmp_name'], $file)) {
-                    $error = '画像アップロードに失敗しました。';
-                    return json_encode($error, JSON_UNESCAPED_UNICODE);
-                }
-            }else{
-                $error = '画像がアップロードされていません。';
+            // シーン
+            if(!isset($_POST['upfile'])){
+                $error = '画像が送信されていません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
+            $image = $_POST['upfile'];
+
+            $image = str_replace('data:image/jpeg;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $fileData = base64_decode($image);
+            $fileName = public_path() . '/media/' . md5(sha1(uniqid(mt_rand(), true))) . '.jpeg';
+            if(file_put_contents($fileName, $fileData) == false){
+                $error = '画像のアップロードに失敗しました。';
+                return json_encode($error, JSON_UNESCAPED_UNICODE);
+            }
+
+//            $f = $_FILES['upfile'];
+//            if(isset($f) and $f['name']) {
+//                $image = md5(sha1(uniqid(mt_rand(), true))) . substr($f['name'], strrpos($f['name'], '.'));
+//                $file = public_path() . '/media/' . $image;
+//                if (!move_uploaded_file($f['tmp_name'], $file)) {
+//                    $error = '画像アップロードに失敗しました。';
+//                    return json_encode($error, JSON_UNESCAPED_UNICODE);
+//                }
+//            }else{
+//                $error = '画像がアップロードされていません。';
+//                return json_encode($error, JSON_UNESCAPED_UNICODE);
+//            }
 
             $path = '/media/' . $image;
 
