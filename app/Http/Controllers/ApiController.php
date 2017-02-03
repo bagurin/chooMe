@@ -304,7 +304,7 @@ class ApiController extends Controller
 //                return json_encode($error, JSON_UNESCAPED_UNICODE);
 //            }
 
-            $path = '/media/' . $image;
+            $path = $fileName;
 
             // 配列にまとめてデータベースに追加
             $getgoods = array('name' => $goods_name, 'genres_id' => (int)$genres, 'image' => $path, 'url' => $url);
