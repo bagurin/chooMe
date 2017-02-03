@@ -280,6 +280,8 @@ class ApiController extends Controller
             $image = $_POST['upfile'];
 
             $image = str_replace('data:image/jpeg;base64,', '', $image);
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace('data:image/jpg;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
             $fileData = base64_decode($image);
             $fileName = public_path() . '/media/' . md5(sha1(uniqid(mt_rand(), true))) . '.jpeg';
