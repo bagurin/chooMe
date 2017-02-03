@@ -610,8 +610,12 @@
                                     <li>
                                         @foreach($ranking as $rank)
                                         @if($rank['ranking_no'] < 4)
-                                            <a href="/single/?goodsid={{$rank['getgoods_id']}}">
+
+
+                                                <a href="/single/?goodsid={{$rank['getgoods_id']}}">
                                             <div class="col-md-6 col-sm-6 col-xs-6 agile_tv_series_grid_left">
+                                                <img src="/images/ran{{$rank['ranking_no']}}.png" class="img-responsive-ranking">
+
 
                                                 <img src= {{$rank['image']}}  class="img-responsive" />
 
@@ -619,7 +623,6 @@
 
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-6 agile_tv_series_grid_right">
-                                                <p class="fexi_header">{{$rank['ranking_no']}}位</p>
 
                                                 <p class="fexi_header_para"><span>商品名<label>:</label></span>{{$rank['name']}}</p>
                                                 <p class="fexi_header_para">
@@ -663,7 +666,7 @@
 
 
                                     <div class="col-md-4 col-sm-4 col-xs-4 w3l-movie-gride-agile">
-                                        <a href="/single/?goodsid={{$rank['getgoods_id']}}" class="hvr-shutter-out-horizontal"><img src={{$rank['image']}} title="album-name" class="img-responsive" alt=" " />
+                                        <a href="/single/?goodsid={{$rank['getgoods_id']}}"><img src={{$rank['image']}} title="album-name" class="img-responsive" alt=" " />
 
                                         </a>
                                         <div class="mid-1 agileits_w3layouts_mid_1_home">
@@ -699,7 +702,7 @@
                             @elseif($rank['ranking_no'] < 15)
 
                                 <div class="col-md-3 col-sm-3 col-xs-3 w3l-movie-gride-agile">
-                                    <a href="/single/?goodsid={{$rank['getgoods_id']}}" class="hvr-shutter-out-horizontal"><img src={{$rank['image']}} title="album-name" class="img-responsive-rank" alt=" " />
+                                    <a href="/single/?goodsid={{$rank['getgoods_id']}}"><img src={{$rank['image']}} title="album-name" class="img-responsive-rank" alt=" " />
                                      </a>
                                     <div class="mid-1 agileits_w3layouts_mid_1_home">
                                         <div class="w3l-movie-text">
@@ -734,7 +737,7 @@
 
 
                             <div class="col-md-2 col-sm-2 col-xs-2 w3l-movie-gride-agile">
-                                <a href="/single/?goodsid={{$rank['getgoods_id']}}" class="hvr-shutter-out-horizontal"><img src={{$rank['image']}} title="album-name" class="img-responsive-rank-low" alt=" " />
+                                <a href="/single/?goodsid={{$rank['getgoods_id']}}"><img src={{$rank['image']}} title="album-name" class="img-responsive-rank-low" alt=" " />
 
                                 </a>
                                 <div class="mid-1 agileits_w3layouts_mid_1_home">
