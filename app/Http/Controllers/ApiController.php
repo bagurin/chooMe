@@ -277,19 +277,19 @@ class ApiController extends Controller
                 $error = '画像が送信されていません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
-            $image = $_POST['upfile'];
+            $file = $_POST['upfile'];
 
-            $image = str_replace('data:image/jpeg;base64,', '', $image);
-            $image = str_replace('data:image/png;base64,', '', $image);
-            $image = str_replace('data:image/jpg;base64,', '', $image);
-            $image = str_replace('data:image/bmp;base64,', '', $image);
-            $image = str_replace(' ', '+', $image);
-            $fileData = base64_decode($image);
+            $file = str_replace('data:image/jpeg;base64,', '', $file);
+            $file = str_replace('data:image/png;base64,', '', $file);
+            $file = str_replace('data:image/jpg;base64,', '', $file);
+            $file = str_replace('data:image/bmp;base64,', '', $file);
+            $file = str_replace(' ', '+', $file);
+
+            $fileData = base64_decode($file);
+            $fileData= imagecreatefromstring($fileData);
+
             $fileName = public_path() . '/media/' . md5(sha1(uniqid(mt_rand(), true))) . '.jpeg';
-            if(file_put_contents($fileName, $fileData) == false){
-                $error = '画像のアップロードに失敗しました。';
-                return json_encode($error, JSON_UNESCAPED_UNICODE);
-            }
+            imagejpeg($fileData,$fileName);
 
 //            $f = $_FILES['upfile'];
 //            if(isset($f) and $f['name']) {
@@ -493,5 +493,30 @@ class ApiController extends Controller
         return json_encode($error, JSON_UNESCAPED_UNICODE);
 
     }
+
+    public function test(){
+
+        $file = base64_encode(file_get_contents(public_path()."/images/1.jpg"));
+
+        $file = str_replace('data:image/jpeg;base64,', '', $file);
+        $file = str_replace('data:image/png;base64,', '', $file);
+        $file = str_replace('data:image/jpg;base64,', '', $file);
+        $file = str_replace('data:image/bmp;base64,', '', $file);
+        $file = str_replace(' ', '+', $file);
+
+        $fileData = base64_decode($file);
+        $fileData= imagecreatefromstring($fileData);
+
+        $fileName = public_path() . '/media/' . md5(sha1(uniqid(mt_rand(), true))) . '.jpeg';
+        imagejpeg($fileData,$fileName);
+//        if(imagepng($fileData,$fileName) == false){
+//            $error = '画像のアップロードに失敗しました。';
+//            return json_encode($error, JSON_UNESCAPED_UNICODE);
+//        }
+
+        //return $fileData;
+
+    }
+
 
 }
