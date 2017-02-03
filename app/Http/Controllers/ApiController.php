@@ -237,7 +237,7 @@ class ApiController extends Controller
                 $error = 'ジャンルが入力されていません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
-            $genres = (int)$_POST['genres'];
+            $genres = $_POST['genres'];
 
             // レビュー
             if(!isset($_POST['comment'])){
@@ -251,21 +251,21 @@ class ApiController extends Controller
                 $error = 'レートが選択されていません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
-            $rate = (int)$_POST['rate'];
+            $rate = $_POST['rate'];
 
             // 商品タイプ
             if(!isset($_POST['goodstype'])){
                 $error = '商品タイプが選択されていません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
-            $goods_type = (int)$_POST['goodstype'];
+            $goods_type = $_POST['goodstype'];
 
             // シーン
             if(!isset($_POST['scenes'])){
                 $error = 'シーンが選択されていません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
-            $scenes = (int)$_POST['scenes'];
+            $scenes = $_POST['scenes'];
 
 //--------------------------------------------商品登録------------------------------------------------------
             //url生成
@@ -288,32 +288,23 @@ class ApiController extends Controller
             $fileData = base64_decode($file);
             $fileData= imagecreatefromstring($fileData);
 
-            $fileName = public_path() . '/media/' . md5(sha1(uniqid(mt_rand(), true))) . '.jpeg';
+            $name = md5(sha1(uniqid(mt_rand(), true))) . '.jpg';
+
+            $fileName = public_path() . '/media/' . $name;
             imagejpeg($fileData,$fileName);
 
-//            $f = $_FILES['upfile'];
-//            if(isset($f) and $f['name']) {
-//                $image = md5(sha1(uniqid(mt_rand(), true))) . substr($f['name'], strrpos($f['name'], '.'));
-//                $file = public_path() . '/media/' . $image;
-//                if (!move_uploaded_file($f['tmp_name'], $file)) {
-//                    $error = '画像アップロードに失敗しました。';
-//                    return json_encode($error, JSON_UNESCAPED_UNICODE);
-//                }
-//            }else{
-//                $error = '画像がアップロードされていません。';
-//                return json_encode($error, JSON_UNESCAPED_UNICODE);
-//            }
-
-            $path = $fileName;
+            $path = '/media/' . $name;
 
             // 配列にまとめてデータベースに追加
             $getgoods = array('name' => $goods_name, 'genres_id' => (int)$genres, 'image' => $path, 'url' => $url);
-            Getgoods::create($getgoods);
+            $goods = Getgoods::create($getgoods);
+
+            $data = $goods->toArray();
+            $getgoods_id = $data['id'];
 
 //--------------------------------------------レビュー------------------------------------------------------
-            $getgoods_id = Getgoods::where('name', $goods_name)->get(['id']);
             $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scenes,
-                'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => (int)$rate);
+                'goodstypes_id' => $goods_type,'comment' => $comment, 'rate' => $rate);
             Review::create($review);
 
             UserInfo::where('id', $user_id)->update(['connect'=>true]);
@@ -362,7 +353,7 @@ class ApiController extends Controller
                 $error = '商品IDが送られていません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
-            $getgoods_id = (int)$_POST['goods_id'];
+            $getgoods_id = $_POST['goods_id'];
 
             // レビュー
             if(!isset($_POST['comment'])){
@@ -376,24 +367,24 @@ class ApiController extends Controller
                 $error = 'レートが選択されていません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
-            $rate = (int)$_POST['rate'];
+            $rate = $_POST['rate'];
 
             // 商品タイプ
             if(!isset($_POST['goodstype'])){
                 $error = '商品タイプが選択されていません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
-            $goods_type = (int)$_POST['goodstype'];
+            $goods_type = $_POST['goodstype'];
 
             // シーン
             if(!isset($_POST['scenes'])){
                 $error = 'シーンが選択されていません。';
                 return json_encode($error, JSON_UNESCAPED_UNICODE);
             }
-            $scenes = (int)$_POST['scenes'];
+            $scenes = $_POST['scenes'];
 
             $review = array('getgoods_id' => $getgoods_id, 'users_id' => $user_id, 'scenes_id' => $scenes,
-                'goodstypes_id' => $goods_type, 'comment' => $comment, 'rate' => (int)$rate);
+                'goodstypes_id' => $goods_type, 'comment' => $comment, 'rate' => $rate);
             Review::create($review);
 
             UserInfo::where('id', $user_id)->update(['connect'=>true]);
