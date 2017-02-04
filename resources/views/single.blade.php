@@ -189,11 +189,9 @@
 			$("#select option[value=0]").remove();
 			$("#select").removeAttr("hidden");
 			$("#ratelabel").removeAttr("hidden");
-			$("#scenes").removeAttr("hidden");
 		} else if ($("input[name=wantgood]:checked").val() == 2) {
 			$("#select").attr("hidden", "hidden");
 			$("#ratelabel").attr("hidden","hidden");
-			$("#scenes").attr("hidden", "hidden");
 			$("#select").val(4);
 			$("#scene").val(0);
 		}
@@ -250,6 +248,7 @@
 
                                         <p id="scenelabel">シーン:
                                         <select id="scene" name="scene">
+											<option value="0" hidden></option>
                                             <option value="1">誕生日</option>
                                             <option value="2">結婚記念日</option>
                                             <option value="3">クリスマス</option>
@@ -282,7 +281,7 @@
 									<p id="ratelabel">評価
 										<select id="select" name="select">
 										</select>
-										<select id="rate" name="single" class="nodisp" disabled size="1">
+										<select id="rate" name="rate" class="nodisp" disabled size="1">
 
 											<option value="5">★★★★★</option>
 											<option value="4">★★★★☆</option>
